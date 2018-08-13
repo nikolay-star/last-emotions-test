@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Charts</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-xs-center mt-4">
+            <div class="col-sm-8 col-xs-12 order-md-1 order-xs-2">
+
+                <h2>Charts</h2>
+                <hr class="mb-2">
+
+                <div class="chart__item mb-4">
+                    <h3 class="text-left text-info">Gender</h3>
+
+                    <!--график полов-->
+
+                    <div class="canvas-wrapper" style="width: 600px; height: 300px">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+
+
+                </div>
+
+                <div class="chart__item mb-4">
+                    <h3 class="mb-4 text-info">Emotions</h3>
+
+                    <!--график эмоций-->
+                    <div class="canvas-wrapper">
+                        <canvas id="emotionsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart__item mb-4">
+                    <h3 class="mb-4 text-info">Countries</h3>
+
+                    <!--график стран-->
+                    <div class="canvas-wrapper">
+                        <canvas id="countriesChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart__item mb-4">
+                    <h3 class="mb-4 text-info">Age</h3>
+
+                    <!--график возрастов-->
+                    <div class="canvas-wrapper" style="width: 600px; height: 300px">
+                        <canvas id="agesChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart__item mb-4">
+                    <h3 class="mb-4 text-info">experienceID</h3>
+
+                    <!--график experienceID 1-->
+                    <div class="canvas-wrapper">
+                         <canvas id="experienceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12 order-md-2 order-xs-1">
+                <h2 class="">Filters</h2>
+
+                <hr class="mb-2">
+
+                <h5>Select dates</h5>
+
+                <form action="#" class="d-flex justify-content-between">
+                    <div class="form-group mr-1">
+                        <input type="date" class="form-control form-control-sm">
+                    </div>
+                    <div class="form-group ml-1">
+                        <input type="date" class="form-control form-control-sm">
+                    </div>
+
+                </form>
+
+                <hr class="mb-2">
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">man</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">woman</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                           value="option3">
+                    <label class="form-check-label" for="inlineRadio3">not specified</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                           value="option4">
+                    <label class="form-check-label" for="inlineRadio4">all</label>
+                </div>
+
+
+                <hr class="mb-2">
+
+                <h5>Emotions</h5>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Emotion 1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">Emotion 2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">Emotion 3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                    <label class="form-check-label" for="inlineCheckbox4">Emotion 4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                    <label class="form-check-label" for="inlineCheckbox5">Emotion 5</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                    <label class="form-check-label" for="inlineCheckbox6">Emotion 6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                    <label class="form-check-label" for="inlineCheckbox7">Emotion 7</label>
+                </div>
+
+                <hr class="mb-2">
+
+                <h5>experienceID</h5>
+
+                <form action="#" class="form-inline">
+                    <select class="form-control w-100">
+                        <option value="experienceID 1">experienceID 1</option>
+                        <option value="experienceID 2">experienceID 2</option>
+                        <option value="experienceID 3">experienceID 3</option>
+                    </select>
+                </form>
+
+                <hr class="mb-2">
+
+                <h5>Select country</h5>
+
+                <form action="#" class="form-inline">
+                    <select class="form-control w-100">
+                        <option value="USA">USA</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Ukraine">Ukraine</option>
+                    </select>
+                </form>
+
+                <hr class="mb-2">
+
+                <h4>Select age</h4>
+
+                <form action="#" class="d-flex justify-content-between">
+                    <div class="form-group mr-1">
+                        <input type="number" class="form-control form-control-sm" placeholder="from">
+                    </div>
+                    <div class="form-group ml-1">
+                        <input type="number" class="form-control form-control-sm" placeholder="to">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // test data
+
+        var labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Grey"];
+        var data1 = [12, 19, 3, 5, 2, 3, 4];
+        var bgColors = [
+	        'rgba(255, 99, 132, 0.2)',
+	        'rgba(54, 162, 235, 0.2)',
+	        'rgba(255, 206, 86, 0.2)',
+	        'rgba(75, 192, 192, 0.2)',
+	        'rgba(153, 102, 255, 0.2)',
+	        'rgba(255, 159, 64, 0.2)',
+	        'rgba(0, 0, 0, 0.2)'
+        ];
+        var borderColors = [
+	        'rgba(255,99,132,1)',
+	        'rgba(54, 162, 235, 1)',
+	        'rgba(255, 206, 86, 1)',
+	        'rgba(75, 192, 192, 1)',
+	        'rgba(153, 102, 255, 1)',
+	        'rgba(255, 159, 64, 1)',
+	        'rgba(0, 0, 0, 0.8)'
+        ];
+
+        // parse json
+
+        var dataObj = [];
+
+        $.getJSON( "data.json", function( json ) {
+	        dataObj = json;
+        }).done(function () {
+            initChart(dataObj)
+        });
+
+        function initChart(data) {
+	        // set values
+
+	        // gender
+
+            var man = 0;
+	        var woman = 0;
+	        var notSp = 0;
+	        var all = data.length;
+
+	        // age
+
+	        var unEighteen = 0;
+	        var unTwentyFive = 0;
+	        var unThirtyFive = 0;
+	        var unFifty = 0;
+	        var fiftyPlus = 0;
+
+	        // emotions
+
+	        var emotions = {
+		        "happy": 0,
+		        "surprised": 0,
+		        "sad": 0,
+		        "disappointed": 0,
+		        "afraid": 0,
+		        "neutro": 0,
+		        "angry": 0
+            };
+
+	        // countries
+
+            var ru = 0;
+            var otherCountry = 0;
+
+
+            // exp
+
+            var expArr = {};
+
+
+	        data.forEach(function(item, i, arr) {
+
+	        	// gender
+
+		        switch (true) {
+                    case (item.demographics[0].gender == 1) : man++;
+                        break;
+			        case (item.demographics[0].gender == 2) : woman++;
+				        break;
+			        default : notSp++;
+				        break;
+		        }
+
+		        // age
+
+		        switch (true) {
+			        case (item.demographics[0].age < 18) :
+				        unEighteen++;
+				        break;
+			        case (item.demographics[0].age >= 18 && item.demographics[0].age < 25) :
+				        unTwentyFive++;
+				        break;
+			        case (item.demographics[0].age >= 25 && item.demographics[0].age < 35) :
+				        unThirtyFive++;
+				        break;
+			        case (item.demographics[0].age >= 35 && item.demographics[0].age < 50) :
+				        unFifty++;
+				        break;
+			        default :
+				        fiftyPlus++;
+				        break;
+		        }
+
+		        // emotions
+
+                emotions.happy += item.emotions[0].happy;
+		        emotions.surprised += item.emotions[0].surprised;
+		        emotions.sad += item.emotions[0].sad;
+		        emotions.disappointed += item.emotions[0].disappointed;
+		        emotions.afraid += item.emotions[0].afraid;
+		        emotions.neutro += item.emotions[0].neutro;
+		        emotions.angry += item.emotions[0].angry;
+
+		        // countries
+
+                // console.log(item.sessionData.country);
+
+		        switch (true) {
+			        case (item.sessionData.country == 'RU') : ru++;
+				        break;
+			        default : otherCountry++;
+				        break;
+		        }
+
+		        // exp id
+
+                if ( ! expArr[item.emotions[0].experienceID] ){
+	                expArr[item.emotions[0].experienceID] = 1
+                } else {
+	                expArr[item.emotions[0].experienceID] += 1
+                }
+
+
+	        });
+
+
+	        // init
+
+	        var ctx = document.getElementById("emotionsChart").getContext('2d');
+	        var emotionsChart = new Chart(ctx, {
+		        type: 'bar',
+		        data: {
+			        labels: ["happy", "surprised", "sad", "disappointed", "afraid", "neutro", "angry"],
+			        datasets: [{
+				        label: '',
+				        data: [ emotions.happy/data.length, emotions.surprised/data.length, emotions.sad/data.length,
+                            emotions.disappointed/data.length, emotions.afraid/data.length, emotions.neutro/data.length,
+                            emotions.angry/data.length ],
+				        backgroundColor: bgColors,
+				        borderColor: borderColors,
+				        borderWidth: 1
+			        }]
+		        },
+		        options: {
+			        legend: {
+				        display : false
+			        },
+			        scales: {
+				        yAxes: [{
+					        ticks: {
+						        //beginAtZero: true
+					        }
+				        }]
+			        }
+		        }
+	        });
+
+	        // experiance id
+
+	        var ctx_exp = document.getElementById("experienceChart").getContext('2d');
+	        var experienceChart = new Chart(ctx_exp, {
+		        type: 'bar',
+		        data: {
+			        labels: Object.keys(expArr),
+			        datasets: [{
+				        label: '',
+				        data: Object.values(expArr),
+				        backgroundColor: bgColors,
+				        borderColor: borderColors,
+				        borderWidth: 1
+			        }]
+		        },
+		        options: {
+			        legend: {
+				        display : false
+			        },
+			        scales: {
+				        yAxes: [{
+					        ticks: {
+						        beginAtZero: true
+					        }
+				        }]
+			        }
+		        }
+	        });
+
+	        // countries
+
+	        var ctx_countries = document.getElementById("countriesChart").getContext('2d');
+	        var countriesChart = new Chart(ctx_countries, {
+		        type: 'bar',
+		        data: {
+			        labels: ['RU', 'Other countries'],
+			        datasets: [{
+				        label: '',
+				        data: [ru, otherCountry],
+				        backgroundColor: [bgColors[0], bgColors[1]],
+				        borderColor: [borderColors[0], borderColors[1]],
+				        borderWidth: 1
+			        }]
+		        },
+		        options: {
+			        legend: {
+				        display : false
+			        },
+			        scales: {
+				        yAxes: [{
+					        ticks: {
+						        beginAtZero: true
+					        }
+				        }]
+			        }
+		        }
+	        });
+
+
+	        // gender
+
+	        var ctx_gender = document.getElementById("genderChart").getContext('2d');
+	        var genderChart = new Chart(ctx_gender, {
+		        type: 'pie',
+		        data: {
+			        labels: ['man', 'woman', 'not specified'],
+			        datasets: [{
+				        label: '',
+				        data: [man, woman, notSp],
+				        backgroundColor: [ bgColors[0], bgColors[1], bgColors[2] ],
+				        borderWidth: 0
+			        }]
+		        },
+		        options: {
+			        legend: {
+				        //display : false
+			        },
+		        }
+	        });
+
+	        // age
+
+	        var ctx_age = document.getElementById("agesChart").getContext('2d');
+	        var genderAge = new Chart(ctx_age, {
+		        type: 'pie',
+		        data: {
+			        labels: ['<18', '18-24', '25-35', '36-50', '>50'],
+			        datasets: [{
+				        label: '',
+				        data: [unEighteen, unTwentyFive, unThirtyFive, unFifty, fiftyPlus],
+				        backgroundColor: [ bgColors[0], bgColors[1], bgColors[2], bgColors[3], bgColors[4] ],
+				        borderWidth: 0
+			        }]
+		        },
+		        options: {
+			        legend: {
+				        //display : false
+			        },
+		        }
+	        });
+        }
+
+
+    </script>
+</body>
+</html>

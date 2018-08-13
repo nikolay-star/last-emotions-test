@@ -1,0 +1,1234 @@
+[
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 0.20163620822131634,
+        "experienceID": "QQ-591",
+        "happy": 0.007932730950415134,
+        "surprised": 0.0028763189911842346,
+        "sad": 0.05297341197729111,
+        "disappointed": 0.0015910763759166002,
+        "afraid": 0.0015910763759166002,
+        "neutro": 0.9095138311386108,
+        "angry": 0.0018923315219581127
+      }
+    ],
+    "demographics": [
+      {
+        "time": 0.20163620822131634,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 1.0016882083145902,
+        "experienceID": "QQ-591",
+        "happy": 0.018108248710632324,
+        "surprised": 0.004619829822331667,
+        "sad": 0.03544226288795471,
+        "disappointed": 0.000929354690015316,
+        "afraid": 0.000929354690015316,
+        "neutro": 0.89515620470047,
+        "angry": 0.0006014166283421218
+      }
+    ],
+    "demographics": [
+      {
+        "time": 1.0016882083145902,
+        "age": 26,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 2.0017532082274556,
+        "experienceID": "QQ-591",
+        "happy": 0.532425045967102,
+        "surprised": 0.0011457116343080997,
+        "sad": 0.058936797082424164,
+        "disappointed": 0.0030012675561010838,
+        "afraid": 0.0030012675561010838,
+        "neutro": 0.3902459740638733,
+        "angry": 0.00036167187499813735
+      }
+    ],
+    "demographics": [
+      {
+        "time": 2.0017532082274556,
+        "age": 26,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 3.0018182082567364,
+        "experienceID": "QQ-591",
+        "happy": 0.47814345359802246,
+        "surprised": 0.000687840802129358,
+        "sad": 0.0800962895154953,
+        "disappointed": 0.008646384812891483,
+        "afraid": 0.008646384812891483,
+        "neutro": 0.4199693500995636,
+        "angry": 0.0003347053425386548
+      }
+    ],
+    "demographics": [
+      {
+        "time": 3.0018182082567364,
+        "age": 32,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 4.001883208286017,
+        "experienceID": "QQ-591",
+        "happy": 0.34254324436187744,
+        "surprised": 0.0014673128025606275,
+        "sad": 0.11999628692865372,
+        "disappointed": 0.005603626370429993,
+        "afraid": 0.005603626370429993,
+        "neutro": 0.5077486038208008,
+        "angry": 0.0006664141546934843
+      }
+    ],
+    "demographics": [
+      {
+        "time": 4.001883208286017,
+        "age": 30,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 5.001948208315298,
+        "experienceID": "QQ-920-a",
+        "happy": 0.004792043939232826,
+        "surprised": 0.36909109354019165,
+        "sad": 0.03386542201042175,
+        "disappointed": 0.0025598090142011642,
+        "afraid": 0.0025598090142011642,
+        "neutro": 0.39793696999549866,
+        "angry": 0.0008585234172642231
+      }
+    ],
+    "demographics": [
+      {
+        "time": 5.001948208315298,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 6.002013208228163,
+        "experienceID": "QQ-920-a",
+        "happy": 0.00031626096460968256,
+        "surprised": 0.8741137981414795,
+        "sad": 0.0013909315457567573,
+        "disappointed": 0.00011132422514492646,
+        "afraid": 0.00011132422514492646,
+        "neutro": 0.08272239565849304,
+        "angry": 0.00023594190133735538
+      }
+    ],
+    "demographics": [
+      {
+        "time": 6.002013208228163,
+        "age": 27,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 7.002078208257444,
+        "experienceID": "QQ-920-a",
+        "happy": 0.0004060266073793173,
+        "surprised": 0.8380669355392456,
+        "sad": 0.002545637544244528,
+        "disappointed": 0.00018495476979296654,
+        "afraid": 0.00018495476979296654,
+        "neutro": 0.1146927922964096,
+        "angry": 0.0006188312545418739
+      }
+    ],
+    "demographics": [
+      {
+        "time": 7.002078208257444,
+        "age": 26,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "839632D2-C9BD-4E74-88D7-F0DDE0391D65",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 8.002143208286725,
+        "experienceID": "QQ-920-a",
+        "happy": 0.005324841011315584,
+        "surprised": 0.387277752161026,
+        "sad": 0.02863558940589428,
+        "disappointed": 0.0009133405983448029,
+        "afraid": 0.0009133405983448029,
+        "neutro": 0.5070310235023499,
+        "angry": 0.0009505788329988718
+      }
+    ],
+    "demographics": [
+      {
+        "time": 8.002143208286725,
+        "age": 25,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 0.11822733329609036,
+        "experienceID": "QQ-591",
+        "happy": 0.012909738346934319,
+        "surprised": 0.0037692678160965443,
+        "sad": 0.8462436199188232,
+        "disappointed": 0.008608192205429077,
+        "afraid": 0.008608192205429077,
+        "neutro": 0,
+        "angry": 0.005997675936669111
+      }
+    ],
+    "demographics": [
+      {
+        "time": 0.11822733329609036,
+        "age": 48,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 1.0016180833335966,
+        "experienceID": "QQ-591",
+        "happy": 0.04313603788614273,
+        "surprised": 0.013730660080909729,
+        "sad": 0.7266433238983154,
+        "disappointed": 0.014928193762898445,
+        "afraid": 0.014928193762898445,
+        "neutro": 0,
+        "angry": 0.007402029819786549
+      }
+    ],
+    "demographics": [
+      {
+        "time": 1.0016180833335966,
+        "age": 25,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 2.0016830833628774,
+        "experienceID": "Coins",
+        "happy": 0.011835597455501556,
+        "surprised": 0.0034792458172887564,
+        "sad": 0.04685312882065773,
+        "disappointed": 0.0012615110026672482,
+        "afraid": 0.0012615110026672482,
+        "neutro": 0.9137162566184998,
+        "angry": 0.0013169419253244996
+      }
+    ],
+    "demographics": [
+      {
+        "time": 2.0016830833628774,
+        "age": 26,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 3.001748083275743,
+        "experienceID": "Coins",
+        "happy": 0.0025003361515700817,
+        "surprised": 0.6805555820465088,
+        "sad": 0.00645139766857028,
+        "disappointed": 0.0004125935083720833,
+        "afraid": 0.0004125935083720833,
+        "neutro": 0.2228650152683258,
+        "angry": 0.0006421328289434314
+      }
+    ],
+    "demographics": [
+      {
+        "time": 3.001748083275743,
+        "age": 25,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 4.001813083305024,
+        "experienceID": "Coins",
+        "happy": 0.002741254633292556,
+        "surprised": 0.6247473955154419,
+        "sad": 0.007999240420758724,
+        "disappointed": 0.0005890618194825947,
+        "afraid": 0.0005890618194825947,
+        "neutro": 0.2600361704826355,
+        "angry": 0.0007176803192123771
+      }
+    ],
+    "demographics": [
+      {
+        "time": 4.001813083305024,
+        "age": 26,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 5.001878083334304,
+        "experienceID": "Helmet",
+        "happy": 0.6764425039291382,
+        "surprised": 0.0075800418853759766,
+        "sad": 0.014100153930485249,
+        "disappointed": 0.0010174235794693232,
+        "afraid": 0.0010174235794693232,
+        "neutro": 0.28262603282928467,
+        "angry": 0.00007013633876340464
+      }
+    ],
+    "demographics": [
+      {
+        "time": 5.001878083334304,
+        "age": 23,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 6.001943083363585,
+        "experienceID": "Graduation Crown",
+        "happy": 0.44273898005485535,
+        "surprised": 0.10746187716722488,
+        "sad": 0.027435386553406715,
+        "disappointed": 0.002805922878906131,
+        "afraid": 0.002805922878906131,
+        "neutro": 0.32803454995155334,
+        "angry": 0.00043162217480130494
+      }
+    ],
+    "demographics": [
+      {
+        "time": 6.001943083363585,
+        "age": 22,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 7.002008083276451,
+        "experienceID": "Graduation Crown",
+        "happy": 0.6016515493392944,
+        "surprised": 0.014068188145756721,
+        "sad": 0.05134214088320732,
+        "disappointed": 0.00850718654692173,
+        "afraid": 0.00850718654692173,
+        "neutro": 0.25712230801582336,
+        "angry": 0.0006719837547279894
+      }
+    ],
+    "demographics": [
+      {
+        "time": 7.002008083276451,
+        "age": 24,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 8.002073083305731,
+        "experienceID": "Graduation Crown",
+        "happy": 0.07732532173395157,
+        "surprised": 0.0009947094367817044,
+        "sad": 0.8383710384368896,
+        "disappointed": 0.0024104227777570486,
+        "afraid": 0.0024104227777570486,
+        "neutro": 0,
+        "angry": 0.001201986218802631
+      }
+    ],
+    "demographics": [
+      {
+        "time": 8.002073083305731,
+        "age": 31,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 9.002138083335012,
+        "experienceID": "Graduation Crown",
+        "happy": 0.021511375904083252,
+        "surprised": 0.000733590975869447,
+        "sad": 0.9120306968688965,
+        "disappointed": 0.0019454300636425614,
+        "afraid": 0.0019454300636425614,
+        "neutro": 0,
+        "angry": 0.0006431316141970456
+      }
+    ],
+    "demographics": [
+      {
+        "time": 9.002138083335012,
+        "age": 31,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 10.002203083364293,
+        "experienceID": "Graduation Crown",
+        "happy": 0.028663096949458122,
+        "surprised": 0.00046551288687624037,
+        "sad": 0.051401857286691666,
+        "disappointed": 0.004209541250020266,
+        "afraid": 0.004209541250020266,
+        "neutro": 0.8960736989974976,
+        "angry": 0.0011705539654940367
+      }
+    ],
+    "demographics": [
+      {
+        "time": 10.002203083364293,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 11.002268083277158,
+        "experienceID": "Graduation Crown",
+        "happy": 0.12265674024820328,
+        "surprised": 0.0007720499415881932,
+        "sad": 0.7771326303482056,
+        "disappointed": 0.023909958079457283,
+        "afraid": 0.023909958079457283,
+        "neutro": 0,
+        "angry": 0.008349922485649586
+      }
+    ],
+    "demographics": [
+      {
+        "time": 11.002268083277158,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 12.00233308330644,
+        "experienceID": "Graduation Crown",
+        "happy": 0.11226703226566315,
+        "surprised": 0.008238093927502632,
+        "sad": 0.6997043490409851,
+        "disappointed": 0.011989076621830463,
+        "afraid": 0.011989076621830463,
+        "neutro": 0,
+        "angry": 0.0068353149108588696
+      }
+    ],
+    "demographics": [
+      {
+        "time": 12.00233308330644,
+        "age": 29,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 13.00239808333572,
+        "experienceID": "Graduation Crown",
+        "happy": 0.021279266104102135,
+        "surprised": 0.0016164962435141206,
+        "sad": 0.03211728855967522,
+        "disappointed": 0.001031738007441163,
+        "afraid": 0.001031738007441163,
+        "neutro": 0.9316818118095398,
+        "angry": 0.0004392681585159153
+      }
+    ],
+    "demographics": [
+      {
+        "time": 13.00239808333572,
+        "age": 29,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 14.002463083365,
+        "experienceID": "Graduation Hat",
+        "happy": 0.09502486884593964,
+        "surprised": 0.0008715756703168154,
+        "sad": 0.7979871034622192,
+        "disappointed": 0.012034950777888298,
+        "afraid": 0.012034950777888298,
+        "neutro": 0,
+        "angry": 0.0048746815882623196
+      }
+    ],
+    "demographics": [
+      {
+        "time": 14.002463083365,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 15.002528083277866,
+        "experienceID": "Graduation Hat",
+        "happy": 0.17556527256965637,
+        "surprised": 0.0014679658925160766,
+        "sad": 0.7035568952560425,
+        "disappointed": 0.018462033942341805,
+        "afraid": 0.018462033942341805,
+        "neutro": 0,
+        "angry": 0.011613544076681137
+      }
+    ],
+    "demographics": [
+      {
+        "time": 15.002528083277866,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 16.002593083307147,
+        "experienceID": "Graduation Hat",
+        "happy": 0.03023117035627365,
+        "surprised": 0.00042697766912169755,
+        "sad": 0.0859370082616806,
+        "disappointed": 0.00353990844450891,
+        "afraid": 0.00353990844450891,
+        "neutro": 0.8606565594673157,
+        "angry": 0.0025176203344017267
+      }
+    ],
+    "demographics": [
+      {
+        "time": 16.002593083307147,
+        "age": 27,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 17.002658083336428,
+        "experienceID": "Graduation Hat",
+        "happy": 0.053214240819215775,
+        "surprised": 0.0003594045410864055,
+        "sad": 0.05893984064459801,
+        "disappointed": 0.004883615765720606,
+        "afraid": 0.004883615765720606,
+        "neutro": 0.8685970902442932,
+        "angry": 0.0009903793688863516
+      }
+    ],
+    "demographics": [
+      {
+        "time": 17.002658083336428,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 18.00272308336571,
+        "experienceID": "Graduation Hat",
+        "happy": 0.03067409247159958,
+        "surprised": 0.0008810748695395887,
+        "sad": 0.053528230637311935,
+        "disappointed": 0.012307570315897465,
+        "afraid": 0.012307570315897465,
+        "neutro": 0.8924407958984375,
+        "angry": 0.0004413216665852815
+      }
+    ],
+    "demographics": [
+      {
+        "time": 18.00272308336571,
+        "age": 28,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 19.002788083278574,
+        "experienceID": "Graduation Hat",
+        "happy": 0.04018111526966095,
+        "surprised": 0.000582962529733777,
+        "sad": 0.07553178071975708,
+        "disappointed": 0.013099373318254948,
+        "afraid": 0.013099373318254948,
+        "neutro": 0.8571289777755737,
+        "angry": 0.001649681362323463
+      }
+    ],
+    "demographics": [
+      {
+        "time": 19.002788083278574,
+        "age": 29,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 20.002853083307855,
+        "experienceID": "Graduation Hat",
+        "happy": 0.016412673518061638,
+        "surprised": 0.0036866427399218082,
+        "sad": 0.005389326252043247,
+        "disappointed": 0.004575103521347046,
+        "afraid": 0.004575103521347046,
+        "neutro": 0.9593468308448792,
+        "angry": 0.001125417067669332
+      }
+    ],
+    "demographics": [
+      {
+        "time": 20.002853083307855,
+        "age": 4,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 21.002918083337136,
+        "experienceID": "Graduation Hat",
+        "happy": 0.021455805748701096,
+        "surprised": 0.0002063581778202206,
+        "sad": 0.09012822061777115,
+        "disappointed": 0.01438254676759243,
+        "afraid": 0.01438254676759243,
+        "neutro": 0.8629227876663208,
+        "angry": 0.00487157329916954
+      }
+    ],
+    "demographics": [
+      {
+        "time": 21.002918083337136,
+        "age": 42,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "BE4D6CC8-42CE-484A-B72D-D688377330F3",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 22.002983083366416,
+        "experienceID": "Graduation Hat",
+        "happy": 0.01782543770968914,
+        "surprised": 0.002164422767236829,
+        "sad": 0.0027357893995940685,
+        "disappointed": 0.009681916795670986,
+        "afraid": 0.009681916795670986,
+        "neutro": 0.9515588879585266,
+        "angry": 0.009005876258015633
+      }
+    ],
+    "demographics": [
+      {
+        "time": 22.002983083366416,
+        "age": 7,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 0.016667749965563416,
+        "experienceID": "QQ-591",
+        "happy": 0.00959599670022726,
+        "surprised": 0.001427045906893909,
+        "sad": 0.040064822882413864,
+        "disappointed": 0.02800358086824417,
+        "afraid": 0.02800358086824417,
+        "neutro": 0.8833286762237549,
+        "angry": 0.012311714701354504
+      }
+    ],
+    "demographics": [
+      {
+        "time": 0.016667749965563416,
+        "age": 53,
+        "gender": 1
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 1.0000649999128655,
+        "experienceID": "QQ-591",
+        "happy": 0.016373340040445328,
+        "surprised": 0.0015454026870429516,
+        "sad": 0.032283298671245575,
+        "disappointed": 0.0013883677311241627,
+        "afraid": 0.0013883677311241627,
+        "neutro": 0.9257437586784363,
+        "angry": 0.0010174722410738468
+      }
+    ],
+    "demographics": [
+      {
+        "time": 1.0000649999128655,
+        "age": 18,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 2.0001299999421462,
+        "experienceID": "QQ-591",
+        "happy": 0.016134032979607582,
+        "surprised": 0.0037522604689002037,
+        "sad": 0.057685937732458115,
+        "disappointed": 0.000676992756780237,
+        "afraid": 0.000676992756780237,
+        "neutro": 0.8387370109558105,
+        "angry": 0.0028669689781963825
+      }
+    ],
+    "demographics": [
+      {
+        "time": 2.0001299999421462,
+        "age": 19,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 3.000194999971427,
+        "experienceID": "QQ-591",
+        "happy": 0.034746844321489334,
+        "surprised": 0.01923953928053379,
+        "sad": 0.5979527235031128,
+        "disappointed": 0.005822642706334591,
+        "afraid": 0.005822642706334591,
+        "neutro": 0,
+        "angry": 0.014886895194649696
+      }
+    ],
+    "demographics": [
+      {
+        "time": 3.000194999971427,
+        "age": 24,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 4.000260000000708,
+        "experienceID": "QQ-591",
+        "happy": 0.1292698085308075,
+        "surprised": 0.008747252635657787,
+        "sad": 0.6319781541824341,
+        "disappointed": 0.0026378610637038946,
+        "afraid": 0.0026378610637038946,
+        "neutro": 0,
+        "angry": 0.00683621596544981
+      }
+    ],
+    "demographics": [
+      {
+        "time": 4.000260000000708,
+        "age": 18,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 5.000324999913573,
+        "experienceID": "QQ-591",
+        "happy": 0.027456065639853477,
+        "surprised": 0.0024577605072408915,
+        "sad": 0.026650115847587585,
+        "disappointed": 0.0002015067875618115,
+        "afraid": 0.0002015067875618115,
+        "neutro": 0.8712226748466492,
+        "angry": 0.00045473742648027837
+      }
+    ],
+    "demographics": [
+      {
+        "time": 5.000324999913573,
+        "age": 11,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 6.000389999942854,
+        "experienceID": "QQ-920-a",
+        "happy": 0.019478723406791687,
+        "surprised": 0.008336612954735756,
+        "sad": 0.009853898547589779,
+        "disappointed": 0.0002727941900957376,
+        "afraid": 0.0002727941900957376,
+        "neutro": 0.9243142604827881,
+        "angry": 0.00030081902514211833
+      }
+    ],
+    "demographics": [
+      {
+        "time": 6.000389999942854,
+        "age": 15,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 7.000454999972135,
+        "experienceID": "QQ-920-a",
+        "happy": 0.02121293731033802,
+        "surprised": 0.0025178894866257906,
+        "sad": 0.666625440120697,
+        "disappointed": 0.005711295176297426,
+        "afraid": 0.005711295176297426,
+        "neutro": 0,
+        "angry": 0.03971853107213974
+      }
+    ],
+    "demographics": [
+      {
+        "time": 7.000454999972135,
+        "age": 18,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 8.000520000001416,
+        "experienceID": "QQ-920-a",
+        "happy": 0.014934482984244823,
+        "surprised": 0.003613313427194953,
+        "sad": 0.019446879625320435,
+        "disappointed": 0.001044262433424592,
+        "afraid": 0.001044262433424592,
+        "neutro": 0.9400988221168518,
+        "angry": 0.002196778077632189
+      }
+    ],
+    "demographics": [
+      {
+        "time": 8.000520000001416,
+        "age": 19,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 9.000584999914281,
+        "experienceID": "QQ-920-a",
+        "happy": 0.2907724380493164,
+        "surprised": 0.007085705641657114,
+        "sad": 0.12467235326766968,
+        "disappointed": 0.004067952279001474,
+        "afraid": 0.004067952279001474,
+        "neutro": 0.41705048084259033,
+        "angry": 0.0010386009234935045
+      }
+    ],
+    "demographics": [
+      {
+        "time": 9.000584999914281,
+        "age": 21,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 10.000649999943562,
+        "experienceID": "QQ-920-a",
+        "happy": 0.058197855949401855,
+        "surprised": 0.003329899162054062,
+        "sad": 0.0077903987839818,
+        "disappointed": 0.001239302451722324,
+        "afraid": 0.001239302451722324,
+        "neutro": 0.918875515460968,
+        "angry": 0.0003253732284065336
+      }
+    ],
+    "demographics": [
+      {
+        "time": 10.000649999943562,
+        "age": 25,
+        "gender": 2
+      }
+    ]
+  },
+  {
+    "sessionData": {
+      "sessionID": "E59EF276-406F-4ACF-97EF-A08A21A0FE47",
+      "company": "MoodMe",
+      "project": "Brand MadMen Moodme",
+      "country": "RU"
+    },
+    "emotions": [
+      {
+        "time": 11.000714999856427,
+        "experienceID": "QQ-920-a",
+        "happy": 0.011976323090493679,
+        "surprised": 0.0012485564220696688,
+        "sad": 0.03567776456475258,
+        "disappointed": 0.00464254803955555,
+        "afraid": 0.00464254803955555,
+        "neutro": 0.9101019501686096,
+        "angry": 0.011837579309940338
+      }
+    ],
+    "demographics": [
+      {
+        "time": 11.000714999856427,
+        "age": 15,
+        "gender": 2
+      }
+    ]
+  }
+]
