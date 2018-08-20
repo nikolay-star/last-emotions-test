@@ -12,6 +12,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$.getJSON( "http://18.218.159.157:8001/emotionsData?callback", function( json ) {
+		// http://18.218.159.157:8001/emotionsData
+		dataObj = json;
+	}).done(function (json) {
+		// initChart(dataObj);
+		console.log(json);
+	});
+	</script>
 </head>
 <body>
     <div class="container">
