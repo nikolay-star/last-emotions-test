@@ -41,6 +41,8 @@ $(document).ready(function () {
 		'not specified': 0
 	};
 	
+	var genderSorted = [];
+	
 	var emotions = {
 		"happy": 0,
 		"surprised": 0,
@@ -65,7 +67,7 @@ $(document).ready(function () {
 	var dataObj = [];
 	
 	var filters = {
-		gender: false,
+		gender: 'visible',
 		emotions: false,
 		countries: false,
 		age: false,
@@ -100,62 +102,69 @@ $(document).ready(function () {
 	
 	$('body').on('change', '.js-gender', function () {
 		filters.gender = parseInt( $(this).val() );
-		initChartArrays( filterArr() );
+		
+		clearObjects();
+		filterArr();
+		initChartArrays( dataObj );
+		
+		console.log(genderChart.data.datasets[0].data);
+		genderChart.data.datasets[0].data = Object.values(genderData);
+		console.log(genderChart.data.datasets[0].data);
+		genderChart.update();
+		
 	});
 	
 	// init functions
 	
 	function filterArr() {
-		
-		var newDataObj = dataObj;
 		var filtersGender = parseFloat( filters.gender );
 		
-		//console.log(filters.gender);
-		
-		newDataObj.forEach(function(item, i, arr) {
-			
-			// gender
-			
+		genderSorted = $.map( dataObj, function(item) {
 			var genderArrayVal = parseFloat( item.demographics[0].gender );
 			
-			// console.log(genderArrayVal + ' -parse');
-			// console.log(filtersGender  + ' -gender');
-			// console.log(genderArrayVal == filtersGender);
+			// if ( filtersGender == genderArrayVal ){
+			// 	item.hidden.gender = false
+			// } else {
+			// 	item.hidden.gender = true
+			// }
+			//
 			
 			
-			if ( genderArrayVal == filtersGender ){
-				item.hidden.gender = false
-			} else {
-				item.hidden.gender = true
+			switch (true) {
+				case ( filtersGender === 1 ) : {
+					if (genderArrayVal !== 1) {
+						item.hidden.gender = 'hidden'
+					} else {
+						item.hidden.gender = 'visible'
+					}
+				}
+					break;
+				case ( filtersGender === 2 ) : {
+					if (genderArrayVal !== 2) {
+						item.hidden.gender = 'hidden'
+					} else {
+						item.hidden.gender = 'visible'
+					}
+				}
+					break;
+				case ( filtersGender === 0) : {
+					if (genderArrayVal !== 0) {
+						item.hidden.gender = 'hidden'
+					} else {
+						item.hidden.gender = 'visible'
+					}
+				}
+					break;
+				default : {
+					item.hidden.gender = 'visible'
+				}
+				
 			}
 			
-			// console.log(item.hidden.gender);
-			
-			// console.log(item.demographics[0].gender);
-			// console.log(gender);
 			//console.log(item.hidden.gender);
 			
-			// emotions
-			
-			
-			// countries
-			
-			
-			// age
-			
-			
-			// expId
-			
-			
-			// dates
-			
-			
-			
-		});
-		
-		
-		
-		return newDataObj;
+			return item.hidden.gender;
+		})
 	}
 	
 	
@@ -167,10 +176,19 @@ $(document).ready(function () {
 		});
 	}
 	
+	function clearObjects() {
+		
+		for (var key in genderData){
+			genderData[key] = 0
+		}
+		
+		
+	}
+	
 	// init chart
 	
 	function initChartArrays(data) {
-		
+		//
 		// var x = $.map( genderData, function (item) {
 		// 	return item
 		// });
@@ -187,20 +205,20 @@ $(document).ready(function () {
 			
 			//console.log(filters.gender);
 			
-			//console.log(item.hidden.gender);
+			//console.log(genderSorted[i]);
 			
-			if ( ! item.hidden.gender  ){
-				
-				// gender
-				
-				//genderData.all = data.length;
-				
+			// gender
+			
+			//genderData.all = data.length;
+			
+			if (genderSorted[i] != 'hidden') {
 				switch (true) {
 					case (item.demographics[0].gender == 1 ) : genderData['man']++;
 						break;
 					case (item.demographics[0].gender == 2 ) : genderData['woman']++;
 						break;
-					case (item.demographics[0].gender == 0 )  : genderData['not specified']++;
+					case (item.demographics[0].gender == 0 )  : genderData['not' +
+					' specified']++;
 						break;
 				}
 				
@@ -254,6 +272,7 @@ $(document).ready(function () {
 					expArr[item.emotions[0].experienceID] += 1
 				}
 			}
+			
 		});
 		
 		//console.log(genderData);
@@ -363,7 +382,7 @@ $(document).ready(function () {
 		// gender
 		
 		var ctx_gender = document.getElementById("genderChart").getContext('2d');
-		var genderChart = new Chart(ctx_gender, {
+		genderChart = new Chart(ctx_gender, {
 			type: 'pie',
 			data: {
 				labels: Object.keys(genderData),
