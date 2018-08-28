@@ -1,0 +1,13 @@
+html{
+	height: 100%;
+}
+
+.login{
+	width: 100%;
+	max-width: 500px;
+	min-width: 280px;
+	background: #fcfdfd;
+	padding: 40px 20px;
+	margin: auto;
+	border-radius: 15px;
+}

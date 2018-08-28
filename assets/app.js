@@ -43,6 +43,8 @@ $(document).ready(function () {
 	
 	var genderSorted = [];
 	
+	arrSorted = [];
+	
 	var emotions = {
 		"happy": 0,
 		"surprised": 0,
@@ -84,17 +86,20 @@ $(document).ready(function () {
 	
 	var expArr = {};
 	
+	var activeFilters = false;
+	
 	// parse json
 	
 	$.getJSON( "data2.json", function( json ) {
 		// http://18.218.159.157:8001/emotionsData
 		dataObj = json;
+		arrSorted = json;
 	}).done(function() {
 		initObj(dataObj);
+		initObj(arrSorted);
 		initChartArrays(dataObj);
 		initCharts();
 		initFilters(dataObj);
-		// console.log(json);
 	});
 	
 	
@@ -102,15 +107,20 @@ $(document).ready(function () {
 	
 	$('body').on('change', '.js-gender', function () {
 		filters.gender = parseInt( $(this).val() );
+		activeFilters = true;
 		
 		clearObjects();
-		filterArr();
+		//filterArr();
+		
 		initChartArrays( dataObj );
 		
-		console.log(genderChart.data.datasets[0].data);
+		//console.log( filterArr() );
 		genderChart.data.datasets[0].data = Object.values(genderData);
-		console.log(genderChart.data.datasets[0].data);
+		ageChart.data.datasets[0].data = Object.values(ageData);
+		//console.log(genderChart.data.datasets[0].data);
 		genderChart.update();
+		ageChart.update();
+		
 		
 	});
 	
@@ -119,52 +129,21 @@ $(document).ready(function () {
 	function filterArr() {
 		var filtersGender = parseFloat( filters.gender );
 		
-		genderSorted = $.map( dataObj, function(item) {
+		console.log(filtersGender);
+		
+		activeFilters = true;
+		
+		arrSorted = $.map( dataObj, function(item) {
 			var genderArrayVal = parseFloat( item.demographics[0].gender );
 			
-			// if ( filtersGender == genderArrayVal ){
-			// 	item.hidden.gender = false
-			// } else {
-			// 	item.hidden.gender = true
-			// }
-			//
-			
-			
-			switch (true) {
-				case ( filtersGender === 1 ) : {
-					if (genderArrayVal !== 1) {
-						item.hidden.gender = 'hidden'
-					} else {
-						item.hidden.gender = 'visible'
-					}
-				}
-					break;
-				case ( filtersGender === 2 ) : {
-					if (genderArrayVal !== 2) {
-						item.hidden.gender = 'hidden'
-					} else {
-						item.hidden.gender = 'visible'
-					}
-				}
-					break;
-				case ( filtersGender === 0) : {
-					if (genderArrayVal !== 0) {
-						item.hidden.gender = 'hidden'
-					} else {
-						item.hidden.gender = 'visible'
-					}
-				}
-					break;
-				default : {
-					item.hidden.gender = 'visible'
-				}
-				
+			if ( genderArrayVal == filtersGender || filtersGender == '-1' ){
+				item.hidden.gender = 'visible'
+			} else {
+				item.hidden.gender = 'hidden'
 			}
-			
-			//console.log(item.hidden.gender);
-			
-			return item.hidden.gender;
-		})
+			return item;
+		});
+		
 	}
 	
 	
@@ -178,10 +157,13 @@ $(document).ready(function () {
 	
 	function clearObjects() {
 		
-		for (var key in genderData){
+		for (let key in genderData){
 			genderData[key] = 0
 		}
 		
+		for (let key in ageData){
+			ageData[key] = 0
+		}
 		
 	}
 	
@@ -203,15 +185,18 @@ $(document).ready(function () {
 		
 		data.forEach(function(item, i, arr) {
 			
-			//console.log(filters.gender);
+			//console.log(item);
 			
-			//console.log(genderSorted[i]);
+			//console.log(item.hidden.gender);
 			
 			// gender
 			
 			//genderData.all = data.length;
 			
-			if (genderSorted[i] != 'hidden') {
+			var visible = item.demographics[0].gender == filters.gender || filters.gender == '-1';
+			
+			// if (!activeFilters || arrSorted[i].hidden.gender != 'hidden') {
+			if (!activeFilters || visible ) {
 				switch (true) {
 					case (item.demographics[0].gender == 1 ) : genderData['man']++;
 						break;
