@@ -45,6 +45,8 @@ $(document).ready(function () {
 	
 	arrSorted = [];
 	
+	arrLength = 0;
+	
 	var emotions = {
 		"happy": 0,
 		"surprised": 0,
@@ -97,6 +99,7 @@ $(document).ready(function () {
 	}).done(function() {
 		initObj(dataObj);
 		initObj(arrSorted);
+		//arrLength = arrSorted.length;
 		initChartArrays(dataObj);
 		initCharts();
 		initFilters(dataObj);
@@ -138,6 +141,8 @@ $(document).ready(function () {
 	
 	function clearObjects() {
 		
+		arrLength = 0;
+		
 		for (let key in genderData){
 			genderData[key] = 0
 		}
@@ -154,13 +159,13 @@ $(document).ready(function () {
 			countriesArr[key] = 0
 		}
 		
-		console.log(emotions);
+		//console.log(emotions);
 		
 		for (let key in emotions){
 			emotions[key] = 0
 		}
 		
-		console.log(emotions);
+		//console.log(emotions);
 		
 	}
 	
@@ -230,7 +235,7 @@ $(document).ready(function () {
 		var itemEm = item.emotions[0];
 		var $emChecked = $('.js-em:checked');
 		
-		console.log( itemEm );
+		//console.log( itemEm );
 		
 		if ($emChecked.length) {
 			$emChecked.each(function () {
@@ -251,7 +256,7 @@ $(document).ready(function () {
 		var itemExp = item.emotions[0].experienceID;
 		var $expChecked = $('.js-exp:checked');
 		
-		console.log( $expChecked.length );
+		//console.log( $expChecked.length );
 		
 		if ($expChecked.length) {
 			$expChecked.each(function () {
@@ -282,6 +287,8 @@ $(document).ready(function () {
 			
 			// if (!activeFilters || arrSorted[i].hidden.gender != 'hidden') {
 			if (!activeFilters || checkVisibility(item) ) {
+				arrLength++;
+				
 				switch (true) {
 					case (item.demographics[0].gender == 1 ) : genderData['man']++;
 						break;
@@ -349,7 +356,7 @@ $(document).ready(function () {
 	}
 	
 	function emotionsCreateArr(emotions) {
-		var dataLength = dataObj.length;
+		var dataLength = arrLength;
 		
 		return $.map( emotions, function (item) {
 			return item/dataLength
