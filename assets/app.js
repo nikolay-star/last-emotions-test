@@ -69,12 +69,12 @@ $(document).ready(function () {
 	var dataObj = [];
 	
 	var filters = {
-		gender: 'visible',
-		emotions: false,
-		countries: false,
-		age: false,
-		expId: false,
-		dates: false
+		gender: -1,
+		emotions: -1,
+		countries: -1,
+		age: -1,
+		expId: -1,
+		dates: -1
 	};
 	
 	
@@ -105,47 +105,21 @@ $(document).ready(function () {
 	
 	// actions
 	
-	$('body').on('change', '.js-gender', function () {
+	var $body = $('body');
+	
+	$body.on('change', '.js-gender', function () {
 		filters.gender = parseInt( $(this).val() );
-		activeFilters = true;
 		
-		clearObjects();
-		//filterArr();
-		
-		initChartArrays( dataObj );
-		
-		//console.log( filterArr() );
-		genderChart.data.datasets[0].data = Object.values(genderData);
-		ageChart.data.datasets[0].data = Object.values(ageData);
-		//console.log(genderChart.data.datasets[0].data);
-		genderChart.update();
-		ageChart.update();
-		
-		
+		startFiltering();
 	});
 	
-	// init functions
+	$body.on('change', '.js-age-min, .js-age-max', function () {
+		startFiltering();
+	});
 	
-	function filterArr() {
-		var filtersGender = parseFloat( filters.gender );
-		
-		console.log(filtersGender);
-		
-		activeFilters = true;
-		
-		arrSorted = $.map( dataObj, function(item) {
-			var genderArrayVal = parseFloat( item.demographics[0].gender );
-			
-			if ( genderArrayVal == filtersGender || filtersGender == '-1' ){
-				item.hidden.gender = 'visible'
-			} else {
-				item.hidden.gender = 'hidden'
-			}
-			return item;
-		});
-		
-	}
-	
+	$body.on('change', '.js-country, .js-exp', function () {
+		startFiltering();
+	});
 	
 	// init data object (add filter keys
 	
@@ -153,6 +127,13 @@ $(document).ready(function () {
 		data.forEach(function(item, i, arr) {
 			item.hidden = filters;
 		});
+	}
+	
+	function startFiltering() {
+		activeFilters = true;
+		clearObjects();
+		initChartArrays( dataObj );
+		updateCharts();
 	}
 	
 	function clearObjects() {
@@ -165,38 +146,142 @@ $(document).ready(function () {
 			ageData[key] = 0
 		}
 		
+		for (let key in expArr){
+			expArr[key] = 0
+		}
+		
+		for (let key in countriesArr){
+			countriesArr[key] = 0
+		}
+		
+		console.log(emotions);
+		
+		for (let key in emotions){
+			emotions[key] = 0
+		}
+		
+		console.log(emotions);
+		
+	}
+	
+	// update charts
+	
+	function updateCharts() {
+		genderChart.data.datasets[0].data = Object.values(genderData);
+		ageChart.data.datasets[0].data = Object.values(ageData);
+		emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
+		experienceChart.data.datasets[0].data = Object.values(expArr);
+		countriesChart.data.datasets[0].data = Object.values(countriesArr);
+		
+		genderChart.update();
+		ageChart.update();
+		emotionsChart.update();
+		experienceChart.update();
+		countriesChart.update();
+	}
+	
+	// for filters
+	
+	function checkVisibility(item) {
+		// gender
+		var visibleG = item.demographics[0].gender == filters.gender || filters.gender == '-1';
+		
+		// age
+		var visibleA = '1';
+		var itemAge = item.demographics[0].age;
+		
+		var minVal = $('.js-age-min').val();
+		var maxVal = $('.js-age-max').val();
+		
+		switch (true) {
+			case (itemAge >= minVal && itemAge < maxVal) :
+				visibleA = true;
+				break;
+			case (itemAge < minVal || itemAge > maxVal) :
+				visibleA = false;
+				break;
+			default :
+				visibleA = true;
+				break;
+		}
+		
+		// country
+		
+		var visibleC = '1';
+		var itemCountry = item.sessionData.country;
+		var $countiesChecked = $('.js-country:checked');
+		
+		if ($countiesChecked.length) {
+			$countiesChecked.each(function () {
+				if ( itemCountry == $(this).val() ) {
+					visibleC = true;
+					return false
+				} else {
+					visibleC = false
+				}
+			})
+		} else {
+			visibleC = true;
+		}
+		
+		// emotions
+		
+		var visibleEm = '1';
+		var itemEm = item.emotions[0];
+		var $emChecked = $('.js-em:checked');
+		
+		console.log( itemEm );
+		
+		if ($emChecked.length) {
+			$emChecked.each(function () {
+				if ( itemEm == $(this).val() ) {
+					visibleEm = true;
+					return false
+				} else {
+					visibleEm = false
+				}
+			})
+		} else {
+			visibleEm = true;
+		}
+		
+		// expId
+		
+		var visibleExp = '1';
+		var itemExp = item.emotions[0].experienceID;
+		var $expChecked = $('.js-exp:checked');
+		
+		console.log( $expChecked.length );
+		
+		if ($expChecked.length) {
+			$expChecked.each(function () {
+				if ( itemExp == $(this).val() ) {
+					visibleExp = true;
+					return false
+				} else {
+					visibleExp = false
+				}
+			})
+		} else {
+			visibleExp = true;
+		}
+		
+		//console.log(filters.age);
+		
+		var visible = visibleG && visibleA && visibleC && visibleExp;
+		
+		return visible;
 	}
 	
 	// init chart
 	
 	function initChartArrays(data) {
-		//
-		// var x = $.map( genderData, function (item) {
-		// 	return item
-		// });
-		//
-		// console.log(x);
 		
-		//console.log(data);
-		// console.log(newDataObj[0].hidden.gender);
-		//console.log(data);
-		
-		//console.log(data);
 		
 		data.forEach(function(item, i, arr) {
 			
-			//console.log(item);
-			
-			//console.log(item.hidden.gender);
-			
-			// gender
-			
-			//genderData.all = data.length;
-			
-			var visible = item.demographics[0].gender == filters.gender || filters.gender == '-1';
-			
 			// if (!activeFilters || arrSorted[i].hidden.gender != 'hidden') {
-			if (!activeFilters || visible ) {
+			if (!activeFilters || checkVisibility(item) ) {
 				switch (true) {
 					case (item.demographics[0].gender == 1 ) : genderData['man']++;
 						break;
@@ -263,7 +348,7 @@ $(document).ready(function () {
 		//console.log(genderData);
 	}
 	
-	function emotionsCreateArr() {
+	function emotionsCreateArr(emotions) {
 		var dataLength = dataObj.length;
 		
 		return $.map( emotions, function (item) {
@@ -284,7 +369,7 @@ $(document).ready(function () {
 				labels: Object.keys(emotions),
 				datasets: [{
 					label: '',
-					data: emotionsCreateArr(),
+					data: emotionsCreateArr(emotions),
 					backgroundColor: bgColors,
 					borderColor: borderColors,
 					borderWidth: 1
@@ -444,7 +529,7 @@ $(document).ready(function () {
 		
 		function addExpCheckbox(el, i) {
 			var $expCheckbox = $('<div class="form-check form-check-inline">' +
-				'<input class="form-check-input" type="checkbox" id="expCheck_' + i + '" value="exp_' + i + '">' +
+				'<input class="form-check-input js-exp" type="checkbox" id="expCheck_' + i + '" value="' + el + '">' +
 				'<label class="form-check-label" for="expCheck_' + i + '">'+ el +'</label>' +
 				'</div>');
 			
@@ -459,7 +544,7 @@ $(document).ready(function () {
 		
 		function addCountryCheckbox(el, i) {
 			var $cCheckbox = $('<div class="form-check form-check-inline">' +
-				'<input class="form-check-input" type="checkbox" id="cCheck_' + i + '" value="c_' + i + '">' +
+				'<input class="form-check-input js-country" type="checkbox" id="cCheck_' + i + '" value="' + el + '">' +
 				'<label class="form-check-label" for="cCheck_' + i + '">'+ el +'</label>' +
 				'</div>');
 			
@@ -478,7 +563,7 @@ $(document).ready(function () {
 		
 		function addEmCheckbox(el, i) {
 			var $emCheckbox = $('<div class="form-check form-check-inline">' +
-				'<input class="form-check-input" type="checkbox" id="emCheck_' + i + '" value="em_' + i + '">' +
+				'<input class="form-check-input js-em" type="checkbox" id="emCheck_' + i + '" value="' + el + '">' +
 				'<label class="form-check-label" for="emCheck_' + i + '">'+ el +'</label>' +
 				'</div>');
 			

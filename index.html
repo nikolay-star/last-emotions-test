@@ -79,15 +79,17 @@
 
                 <hr class="mb-2">
 
-                <h5>Select dates</h5>
+               <div style="opacity: 0.1">
+                   <h5>Select dates</h5>
 
-                <div id="time-range">
-                    <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
-                    </p>
-                    <div class="sliders_step1">
-                        <div id="slider-range"></div>
-                    </div>
-                </div>
+                   <div id="time-range">
+                       <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
+                       </p>
+                       <div class="sliders_step1">
+                           <div id="slider-range"></div>
+                       </div>
+                   </div>
+               </div>
 
                 <hr class="mb-2">
 
@@ -117,15 +119,17 @@
 
                 <hr class="mb-2">
 
-                <h5>Emotions</h5>
+                <div style="opacity: 0.1">
+                    <h5>Emotions</h5>
 
-                <div class="em-checkboxes">
-                    <!--
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="emCheck_1" value="emotion_1">
-                        <label class="form-check-label" for="emCheck_1">Emotion 1</label>
+                    <div class="em-checkboxes">
+                        <!--
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="emCheck_1" value="emotion_1">
+                            <label class="form-check-label" for="emCheck_1">Emotion 1</label>
+                        </div>
+                        -->
                     </div>
-                    -->
                 </div>
 
                 <hr class="mb-2">
@@ -160,12 +164,17 @@
 
                 <form action="#" class="d-flex">
                     <div class="form-group mr-4 w-25">
-                        <input type="number" min="0" max="100" class="form-control form-control-sm w-100"
-                               placeholder="from">
+                        <input type="number" min="0" max="100" class="form-control form-control-sm w-100 js-age-min"
+                               placeholder="from"
+                               id="ageMax"
+                        value="0">
                     </div>
                     <div class="form-group ml-4 w-25">
-                        <input type="number" min="0" max="100" class="form-control form-control-sm w-100"
-                               placeholder="to">
+                        <input type="number" min="0" max="100"
+                               class="form-control form-control-sm w-100 js-age-max"
+                               placeholder="to"
+                               id="ageMin"
+                                value="99">
                     </div>
                 </form>
 
