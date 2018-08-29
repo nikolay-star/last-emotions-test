@@ -90,7 +90,7 @@ $(document).ready(function () {
 	
 	// parse json
 	
-	$.getJSON( "data2.json", function( json ) {
+	$.getJSON( "all.json", function( json ) {
 		// http://18.218.159.157:8001/emotionsData
 		dataObj = json;
 		arrSorted = json;
