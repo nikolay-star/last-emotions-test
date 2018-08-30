@@ -1,5 +1,42 @@
 $(document).ready(function () {
 	
+	// parse json
+	
+	if ( $('.chart-page').length ) {
+		$.getJSON( "all.json", function() {
+			//	$.getJSON( "http://18.218.159.157:8001/emotionsData", function() {// тут попытка get-запроса
+		}).done(function(json) {
+			dataObj = json;
+			arrSorted = json;
+			initObj(dataObj);
+			initObj(arrSorted);
+			//arrLength = arrSorted.length;
+			initChartArrays(dataObj);
+			initCharts();
+			initFilters(dataObj);
+		});
+	}
+	
+	
+	var $loginform = $( "#loginform" );
+	
+	$loginform.on('submit', function (e) {
+		e.preventDefault();
+		
+		$.post( "http://18.218.159.157:8001/emotionsData",  // тут url для логина
+			$loginform.serialize()
+		).done(function(json) {
+			
+			// пока без переадресации, просто вывод в консоли
+			console.log(json);
+			
+		}).fail(function() {
+			alert( "Wrong email or password. Try again" );
+		});
+	});
+	
+	
+	
 	// colors
 	
 	var bgColors = [
@@ -53,7 +90,7 @@ $(document).ready(function () {
 		"sad": 0,
 		"disappointed": 0,
 		"afraid": 0,
-		"neutro": 0,
+		//"neutro": 0,
 		"angry": 0
 	};
 	
@@ -90,21 +127,6 @@ $(document).ready(function () {
 	
 	var activeFilters = false;
 	
-	// parse json
-	
-	$.getJSON( "all.json", function( json ) {
-		// http://18.218.159.157:8001/emotionsData
-		dataObj = json;
-		arrSorted = json;
-	}).done(function() {
-		initObj(dataObj);
-		initObj(arrSorted);
-		//arrLength = arrSorted.length;
-		initChartArrays(dataObj);
-		initCharts();
-		initFilters(dataObj);
-	});
-	
 	
 	// actions
 	
@@ -124,6 +146,14 @@ $(document).ready(function () {
 		startFiltering();
 	});
 	
+	// $body.on('change', '.js-em', function () {
+	// 	startFilteringEm();
+	// 	initChartArrays( dataObj );
+	// 	emotionsChart.config.data.labels = Object.keys(emotions);
+	// 	emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
+	// 	emotionsChart.update();
+	// });
+	//
 	// init data object (add filter keys
 	
 	function initObj(data) {
@@ -138,6 +168,33 @@ $(document).ready(function () {
 		initChartArrays( dataObj );
 		updateCharts();
 	}
+	
+	// function startFilteringEm() {
+	// 	var $emAll = $('.js-em');
+	// 	var $emChecked = $('.js-em:checked');
+	//
+	// 	emotions = {};
+	//
+	// 	if ($emChecked.length) {
+	// 		$emChecked.each(function (i) {
+	// 			emotions[ $(this).val() ] = 0;
+	// 		})
+	// 	} else {
+	// 		$emAll.each(function () {
+	// 			emotions[ $(this).val() ] = 0;
+	// 		})
+	// 	}
+	// }
+	
+	function emotionsCreateArr(emotions) {
+		var dataLength = arrLength;
+		
+		return $.map( emotions, function (item) {
+			return item/dataLength
+		});
+	}
+	
+	// clear
 	
 	function clearObjects() {
 		
@@ -229,27 +286,6 @@ $(document).ready(function () {
 			visibleC = true;
 		}
 		
-		// emotions
-		
-		var visibleEm = '1';
-		var itemEm = item.emotions[0];
-		var $emChecked = $('.js-em:checked');
-		
-		//console.log( itemEm );
-		
-		if ($emChecked.length) {
-			$emChecked.each(function () {
-				if ( itemEm == $(this).val() ) {
-					visibleEm = true;
-					return false
-				} else {
-					visibleEm = false
-				}
-			})
-		} else {
-			visibleEm = true;
-		}
-		
 		// expId
 		
 		var visibleExp = '1';
@@ -277,6 +313,7 @@ $(document).ready(function () {
 		
 		return visible;
 	}
+	
 	
 	// init chart
 	
@@ -324,13 +361,14 @@ $(document).ready(function () {
 				
 				// emotions
 				
-				emotions.happy += item.emotions[0].happy;
-				emotions.surprised += item.emotions[0].surprised;
-				emotions.sad += item.emotions[0].sad;
-				emotions.disappointed += item.emotions[0].disappointed;
-				emotions.afraid += item.emotions[0].afraid;
-				emotions.neutro += item.emotions[0].neutro;
-				emotions.angry += item.emotions[0].angry;
+				
+				for (var em_key in emotions) {
+					
+					if (em_key != 'neutro') {
+						emotions[em_key] += item.emotions[0][em_key];
+					}
+					
+				}
 				
 				// countries
 				
@@ -355,13 +393,7 @@ $(document).ready(function () {
 		//console.log(genderData);
 	}
 	
-	function emotionsCreateArr(emotions) {
-		var dataLength = arrLength;
-		
-		return $.map( emotions, function (item) {
-			return item/dataLength
-		});
-	}
+	
 	
 	// init charts
 	
@@ -384,7 +416,7 @@ $(document).ready(function () {
 			},
 			options: {
 				legend: {
-					display : false
+					display: false
 				},
 				scales: {
 					yAxes: [{
