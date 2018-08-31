@@ -127,6 +127,14 @@ $(document).ready(function () {
 	
 	var activeFilters = false;
 	
+	var happyData = {};
+	var surprisedData = {};
+	var sadData = {};
+	var disappointedData = {};
+	var afraidData = {};
+	var angryData = {};
+	
+	var happyDays = [];
 	
 	// actions
 	
@@ -307,9 +315,33 @@ $(document).ready(function () {
 			visibleExp = true;
 		}
 		
+		// dates
+		
+		var minDate = dateToTimestamp( $('.slider-time').text() );
+		var maxDate = dateToTimestamp( $('.slider-time2').text() );
+		var visibleD = true;
+		var itemDate = item.sessionData.timestamp;
+		
+		// console.log(timestampToDate( minDate ));
+		// console.log(timestampToDate( maxDate ));
+		//
+		// console.log(timestampToDate( itemDate ));
+		//
+		// console.log(minDate <= itemDate);
+		//
+		// console.log(itemDate >= maxDate);
+		//
+		// console.log('---/t');
+		
+		if ( minDate <= itemDate && itemDate <= maxDate ) {
+			visibleD = true
+		} else {
+			visibleD = false;
+		}
+		
 		//console.log(filters.age);
 		
-		var visible = visibleG && visibleA && visibleC && visibleExp;
+		var visible = visibleG && visibleA && visibleC && visibleExp && visibleD;
 		
 		return visible;
 	}
@@ -386,11 +418,106 @@ $(document).ready(function () {
 				} else {
 					expArr[item.emotions[0].experienceID] += 1
 				}
+				
+				// emotions and dates
+				
+				var itemDay = timestampToDay( item.sessionData.timestamp );
+				
+				//console.log(item.emotions[0].happy);
+				
+				//console.log( happyData[itemDay] );
+				
+				if ( typeof happyData[itemDay]  !== 'object' ){
+					happyData[itemDay] = {};
+					happyData[itemDay].values = 0;
+					happyData[itemDay].valuesLength = 0;
+					//console.log(happyData[itemDay]);
+				} else {
+					if (typeof item.emotions[0].happy === 'number') {
+						happyData[itemDay].values += item.emotions[0].happy;
+						happyData[itemDay].valuesLength += 1;
+					}
+				}
+				
+				
+				if ( typeof surprisedData[itemDay]  !== 'object' ){
+					surprisedData[itemDay] = {};
+					surprisedData[itemDay].values = 0;
+					surprisedData[itemDay].valuesLength = 0;
+					//console.log(happyData[itemDay]);
+				} else {
+					if (typeof item.emotions[0].surprised === 'number') {
+						surprisedData[itemDay].values += item.emotions[0].surprised;
+						surprisedData[itemDay].valuesLength += 1;
+					}
+				}
+				
+				
+				
+				if ( typeof sadData[itemDay]  !== 'object' ){
+					sadData[itemDay] = {};
+					sadData[itemDay].values = 0;
+					sadData[itemDay].valuesLength = 0;
+					//console.log(happyData[itemDay]);
+				} else {
+					if (typeof item.emotions[0].surprised === 'number') {
+						sadData[itemDay].values += item.emotions[0].sad;
+						sadData[itemDay].valuesLength += 1;
+					}
+				}
+				
+				
+				if ( typeof disappointedData[itemDay]  !== 'object' ){
+					disappointedData[itemDay] = {};
+					disappointedData[itemDay].values = 0;
+					disappointedData[itemDay].valuesLength = 0;
+					//console.log(happyData[itemDay]);
+				} else {
+					if (typeof item.emotions[0].disappointed === 'number') {
+						disappointedData[itemDay].values += item.emotions[0].disappointed;
+						disappointedData[itemDay].valuesLength += 1;
+					}
+				}
+				
+				
+				if ( typeof afraidData[itemDay]  !== 'object' ){
+					afraidData[itemDay] = {};
+					afraidData[itemDay].values = 0;
+					afraidData[itemDay].valuesLength = 0;
+					//console.log(happyData[itemDay]);
+				} else {
+					if (typeof item.emotions[0].afraid === 'number') {
+						afraidData[itemDay].values += item.emotions[0].afraid;
+						afraidData[itemDay].valuesLength += 1;
+					}
+				}
+				
+				
+				if ( typeof angryData[itemDay]  !== 'object' ){
+					angryData[itemDay] = {};
+					angryData[itemDay].values = 0;
+					angryData[itemDay].valuesLength = 0;
+					//console.log(happyData[itemDay]);
+				} else {
+					if (typeof item.emotions[0].angry === 'number') {
+						angryData[itemDay].values += item.emotions[0].angry;
+						angryData[itemDay].valuesLength += 1;
+					}
+				}
 			}
 			
 		});
 		
-		//console.log(genderData);
+		// console.log(
+		// 	$.map(happyData, function (value, key) {
+		// 		var newItem = {
+		// 			'x' : key,
+		// 			'y' : value.values/value.valuesLength
+		// 		};
+		//
+		// 		return newItem
+		// 	})
+		// );
 	}
 	
 	
@@ -529,6 +656,122 @@ $(document).ready(function () {
 				},
 			}
 		});
+		
+		// emotions and dates
+		
+		var ctxED = document.getElementById("emotionsDatesChart").getContext('2d');
+		emotionsDatesChart = new Chart(ctxED, {
+			type: 'line',
+			data: {
+				labels: Object.keys(happyData),
+				datasets: [{
+					label: 'Happy',
+					backgroundColor: bgColors[0],
+					borderColor: borderColors[0],
+					fill: false,
+					data: $.map(happyData, function (value, key) {
+						var newItem = {
+							'x' : key,
+							'y' : value.values/value.valuesLength
+						};
+						
+						return newItem
+					})
+				},
+					{
+						label: 'Surprised',
+						backgroundColor: bgColors[1],
+						borderColor: borderColors[1],
+						fill: false,
+						data: $.map(surprisedData, function (value, key) {
+							var newItem = {
+								'x' : key,
+								'y' : value.values/value.valuesLength
+							};
+							
+							return newItem
+						})
+					},
+					{
+						label: 'Sad',
+						backgroundColor: bgColors[2],
+						borderColor: borderColors[2],
+						fill: false,
+						data: $.map(sadData, function (value, key) {
+							var newItem = {
+								'x' : key,
+								'y' : value.values/value.valuesLength
+							};
+							
+							return newItem
+						})
+					},
+					{
+						label: 'Disappointed',
+						backgroundColor: bgColors[3],
+						borderColor: borderColors[3],
+						fill: false,
+						data: $.map(disappointedData, function (value, key) {
+							var newItem = {
+								'x' : key,
+								'y' : value.values/value.valuesLength
+							};
+							
+							return newItem
+						})
+					},
+					{
+						label: 'Afraid',
+						backgroundColor: bgColors[4],
+						borderColor: borderColors[4],
+						fill: false,
+						data: $.map(afraidData, function (value, key) {
+							var newItem = {
+								'x' : key,
+								'y' : value.values/value.valuesLength
+							};
+							
+							return newItem
+						})
+					},
+					{
+						label: 'Angry',
+						backgroundColor: bgColors[5],
+						borderColor: borderColors[5],
+						fill: false,
+						data: $.map(angryData, function (value, key) {
+							var newItem = {
+								'x' : key,
+								'y' : value.values/value.valuesLength
+							};
+							
+							return newItem
+						})
+					}
+				]
+			},
+			options: {
+				title: {
+					text: 'Time Scale'
+				},
+				scales: {
+					xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Date'
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'value'
+						}
+					}]
+				},
+			}
+		});
+		
+		
 	}
 	
 	
@@ -614,42 +857,22 @@ $(document).ready(function () {
 	/// jquery ui slider for age
 	
 	$( function() {
-		// $( "#slider-range" ).slider({
-		// 	range: true,
-		// 	min: 0,
-		// 	max: 500,
-		// 	values: [ 75, 300 ],
-		// 	slide: function( event, ui ) {
-		// 		$( "#amount" ).val('From ' + ui.values[ 0 ] + " to " + ui.values[ 1 ] );
-		// 	}
-		// });
-		// $( "#amount" ).val( "From " + $( "#slider-range" ).slider( "values", 0 ) +
-		// 	" to " + $( "#slider-range" ).slider( "values", 1 ) );
-		//
 		
+		var dt_from = new Date('2018/08/01');
+		var dt_to = new Date();
 		
-		var dt_from = "2014/11/01";
-		var dt_to = "2014/11/24";
-		
-		$('.slider-time').html(dt_from);
-		$('.slider-time2').html(dt_to);
+		$('.slider-time').html(formatDT(dt_from));
+		$('.slider-time2').html(formatDT(dt_to));
 		var min_val = Date.parse(dt_from)/1000;
 		var max_val = Date.parse(dt_to)/1000;
 		
-		function zeroPad(num, places) {
-			var zero = places - num.toString().length + 1;
-			return Array(+(zero > 0 && zero)).join("0") + num;
-		}
+		
 		function formatDT(__dt) {
 			var year = __dt.getFullYear();
 			var month = zeroPad(__dt.getMonth()+1, 2);
 			var date = zeroPad(__dt.getDate(), 2);
-			var hours = zeroPad(__dt.getHours(), 2);
-			var minutes = zeroPad(__dt.getMinutes(), 2);
-			var seconds = zeroPad(__dt.getSeconds(), 2);
-			// return year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds;
 			
-			return year + '-' + month + '-' + date;
+			return date + '/' + month + '/' + year;
 		}
 		
 		$("#slider-range").slider({
@@ -664,6 +887,8 @@ $(document).ready(function () {
 				
 				var dt_cur_to = new Date(ui.values[1]*1000); //.format("yyyy-mm-dd hh:ii:ss");
 				$('.slider-time2').html(formatDT(dt_cur_to));
+				
+				startFiltering();
 			}
 		});
 		
@@ -672,8 +897,50 @@ $(document).ready(function () {
 	
 	// timestamp to date
 	
+	function timestampToDate(timestamp) {
+		var newDate = new Date();
+		
+		newDate.setTime(timestamp*1000);
+		
+		var year = newDate.getFullYear();
+		var month = zeroPad(newDate.getMonth()+1, 2);
+		var date = zeroPad(newDate.getDate(), 2);
+		
+		return date + '/' + month + '/' + year;
+	}
+	
+	// timestamp to day
+	
+	function timestampToDay(timestamp) {
+		var newDate = new Date();
+		
+		newDate.setTime(timestamp*1000);
+		
+		var year = newDate.getFullYear();
+		var month = zeroPad(newDate.getMonth()+1, 2);
+		var date = zeroPad(newDate.getDate(), 2);
+		
+		return date + '/' + month + '/' + year;
+	}
 	
 	// date to timestamp
 	
+	function dateToTimestamp(myDate) {
+		myDate=myDate.split("/");
+		var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2];
+		return new Date(newDate).getTime() / 1000;
+	}
+	
+	function zeroPad(num, places) {
+		var zero = places - num.toString().length + 1;
+		return Array(+(zero > 0 && zero)).join("0") + num;
+	}
+	
+	// var newDate = new Date();
+	// newDate.setTime( 1534228061*1000 );
+	//
+	// console.log(newDate);
+	
 	
 });
+
