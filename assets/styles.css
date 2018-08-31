@@ -11,3 +11,12 @@ html{
 	margin: auto;
 	border-radius: 15px;
 }
+
+.login-modal{
+	position: fixed;
+	background: #fff;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+}

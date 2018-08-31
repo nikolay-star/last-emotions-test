@@ -2,20 +2,20 @@ $(document).ready(function () {
 	
 	// parse json
 	
-	if ( $('.chart-page').length ) {
-		$.getJSON( "all.json", function() {
-			//	$.getJSON( "http://18.218.159.157:8001/emotionsData", function() {// тут попытка get-запроса
-		}).done(function(json) {
-			dataObj = json;
-			arrSorted = json;
-			initObj(dataObj);
-			initObj(arrSorted);
-			//arrLength = arrSorted.length;
-			initChartArrays(dataObj);
-			initCharts();
-			initFilters(dataObj);
-		});
-	}
+	// if ( $('.chart-page').length ) {
+	// 	$.getJSON( "all.json", function() {
+	// 		//	$.getJSON( "http://18.218.159.157:8001/emotionsData", function() {// тут попытка get-запроса
+	// 	}).done(function(json) {
+	// 		dataObj = json;
+	// 		arrSorted = json;
+	// 		initObj(dataObj);
+	// 		initObj(arrSorted);
+	// 		//arrLength = arrSorted.length;
+	// 		initChartArrays(dataObj);
+	// 		initCharts();
+	// 		initFilters(dataObj);
+	// 	});
+	// }
 	
 	
 	var $loginform = $( "#loginform" );
@@ -27,8 +27,20 @@ $(document).ready(function () {
 			$loginform.serialize()
 		).done(function(json) {
 			
-			// пока без переадресации, просто вывод в консоли
-			console.log(json);
+			$('.login-modal').hide();
+			
+			if ( $('.chart-page').length ) {
+				
+				dataObj = json;
+				arrSorted = json;
+				initObj(dataObj);
+				initObj(arrSorted);
+				//arrLength = arrSorted.length;
+				initChartArrays(dataObj);
+				initCharts();
+				initFilters(dataObj);
+				
+			}
 			
 		}).fail(function() {
 			alert( "Wrong email or password. Try again" );
