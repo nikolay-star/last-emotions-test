@@ -44,9 +44,8 @@ $(document).ready(function () {
 	 */
 	
 	var expIdRenamed = {
-		'QQ-591' : 'new exp id',
-		'QQ-920-a' : 'new exp id 2',
-		'exp 3' : 'new exp id 3'
+		'QQ-591' : 'Glasses Black',
+		'QQ-920-a' : 'Glasses Pink',
 	};
 	
 	/*
