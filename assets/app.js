@@ -1,27 +1,16 @@
 $(document).ready(function () {
 	
-	// parse json
+	/*
 	
-	// if ( $('.chart-page').length ) {
-	// 	$.getJSON( "all.json", function() {
-	// 		//	$.getJSON( "http://18.218.159.157:8001/emotionsData", function() {// тут попытка get-запроса
-	// 	}).done(function(json) {
-	// 		dataObj = json;
-	// 		arrSorted = json;
-	// 		initObj(dataObj);
-	// 		initObj(arrSorted);
-	// 		//arrLength = arrSorted.length;
-	// 		initChartArrays(dataObj);
-	// 		initCharts();
-	// 		initFilters(dataObj);
-	// 	});
-	// }
-	
+	 parse json
+	 
+	 */
 	
 	var $loginform = $( "#loginform" );
 	
 	$loginform.on('submit', function (e) {
 		e.preventDefault();
+		$('.preloader').show();
 		
 		$.post( "http://18.218.159.157:8001/emotionsData",  // тут url для логина
 			$loginform.serialize()
@@ -33,23 +22,38 @@ $(document).ready(function () {
 				
 				dataObj = json;
 				arrSorted = json;
-				initObj(dataObj);
-				initObj(arrSorted);
-				//arrLength = arrSorted.length;
 				initChartArrays(dataObj);
 				initCharts();
 				initFilters(dataObj);
+				
+				$('.preloader').hide();
 				
 			}
 			
 		}).fail(function() {
 			alert( "Wrong email or password. Try again" );
+			$('.preloader').hide();
 		});
 	});
 	
 	
+	/*
 	
-	// colors
+	 exp id rename
+	 
+	 */
+	
+	var expIdRenamed = {
+		'QQ-591' : 'new exp id',
+		'QQ-920-a' : 'new exp id 2',
+		'exp 3' : 'new exp id 3'
+	};
+	
+	/*
+	
+	 variables
+	 
+	 */
 	
 	var bgColors = [
 		'rgba(255, 99, 132, 0.2)',
@@ -82,8 +86,6 @@ $(document).ready(function () {
 		'rgba(55, 159, 64, 1)',
 	];
 	
-	// vars
-	
 	var genderData = {
 		'man': 0,
 		'woman': 0,
@@ -106,7 +108,6 @@ $(document).ready(function () {
 		"angry": 0
 	};
 	
-	var countriesData = {};
 	
 	var ageData = {
 		'<18' : 0,
@@ -118,16 +119,6 @@ $(document).ready(function () {
 	};
 	
 	var dataObj = [];
-	
-	var filters = {
-		gender: -1,
-		emotions: -1,
-		countries: -1,
-		age: -1,
-		expId: -1,
-		dates: -1
-	};
-	
 	
 	// countries
 	
@@ -146,15 +137,15 @@ $(document).ready(function () {
 	var afraidData = {};
 	var angryData = {};
 	
-	var happyDays = [];
+	/*
 	
-	// actions
+	 actions
+	 
+	 */
 	
 	var $body = $('body');
 	
 	$body.on('change', '.js-gender', function () {
-		filters.gender = parseInt( $(this).val() );
-		
 		startFiltering();
 	});
 	
@@ -166,200 +157,66 @@ $(document).ready(function () {
 		startFiltering();
 	});
 	
-	// $body.on('change', '.js-em', function () {
-	// 	startFilteringEm();
-	// 	initChartArrays( dataObj );
-	// 	emotionsChart.config.data.labels = Object.keys(emotions);
-	// 	emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
-	// 	emotionsChart.update();
-	// });
-	//
-	// init data object (add filter keys
+	$body.on('click', '.js-btn-last-day', function () {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var month = zeroPad( currentTime.getMonth() + 1, 2);
+		var day = zeroPad( currentTime.getDate() - 1, 2);
+		var dt_from = new Date(year + '/' + month + '/' + day);
+		
+		var lastDay = Date.parse(dt_from)/1000;
+		
+		$("#slider-range").slider('values', 0, lastDay );
+		$('.slider-time').html(day + '/' + month + '/' + year);
+		
+		startFiltering();
+	});
 	
-	function initObj(data) {
-		data.forEach(function(item, i, arr) {
-			item.hidden = filters;
-		});
-	}
+	$body.on('click', '.js-btn-last-week', function () {
+		var currentTime = new Date();
+		var previousweek= new Date(currentTime.getTime() - 7 * 24 * 60 * 60 * 1000);
+		
+		var year = previousweek.getFullYear();
+		var month = zeroPad( previousweek.getMonth() + 1, 2);
+		var day = zeroPad( previousweek.getDate(), 2);
+		
+		var dt_from = new Date(year + '/' + month + '/' + day);
+		var lastWeek = Date.parse(dt_from)/1000;
+		
+		//console.log(lastWeek);
+		
+		$("#slider-range").slider('values', 0, lastWeek );
+		$('.slider-time').html(day + '/' + month + '/' + year);
+		
+		startFiltering();
+	});
 	
-	function startFiltering() {
-		activeFilters = true;
-		clearObjects();
-		initChartArrays( dataObj );
-		updateCharts();
-	}
-	
-	// function startFilteringEm() {
-	// 	var $emAll = $('.js-em');
-	// 	var $emChecked = $('.js-em:checked');
-	//
-	// 	emotions = {};
-	//
-	// 	if ($emChecked.length) {
-	// 		$emChecked.each(function (i) {
-	// 			emotions[ $(this).val() ] = 0;
-	// 		})
-	// 	} else {
-	// 		$emAll.each(function () {
-	// 			emotions[ $(this).val() ] = 0;
-	// 		})
-	// 	}
-	// }
-	
-	function emotionsCreateArr(emotions) {
-		var dataLength = arrLength;
+	$body.on('click', '.js-btn-last-month', function () {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var month = zeroPad( currentTime.getMonth(), 2);
+		var day = zeroPad( currentTime.getDate(), 2);
 		
-		return $.map( emotions, function (item) {
-			return item/dataLength
-		});
-	}
-	
-	// clear
-	
-	function clearObjects() {
+		var dt_from = new Date(year + '/' + month + '/' + day);
 		
-		arrLength = 0;
+		var lastMonth = Date.parse(dt_from)/1000;
 		
-		for (let key in genderData){
-			genderData[key] = 0
-		}
+		$("#slider-range").slider('values', 0, lastMonth );
 		
-		for (let key in ageData){
-			ageData[key] = 0
-		}
+		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		for (let key in expArr){
-			expArr[key] = 0
-		}
-		
-		for (let key in countriesArr){
-			countriesArr[key] = 0
-		}
-		
-		//console.log(emotions);
-		
-		for (let key in emotions){
-			emotions[key] = 0
-		}
-		
-		//console.log(emotions);
-		
-	}
-	
-	// update charts
-	
-	function updateCharts() {
-		genderChart.data.datasets[0].data = Object.values(genderData);
-		ageChart.data.datasets[0].data = Object.values(ageData);
-		emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
-		experienceChart.data.datasets[0].data = Object.values(expArr);
-		countriesChart.data.datasets[0].data = Object.values(countriesArr);
-		
-		genderChart.update();
-		ageChart.update();
-		emotionsChart.update();
-		experienceChart.update();
-		countriesChart.update();
-	}
-	
-	// for filters
-	
-	function checkVisibility(item) {
-		// gender
-		var visibleG = item.demographics[0].gender == filters.gender || filters.gender == '-1';
-		
-		// age
-		var visibleA = '1';
-		var itemAge = item.demographics[0].age;
-		
-		var minVal = $('.js-age-min').val();
-		var maxVal = $('.js-age-max').val();
-		
-		switch (true) {
-			case (itemAge >= minVal && itemAge < maxVal) :
-				visibleA = true;
-				break;
-			case (itemAge < minVal || itemAge > maxVal) :
-				visibleA = false;
-				break;
-			default :
-				visibleA = true;
-				break;
-		}
-		
-		// country
-		
-		var visibleC = '1';
-		var itemCountry = item.sessionData.country;
-		var $countiesChecked = $('.js-country:checked');
-		
-		if ($countiesChecked.length) {
-			$countiesChecked.each(function () {
-				if ( itemCountry == $(this).val() ) {
-					visibleC = true;
-					return false
-				} else {
-					visibleC = false
-				}
-			})
-		} else {
-			visibleC = true;
-		}
-		
-		// expId
-		
-		var visibleExp = '1';
-		var itemExp = item.emotions[0].experienceID;
-		var $expChecked = $('.js-exp:checked');
-		
-		//console.log( $expChecked.length );
-		
-		if ($expChecked.length) {
-			$expChecked.each(function () {
-				if ( itemExp == $(this).val() ) {
-					visibleExp = true;
-					return false
-				} else {
-					visibleExp = false
-				}
-			})
-		} else {
-			visibleExp = true;
-		}
-		
-		// dates
-		
-		var minDate = dateToTimestamp( $('.slider-time').text() );
-		var maxDate = dateToTimestamp( $('.slider-time2').text() );
-		var visibleD = true;
-		var itemDate = item.sessionData.timestamp;
-		
-		// console.log(timestampToDate( minDate ));
-		// console.log(timestampToDate( maxDate ));
-		//
-		// console.log(timestampToDate( itemDate ));
-		//
-		// console.log(minDate <= itemDate);
-		//
-		// console.log(itemDate >= maxDate);
-		//
-		// console.log('---/t');
-		
-		if ( minDate <= itemDate && itemDate <= maxDate ) {
-			visibleD = true
-		} else {
-			visibleD = false;
-		}
-		
-		//console.log(filters.age);
-		
-		var visible = visibleG && visibleA && visibleC && visibleExp && visibleD;
-		
-		return visible;
-	}
+		startFiltering();
+	});
 	
 	
-	// init chart
+	/*
+	
+	 main
+	 
+	 */
+	
+	
+	// create chart arrays
 	
 	function initChartArrays(data) {
 		
@@ -425,19 +282,25 @@ $(document).ready(function () {
 				
 				// exp id
 				
-				if ( ! expArr[item.emotions[0].experienceID] ){
-					expArr[item.emotions[0].experienceID] = 1
+				var itemExpId = item.emotions[0].experienceID;
+				
+				Object.keys(expIdRenamed).forEach(function(item, i, arr) {
+					if ( item == itemExpId ) {
+						//console.log(nameItem);
+						itemExpId = Object.values(expIdRenamed)[i];
+					}
+				});
+				
+				if ( ! expArr[ itemExpId ] ){
+					expArr[ itemExpId ] = 1
 				} else {
-					expArr[item.emotions[0].experienceID] += 1
+					expArr[ itemExpId ] += 1
 				}
 				
 				// emotions and dates
 				
 				var itemDay = timestampToDay( item.sessionData.timestamp );
 				
-				//console.log(item.emotions[0].happy);
-				
-				//console.log( happyData[itemDay] );
 				
 				if ( typeof happyData[itemDay]  !== 'object' ){
 					happyData[itemDay] = {};
@@ -463,7 +326,6 @@ $(document).ready(function () {
 						surprisedData[itemDay].valuesLength += 1;
 					}
 				}
-				
 				
 				
 				if ( typeof sadData[itemDay]  !== 'object' ){
@@ -520,19 +382,7 @@ $(document).ready(function () {
 			
 		});
 		
-		// console.log(
-		// 	$.map(happyData, function (value, key) {
-		// 		var newItem = {
-		// 			'x' : key,
-		// 			'y' : value.values/value.valuesLength
-		// 		};
-		//
-		// 		return newItem
-		// 	})
-		// );
 	}
-	
-	
 	
 	// init charts
 	
@@ -602,10 +452,10 @@ $(document).ready(function () {
 		countriesChart = new Chart(ctx_countries, {
 			type: 'bar',
 			data: {
-				labels: Object.keys(countriesArr),
+				labels: Object.keys(sortingCountries( countriesArr )),
 				datasets: [{
 					label: '',
-					data: Object.values(countriesArr),
+					data: Object.values( sortingCountries( countriesArr )),
 					backgroundColor: bgColors,
 					borderColor: borderColors,
 					
@@ -676,89 +526,48 @@ $(document).ready(function () {
 			type: 'line',
 			data: {
 				labels: Object.keys(happyData),
-				datasets: [{
-					label: 'Happy',
-					backgroundColor: bgColors[0],
-					borderColor: borderColors[0],
-					fill: false,
-					data: $.map(happyData, function (value, key) {
-						var newItem = {
-							'x' : key,
-							'y' : value.values/value.valuesLength
-						};
-						
-						return newItem
-					})
-				},
+				datasets: [
+					{
+						label: 'Happy',
+						backgroundColor: bgColors[0],
+						borderColor: borderColors[0],
+						fill: false,
+						data: mapEmotions(happyData)
+					},
 					{
 						label: 'Surprised',
 						backgroundColor: bgColors[1],
 						borderColor: borderColors[1],
 						fill: false,
-						data: $.map(surprisedData, function (value, key) {
-							var newItem = {
-								'x' : key,
-								'y' : value.values/value.valuesLength
-							};
-							
-							return newItem
-						})
+						data: mapEmotions(surprisedData)
 					},
 					{
 						label: 'Sad',
 						backgroundColor: bgColors[2],
 						borderColor: borderColors[2],
 						fill: false,
-						data: $.map(sadData, function (value, key) {
-							var newItem = {
-								'x' : key,
-								'y' : value.values/value.valuesLength
-							};
-							
-							return newItem
-						})
+						data: mapEmotions(sadData)
 					},
 					{
 						label: 'Disappointed',
 						backgroundColor: bgColors[3],
 						borderColor: borderColors[3],
 						fill: false,
-						data: $.map(disappointedData, function (value, key) {
-							var newItem = {
-								'x' : key,
-								'y' : value.values/value.valuesLength
-							};
-							
-							return newItem
-						})
+						data: mapEmotions(disappointedData)
 					},
 					{
 						label: 'Afraid',
 						backgroundColor: bgColors[4],
 						borderColor: borderColors[4],
 						fill: false,
-						data: $.map(afraidData, function (value, key) {
-							var newItem = {
-								'x' : key,
-								'y' : value.values/value.valuesLength
-							};
-							
-							return newItem
-						})
+						data: mapEmotions(afraidData)
 					},
 					{
 						label: 'Angry',
 						backgroundColor: bgColors[5],
 						borderColor: borderColors[5],
 						fill: false,
-						data: $.map(angryData, function (value, key) {
-							var newItem = {
-								'x' : key,
-								'y' : value.values/value.valuesLength
-							};
-							
-							return newItem
-						})
+						data: mapEmotions(angryData)
 					}
 				]
 			},
@@ -782,8 +591,6 @@ $(document).ready(function () {
 				},
 			}
 		});
-		
-		
 	}
 	
 	
@@ -803,8 +610,18 @@ $(document).ready(function () {
 		data.forEach(function(item, i, arr) {
 			// exp id
 			
-			if ( ! expArr[item.emotions[0].experienceID] ){
-				expArr[item.emotions[0].experienceID] = 1;
+			var itemExpId = item.emotions[0].experienceID;
+			var itemExpIdRn = itemExpId;
+			
+			Object.keys(expIdRenamed).forEach(function(item, i, arr) {
+				if ( item == itemExpId ) {
+					//console.log(nameItem);
+					itemExpIdRn = Object.values(expIdRenamed)[i];
+				}
+			});
+			
+			if ( ! expArr[ itemExpId ] ){
+				expArr[ itemExpId ] = itemExpIdRn
 			}
 			
 			// countries
@@ -824,7 +641,7 @@ $(document).ready(function () {
 		function addExpCheckbox(el, i) {
 			var $expCheckbox = $('<div class="form-check form-check-inline">' +
 				'<input class="form-check-input js-exp" type="checkbox" id="expCheck_' + i + '" value="' + el + '">' +
-				'<label class="form-check-label" for="expCheck_' + i + '">'+ el +'</label>' +
+				'<label class="form-check-label" for="expCheck_' + i + '">'+ Object.values(expArr)[i] +'</label>' +
 				'</div>');
 			
 			$expContainer.append($expCheckbox);
@@ -832,7 +649,7 @@ $(document).ready(function () {
 		
 		// countries
 		
-		Object.keys(countriesArr).forEach(function (item, i, arr) {
+		Object.keys( sortingCountries( countriesArr )).forEach(function (item, i, arr) {
 			addCountryCheckbox(item, i);
 		});
 		
@@ -866,7 +683,272 @@ $(document).ready(function () {
 	}
 	
 	
-	/// jquery ui slider for age
+	/*
+	
+	 functions
+	 
+	 */
+	
+	// filtering
+	
+	function startFiltering() {
+		activeFilters = true;
+		clearObjects();
+		initChartArrays( dataObj );
+		updateCharts();
+	}
+	
+	// create average array for emotions
+	
+	function emotionsCreateArr(emotions) {
+		var dataLength = arrLength;
+		
+		return $.map( emotions, function (item) {
+			return item/dataLength
+		});
+	}
+	
+	// clear
+	
+	function clearObjects() {
+		
+		arrLength = 0;
+		
+		for (let key in genderData){
+			genderData[key] = 0
+		}
+		
+		for (let key in ageData){
+			ageData[key] = 0
+		}
+		
+		for (let key in expArr){
+			expArr[key] = 0
+		}
+		
+		for (let key in countriesArr){
+			countriesArr[key] = 0
+		}
+		
+		for (let key in emotions){
+			emotions[key] = 0
+		}
+		
+		for (let key in happyData){
+			happyData[key] = 0
+		}
+		
+		for (let key in surprisedData){
+			surprisedData[key] = 0
+		}
+		
+		for (let key in sadData){
+			sadData[key] = 0
+		}
+		
+		for (let key in disappointedData){
+			disappointedData[key] = 0
+		}
+		
+		for (let key in afraidData){
+			afraidData[key] = 0
+		}
+		
+		for (let key in angryData){
+			angryData[key] = 0
+		}
+		
+	}
+	
+	// update charts
+	
+	function updateCharts() {
+		genderChart.data.datasets[0].data = Object.values(genderData);
+		ageChart.data.datasets[0].data = Object.values(ageData);
+		emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
+		experienceChart.data.datasets[0].data = Object.values(expArr);
+		countriesChart.data.datasets[0].data = Object.values(countriesArr);
+		
+		emotionsDatesChart.data.datasets[0].data = mapEmotions(happyData);
+		
+		//console.log(happyData);
+		
+		emotionsDatesChart.data.datasets[1].data = mapEmotions(surprisedData);
+		emotionsDatesChart.data.datasets[2].data = mapEmotions(sadData);
+		emotionsDatesChart.data.datasets[3].data = mapEmotions(disappointedData);
+		emotionsDatesChart.data.datasets[4].data = mapEmotions(afraidData);
+		emotionsDatesChart.data.datasets[5].data = mapEmotions(angryData);
+		
+		emotionsDatesChart.data.labels = Object.keys(happyData);
+		
+		//console.log(Object.keys(happyData));
+		
+		genderChart.update();
+		ageChart.update();
+		emotionsChart.update();
+		experienceChart.update();
+		countriesChart.update();
+		
+		emotionsDatesChart.update();
+	}
+	
+	// for filters
+	
+	function checkVisibility(item) {
+		// gender
+		var genderVal = parseInt( $('.js-gender:checked').val() );
+		console.log(genderVal);
+		var visibleG = item.demographics[0].gender == genderVal || genderVal == '-1';
+		
+		// age
+		var visibleA = '1';
+		var itemAge = item.demographics[0].age;
+		
+		var minVal = $('.js-age-min').val();
+		var maxVal = $('.js-age-max').val();
+		
+		switch (true) {
+			case (itemAge >= minVal && itemAge < maxVal) :
+				visibleA = true;
+				break;
+			case (itemAge < minVal || itemAge > maxVal) :
+				visibleA = false;
+				break;
+			default :
+				visibleA = true;
+				break;
+		}
+		
+		// country
+		
+		var visibleC = '1';
+		var itemCountry = item.sessionData.country;
+		var $countiesChecked = $('.js-country:checked');
+		
+		if ($countiesChecked.length) {
+			$countiesChecked.each(function () {
+				if ( itemCountry == $(this).val() ) {
+					visibleC = true;
+					return false
+				} else {
+					visibleC = false
+				}
+			})
+		} else {
+			visibleC = true;
+		}
+		
+		// expId
+		
+		var visibleExp = '1';
+		var itemExp = item.emotions[0].experienceID;
+		var $expChecked = $('.js-exp:checked');
+		
+		if ($expChecked.length) {
+			$expChecked.each(function () {
+				if ( itemExp == $(this).val() ) {
+					visibleExp = true;
+					return false
+				} else {
+					visibleExp = false
+				}
+			})
+		} else {
+			visibleExp = true;
+		}
+		
+		// dates
+		
+		var minDate = dateToTimestamp( $('.slider-time').text() );
+		var maxDate = dateToTimestamp( $('.slider-time2').text() );
+		var visibleD = true;
+		var itemDate = item.sessionData.timestamp;
+		
+		if ( minDate <= itemDate && itemDate <= maxDate ) {
+			visibleD = true
+		} else {
+			visibleD = false;
+		}
+		
+		var visible = visibleG && visibleA && visibleC && visibleExp && visibleD;
+		
+		return visible;
+	}
+	
+	// timestamp to date
+	
+	function timestampToDate(timestamp) {
+		var newDate = new Date();
+		
+		newDate.setTime(timestamp*1000);
+		
+		var year = newDate.getFullYear();
+		var month = zeroPad(newDate.getMonth()+1, 2);
+		var date = zeroPad(newDate.getDate(), 2);
+		
+		return date + '/' + month + '/' + year;
+	}
+	
+	// timestamp to day
+	
+	function timestampToDay(timestamp) {
+		var newDate = new Date();
+		
+		newDate.setTime(timestamp*1000);
+		
+		var year = newDate.getFullYear();
+		var month = zeroPad(newDate.getMonth()+1, 2);
+		var date = zeroPad(newDate.getDate(), 2);
+		
+		return date + '/' + month + '/' + year;
+	}
+	
+	// date to timestamp
+	
+	function dateToTimestamp(myDate) {
+		myDate=myDate.split("/");
+		var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2];
+		return new Date(newDate).getTime() / 1000;
+	}
+	
+	// add zero to days and months
+	
+	function zeroPad(num, places) {
+		var zero = places - num.toString().length + 1;
+		return Array(+(zero > 0 && zero)).join("0") + num;
+	}
+	
+	// map emotions for emotions and days chart
+	
+	function mapEmotions(arr) {
+		return $.map(arr, function (value, key) {
+			var newItem = {
+				'x' : key,
+				'y' : value.valuesLength ? value.values/value.valuesLength : 0
+			};
+			
+			return newItem
+		})
+	}
+	
+	// sorting countries
+	
+	function sortingCountries(not_sorted) {
+		return Object.keys(not_sorted)
+			.sort()
+			.reduce(function (acc, key) {
+				acc[key] = not_sorted[key];
+				return acc;
+			}, {});
+	}
+	
+	
+	/*
+	
+	 jquery ui slider for age
+	 
+	 */
+	
 	
 	$( function() {
 		
@@ -906,52 +988,6 @@ $(document).ready(function () {
 		
 	});
 	
-	
-	// timestamp to date
-	
-	function timestampToDate(timestamp) {
-		var newDate = new Date();
-		
-		newDate.setTime(timestamp*1000);
-		
-		var year = newDate.getFullYear();
-		var month = zeroPad(newDate.getMonth()+1, 2);
-		var date = zeroPad(newDate.getDate(), 2);
-		
-		return date + '/' + month + '/' + year;
-	}
-	
-	// timestamp to day
-	
-	function timestampToDay(timestamp) {
-		var newDate = new Date();
-		
-		newDate.setTime(timestamp*1000);
-		
-		var year = newDate.getFullYear();
-		var month = zeroPad(newDate.getMonth()+1, 2);
-		var date = zeroPad(newDate.getDate(), 2);
-		
-		return date + '/' + month + '/' + year;
-	}
-	
-	// date to timestamp
-	
-	function dateToTimestamp(myDate) {
-		myDate=myDate.split("/");
-		var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2];
-		return new Date(newDate).getTime() / 1000;
-	}
-	
-	function zeroPad(num, places) {
-		var zero = places - num.toString().length + 1;
-		return Array(+(zero > 0 && zero)).join("0") + num;
-	}
-	
-	// var newDate = new Date();
-	// newDate.setTime( 1534228061*1000 );
-	//
-	// console.log(newDate);
 	
 	
 });

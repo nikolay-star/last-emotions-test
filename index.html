@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
     <meta name="viewport"
-          http-equiv="Content-Type" Content="text/html;
-          width=device-width, initial-scale=1, shrink-to-fit=no">
+          Content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Charts</title>
 
@@ -15,7 +15,7 @@
     <!--<link rel="stylesheet" href="assets/jquery-ui/jquery-ui.structure.min.css">-->
     <!--<link rel="stylesheet" href="assets/jquery-ui/jquery-ui.theme.min.css">-->
 
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/styles.css?v=2">
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
@@ -24,6 +24,9 @@
 
 </head>
 <body class="chart-page h-100">
+
+
+    <div class="preloader"></div>
 
     <div class="login-modal h-100">
         <div class="container h-100">
@@ -63,7 +66,7 @@
                 <hr class="mb-2">
 
                 <div class="chart__item mb-4">
-                    <h3 class="text-left text-info">Average values of emotions</h3>
+                    <h3 class="text-left text-info">Emotional Journey</h3>
 
                     <!--график эмоций и времени-->
 
@@ -84,7 +87,7 @@
                 </div>
 
                 <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">experienceID</h3>
+                    <h3 class="mb-4 text-info">Experience</h3>
 
                     <!--график experienceID 1-->
                     <div class="canvas-wrapper">
@@ -128,7 +131,7 @@
                 <hr class="mb-2">
 
                <div>
-                   <h5>Select dates</h5>
+                   <h5>Dates</h5>
 
                    <div id="time-range">
                        <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
@@ -136,6 +139,22 @@
                        <div class="sliders_step1">
                            <div id="slider-range"></div>
                        </div>
+
+                       <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
+                           <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-day">
+                               Last day
+                           </button>
+
+                           <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-week">
+                               Last week
+                           </button>
+
+                           <button class="btn btn-outline-info btn-sm js-btn-last-month">
+                               Last month
+                           </button>
+                       </div>
+
+
                    </div>
                </div>
 
@@ -160,6 +179,7 @@
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio4"
+                           checked
                            value="-1">
                     <label class="form-check-label" for="inlineRadio4">all</label>
                 </div>
@@ -182,7 +202,7 @@
 
                 <hr class="mb-2">
 
-                <h5>experienceID</h5>
+                <h5>Experience</h5>
 
                 <div class="exp-checkboxes">
                     <!--
@@ -195,7 +215,7 @@
 
                 <hr class="mb-2">
 
-                <h5>Select country</h5>
+                <h5>Country</h5>
 
                 <div class="countries-checkboxes">
                     <!--
@@ -208,7 +228,7 @@
 
                 <hr class="mb-2">
 
-                <h4>Select age</h4>
+                <h4>Age</h4>
 
                 <form action="#" class="d-flex">
                     <div class="form-group mr-4 w-25">
