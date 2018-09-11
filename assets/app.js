@@ -278,6 +278,15 @@ $(document).ready(function () {
 					countriesArr[item.sessionData.country] += 1
 				}
 				
+				//
+				// var itemCountry = item.sessionData.country;
+				//
+				// if ( ! countriesArr[ itemCountry ] ){
+				// 	countriesArr[ itemCountry ] = 1
+				// } else {
+				// 	countriesArr[ itemCountry ] += 1
+				// }
+				
 				
 				// exp id
 				
@@ -768,7 +777,7 @@ $(document).ready(function () {
 		ageChart.data.datasets[0].data = Object.values(ageData);
 		emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
 		experienceChart.data.datasets[0].data = Object.values(expArr);
-		countriesChart.data.datasets[0].data = Object.values(countriesArr);
+		countriesChart.data.datasets[0].data = Object.values( sortingCountries( countriesArr ));
 		
 		emotionsDatesChart.data.datasets[0].data = mapEmotions(happyData);
 		
