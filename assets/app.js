@@ -408,11 +408,13 @@ $(document).ready(function () {
 				},
 				scales: {
 					yAxes: [{
-						ticks: {
-							//beginAtZero: true
+						scaleLabel: {
+							display: true,
+							labelString: 'value (%)'
 						}
 					}]
 				}
+				
 			}
 		});
 		
@@ -584,7 +586,7 @@ $(document).ready(function () {
 					yAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'value'
+							labelString: 'value (%)'
 						}
 					}]
 				},
@@ -703,7 +705,7 @@ $(document).ready(function () {
 		var dataLength = arrLength;
 		
 		return $.map( emotions, function (item) {
-			return item/dataLength
+			return (item/dataLength)*100
 		});
 	}
 	
@@ -923,7 +925,7 @@ $(document).ready(function () {
 		return $.map(arr, function (value, key) {
 			var newItem = {
 				'x' : key,
-				'y' : value.valuesLength ? value.values/value.valuesLength : 0
+				'y' : value.valuesLength ? (value.values/value.valuesLength)*100 : 0
 			};
 			
 			return newItem
@@ -988,6 +990,12 @@ $(document).ready(function () {
 	});
 	
 	
+	// tooltip
+	
+	
+	$('.tooltipster').tooltipster({
+		trigger: 'click'
+	});
 	
 });
 
