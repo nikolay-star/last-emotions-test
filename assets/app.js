@@ -226,7 +226,7 @@ $(document).ready(function () {
 			arr.push("rgb(" + r + "," + g + "," + b + ")");
 		}
 		
-		console.log(arr);
+		//console.log(arr);
 		
 		return arr;
 	};
