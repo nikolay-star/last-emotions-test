@@ -214,6 +214,22 @@ $(document).ready(function () {
 	 
 	 */
 	
+	// helper function for colors
+	
+	var dynamicColors = function() {
+		var arr = [];
+		
+		for (var i = 0; i<100; i++){
+			var r = Math.floor(Math.random() * 255);
+			var g = Math.floor(Math.random() * 255);
+			var b = Math.floor(Math.random() * 255);
+			arr.push("rgb(" + r + "," + g + "," + b + ")");
+		}
+		
+		console.log(arr);
+		
+		return arr;
+	};
 	
 	// create chart arrays
 	
@@ -466,8 +482,8 @@ $(document).ready(function () {
 				datasets: [{
 					label: '',
 					data: Object.values( sortingCountries( countriesArr )),
-					backgroundColor: bgColors,
-					borderColor: borderColors,
+					backgroundColor: dynamicColors(),
+					borderColor: '#ccc',
 					
 					borderWidth: 1
 				}]
@@ -1005,6 +1021,8 @@ $(document).ready(function () {
 	$('.tooltipster').tooltipster({
 		trigger: 'click'
 	});
+	
+	
 	
 });
 
