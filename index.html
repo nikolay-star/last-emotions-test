@@ -25,8 +25,6 @@
 
 </head>
 <body class="chart-page h-100">
-
-
     <div class="preloader"></div>
 
     <div class="login-modal h-100">
@@ -50,8 +48,167 @@
                                    placeholder="Password"
                                    required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                        <div class="d-flex flex-row justify-content-between">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                            <a href="#" class="btn btn-outline-secondary js-guest">
+                                Guest access
+                            </a>
+                        </div>
+
                     </form>
+
+
+
+                    <form action="#" id="guest-form" class="d-none">
+                        <input type="email" name="email" value="guest@mood-me.com">
+                        <input type="password" name="password" value="guest">
+                        <button type="submit"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header fixed-top pt-2 pb-2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 d-flex w-100 justify-content-between align-items-center w-100">
+                    <div class="mr-2">Selected filters will be here</div>
+
+                    <button class="btn btn-outline-secondary js-toggle-filters">Show filters</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-top filters w-100" style="display: none">
+        <div class="container">
+            <div class="row justify-content-end mt-4">
+                <div class="col-sm-6 col-xs-12 order-md-2 order-xs-1 pt-4 filters__inner">
+                    <h2 class="">Filters <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h2>
+
+                    <hr class="mb-2">
+
+                    <div>
+                        <h5>Dates <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+
+                        <div id="time-range">
+                            <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
+                            </p>
+                            <div class="sliders_step1">
+                                <div id="slider-range"></div>
+                            </div>
+
+                            <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
+                                <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-day">
+                                    Last day
+                                </button>
+
+                                <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-week">
+                                    Last week
+                                </button>
+
+                                <button class="btn btn-outline-info btn-sm js-btn-last-month">
+                                    Last month
+                                </button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <hr class="mb-2">
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">man</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">woman</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio3"
+                               value="0">
+                        <label class="form-check-label" for="inlineRadio3">not specified</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio4"
+                               checked
+                               value="-1">
+                        <label class="form-check-label" for="inlineRadio4">all</label>
+                    </div>
+
+
+                    <hr class="mb-2">
+
+                    <div style="display: none">
+                        <h5>Emotions <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+
+                        <div class="em-checkboxes">
+                            <!--
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="emCheck_1" value="emotion_1">
+                                <label class="form-check-label" for="emCheck_1">Emotion 1</label>
+                            </div>
+                            -->
+                        </div>
+
+                        <hr class="mb-2">
+                    </div>
+
+                    <h5>Experience  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+
+                    <div class="exp-checkboxes">
+                        <!--
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="expCheck_1" value="exp_1">
+                            <label class="form-check-label" for="expCheck_1">Exp 1</label>
+                        </div>
+                        -->
+                    </div>
+
+                    <hr class="mb-2">
+
+                    <h5>Country  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+
+                    <div class="countries-checkboxes">
+                        <!--
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="cCheck_1" value="c_1">
+                            <label class="form-check-label" for="cCheck_1">c 1</label>
+                        </div>
+                        -->
+                    </div>
+
+                    <hr class="mb-2">
+
+                    <h4>Age  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h4>
+
+                    <form action="#" class="d-flex">
+                        <div class="form-group mr-4 w-25">
+                            <input type="number" min="0" max="100" class="form-control form-control-sm w-100 js-age-min"
+                                   placeholder="from"
+                                   id="ageMax"
+                                   value="0">
+                        </div>
+                        <div class="form-group ml-4 w-25">
+                            <input type="number" min="0" max="100"
+                                   class="form-control form-control-sm w-100 js-age-max"
+                                   placeholder="to"
+                                   id="ageMin"
+                                   value="99">
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -59,7 +216,7 @@
 
     <div class="container">
         <div class="row justify-content-xs-center mt-4">
-            <div class="col-sm-8 col-xs-12 order-md-1 order-xs-2">
+            <div class="col-sm-12 col-xs-12 order-md-1 order-xs-2 charts pt-4">
 
                 <h2>Charts</h2>
 
@@ -67,7 +224,7 @@
                 <hr class="mb-2">
 
                 <div class="chart__item mb-4">
-                    <h3 class="text-left text-info">Emotional Journey</h3>
+                    <h3 class="text-left text-info">Emotional Journey  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график эмоций и времени-->
 
@@ -79,7 +236,7 @@
                 </div>
 
                 <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Emotions</h3>
+                    <h3 class="mb-4 text-info">Emotions  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график эмоций-->
                     <div class="canvas-wrapper">
@@ -88,7 +245,7 @@
                 </div>
 
                 <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Experience</h3>
+                    <h3 class="mb-4 text-info">Experience  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график experienceID 1-->
                     <div class="canvas-wrapper">
@@ -97,7 +254,7 @@
                 </div>
 
                 <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Age</h3>
+                    <h3 class="mb-4 text-info">Age  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график возрастов-->
                     <div class="canvas-wrapper" style="width: 600px; height: 300px">
@@ -106,7 +263,7 @@
                 </div>
 
                 <div class="chart__item mb-4">
-                    <h3 class="text-left text-info">Gender</h3>
+                    <h3 class="text-left text-info">Gender  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график полов-->
 
@@ -116,7 +273,7 @@
                 </div>
 
                 <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Countries</h3>
+                    <h3 class="mb-4 text-info">Countries  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график стран-->
                     <div class="canvas-wrapper">
@@ -126,130 +283,10 @@
 
 
             </div>
-            <div class="col-sm-4 col-xs-12 order-md-2 order-xs-1">
-                <h2 class="">Filters</h2>
-
-                <hr class="mb-2">
-
-               <div>
-                   <h5>Dates</h5>
-
-                   <div id="time-range">
-                       <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
-                       </p>
-                       <div class="sliders_step1">
-                           <div id="slider-range"></div>
-                       </div>
-
-                       <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
-                           <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-day">
-                               Last day
-                           </button>
-
-                           <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-week">
-                               Last week
-                           </button>
-
-                           <button class="btn btn-outline-info btn-sm js-btn-last-month">
-                               Last month
-                           </button>
-                       </div>
-
-
-                   </div>
-               </div>
-
-                <hr class="mb-2">
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio1"
-                           value="1">
-                    <label class="form-check-label" for="inlineRadio1">man</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio2"
-                           value="2">
-                    <label class="form-check-label" for="inlineRadio2">woman</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio3"
-                           value="0">
-                    <label class="form-check-label" for="inlineRadio3">not specified</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio4"
-                           checked
-                           value="-1">
-                    <label class="form-check-label" for="inlineRadio4">all</label>
-                </div>
-
-
-                <hr class="mb-2">
-
-                <div style="display: none">
-                    <h5>Emotions</h5>
-
-                    <div class="em-checkboxes">
-                        <!--
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="emCheck_1" value="emotion_1">
-                            <label class="form-check-label" for="emCheck_1">Emotion 1</label>
-                        </div>
-                        -->
-                    </div>
-                </div>
-
-                <hr class="mb-2">
-
-                <h5>Experience</h5>
-
-                <div class="exp-checkboxes">
-                    <!--
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="expCheck_1" value="exp_1">
-                        <label class="form-check-label" for="expCheck_1">Exp 1</label>
-                    </div>
-                    -->
-                </div>
-
-                <hr class="mb-2">
-
-                <h5>Country</h5>
-
-                <div class="countries-checkboxes">
-                    <!--
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="cCheck_1" value="c_1">
-                        <label class="form-check-label" for="cCheck_1">c 1</label>
-                    </div>
-                    -->
-                </div>
-
-                <hr class="mb-2">
-
-                <h4>Age</h4>
-
-                <form action="#" class="d-flex">
-                    <div class="form-group mr-4 w-25">
-                        <input type="number" min="0" max="100" class="form-control form-control-sm w-100 js-age-min"
-                               placeholder="from"
-                               id="ageMax"
-                        value="0">
-                    </div>
-                    <div class="form-group ml-4 w-25">
-                        <input type="number" min="0" max="100"
-                               class="form-control form-control-sm w-100 js-age-max"
-                               placeholder="to"
-                               id="ageMin"
-                                value="99">
-                    </div>
-                </form>
-
-            </div>
         </div>
     </div>
+
+
 
     <script type="text/javascript" src="assets/tooltipster/tooltipster.bundle.min.js"></script>
     <script src="assets/app.js"></script>

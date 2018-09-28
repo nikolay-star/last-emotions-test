@@ -7,13 +7,22 @@ $(document).ready(function () {
 	 */
 	
 	var $loginform = $( "#loginform" );
+	var $guestform = $("#guest-form");
 	
 	$loginform.on('submit', function (e) {
+		submitHandler(e, $(this));
+	});
+	
+	$guestform.on('submit', function (e) {
+		submitHandler(e, $(this));
+	});
+	
+	function submitHandler(e, $form) {
 		e.preventDefault();
 		$('.preloader').show();
 		
 		$.post( "http://18.218.159.157:8001/emotionsData",  // тут url для логина
-			$loginform.serialize()
+			$form.serialize()
 		).done(function(json) {
 			
 			$('.login-modal').hide();
@@ -34,8 +43,19 @@ $(document).ready(function () {
 			alert( "Wrong email or password. Try again" );
 			$('.preloader').hide();
 		});
+	}
+	
+	function guestSubmit() {
+		$guestform.submit();
+	}
+	
+	$('.js-guest').on('click', function (e) {
+		e.preventDefault();
+		
+		guestSubmit();
 	});
 	
+	//guestSubmit();
 	
 	/*
 	
@@ -1022,6 +1042,20 @@ $(document).ready(function () {
 		trigger: 'click'
 	});
 	
+	// filters css
+	
+	
+	$('.js-toggle-filters').on('click', function () {
+		var $filters = $('.filters');
+		
+		if ( $(this).hasClass('opened') ) {
+			$(this).removeClass('opened').text('Show filters');
+			$filters.hide();
+		} else {
+			$(this).addClass('opened').text('Hide filters');
+			$filters.show();
+		}
+	})
 	
 	
 });
