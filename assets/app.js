@@ -1,5 +1,16 @@
 $(document).ready(function () {
 	
+	// bert formula
+	
+	function bertFunc(happy, surprised, sad, dissapointed, afraid, angry) {
+		
+		// делим на 100, чтобы перевести из процентов в доли
+		var bertResult = ((3*happy + surprised) - (sad + dissapointed + afraid + angry))/100;
+		
+		// округляем до 3 знаков после запятой
+		return parseInt(bertResult * 1000) / 1000
+	}
+	
 	/*
 	
 	 parse json
@@ -984,20 +995,20 @@ $(document).ready(function () {
 			afraid = arr[4],
 			angry = arr[5];
 		
-		var bert = 0;
+		var bert;
 		var $bertVal = $('.bert-value');
 		
 		
 		//console.log(arr);
 		//console.log( (3*happy + surprised) - (sad + dissapointed + afraid + angry) );
 		
-		bert = ((3*happy + surprised) - (sad + dissapointed + afraid + angry))/100;
+		bert = bertFunc(happy, surprised, sad, dissapointed, afraid, angry);
 		
 		//console.log(bert, ' ', bert/100);
 		
 		$bertVal
 			.css('bottom', bert*50 + '%')
-			.text((parseInt(bert * 1000)) / 1000);
+			.text( bert );
 	}
 	
 	// timestamp to date

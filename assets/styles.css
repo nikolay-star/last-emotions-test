@@ -89,7 +89,7 @@ html{
 }
 
 .bert-gradient{
-	height: 150px;
+	height: 230px;
 	width: 30px;
 	border-radius: 15px;
 	margin-right: 15px;
@@ -102,7 +102,7 @@ html{
 .bert-value{
 	font-size: 14px;
 	line-height: 24px;
-	margin-bottom: 63px;
+	margin-bottom: 106px;
 	position: absolute;
 	left: 45px;
 }
