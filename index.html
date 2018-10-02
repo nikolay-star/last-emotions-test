@@ -76,7 +76,10 @@
             <div class="row">
 
                 <div class="col-xs-12 d-flex w-100 justify-content-between align-items-center w-100">
-                    <div class="mr-2">Selected filters will be here</div>
+                    <div class="mr-2">
+                        <!--Selected: -->
+                        <!--<span class="js-selected-filters">all</span>-->
+                    </div>
 
                     <button class="btn btn-outline-secondary js-toggle-filters">Show filters</button>
                 </div>
@@ -104,6 +107,18 @@
                             </div>
 
                             <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
+                                <!--<button class="btn btn-outline-info btn-sm mr-2 js-btn-last-minute">-->
+                                    <!--Last minute-->
+                                <!--</button>-->
+
+                                <!--<button class="btn btn-outline-info btn-sm mr-2 js-btn-last-five-mins">-->
+                                    <!--Last 5 minutes-->
+                                <!--</button>-->
+
+                                <!--<button class="btn btn-outline-info btn-sm js-btn-last-ten-mins">-->
+                                    <!--Last 10 minutes-->
+                                <!--</button>-->
+
                                 <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-day">
                                     Last day
                                 </button>
@@ -214,74 +229,98 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row justify-content-xs-center mt-4">
-            <div class="col-sm-12 col-xs-12 order-md-1 order-xs-2 charts pt-4">
+    <div class="container-fluid pt-4">
+        <div class="row justify-content-xs-center">
 
-                <h2>Charts</h2>
+            <!--<div class="col-lg-12 col-xs-12 w-100 mt-4  pt-4">-->
+                <!--<h2>Charts</h2>-->
 
 
-                <hr class="mb-2">
+                <!--<hr class="mb-2">-->
+            <!--</div>-->
 
-                <div class="chart__item mb-4">
+            <div class="col-sm-6 col-xs-12 charts">
+
+                <div class="chart__item chart__item_first-line mb-1">
                     <h3 class="text-left text-info">Emotional Journey  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график эмоций и времени-->
 
-                    <div class="canvas-wrapper">
+                    <div class="canvas-wrapper" style="height: 330px; width: auto">
                         <canvas id="emotionsDatesChart"></canvas>
                     </div>
 
 
                 </div>
 
-                <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Emotions  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
+                <div class="chart__item chart__item_second-line mb-4">
+                    <h3 class="text-info">Emotions  <span class="tooltipster tooltipster_round"
+                                                          title="This is tooltip message!">?</span></h3>
                     <!--график эмоций-->
-                    <div class="canvas-wrapper">
+                    <div class="canvas-wrapper" style="height: 200px; width: auto">
                         <canvas id="emotionsChart"></canvas>
                     </div>
                 </div>
 
-                <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Experience  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+            </div>
+
+            <div class="col-sm-6 col-xs-12 charts">
+                <div class="chart__item chart__item_first-line mb-1">
+                    <h3 class="text-info mb-45p">Experience  <span class="tooltipster tooltipster_round"
+                                                             title="This is tooltip message!">?</span></h3>
 
                     <!--график experienceID 1-->
-                    <div class="canvas-wrapper">
+                    <div class="canvas-wrapper" style="height: 300px; width: auto">
                         <canvas id="experienceChart"></canvas>
                     </div>
                 </div>
 
-                <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Age  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
-                    <!--график возрастов-->
-                    <div class="canvas-wrapper" style="width: 600px; height: 300px">
-                        <canvas id="agesChart"></canvas>
+                <div class="chart__item chart__item_second-line mb-4">
+                    <h3 class="text-info">Countries  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+
+                    <!--график стран-->
+                    <div class="canvas-wrapper" style="height: 200px; width: auto">
+                        <canvas id="countriesChart"></canvas>
                     </div>
                 </div>
 
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <div class="chart__item mb-4">
+                    <h3 class="text-info">BERT index  <span class="tooltipster tooltipster_round"
+                                                            title="This is tooltip message!">?</span></h3>
+
+                    <div class="d-flex flex-row bert-container">
+                        <div class="bert-gradient"></div>
+                        <div class="bert-value" style="bottom: 30%">0.3</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="chart__item mb-4">
+                    <h3 class="text-info">Age  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+
+                    <!--график возрастов-->
+                    <div class="canvas-wrapper" style="width: 300px; height: 150px">
+                        <canvas id="agesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
                 <div class="chart__item mb-4">
                     <h3 class="text-left text-info">Gender  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
 
                     <!--график полов-->
 
-                    <div class="canvas-wrapper" style="width: 600px; height: 300px">
+                    <div class="canvas-wrapper" style="width: 300px; height: 150px">
                         <canvas id="genderChart"></canvas>
                     </div>
                 </div>
-
-                <div class="chart__item mb-4">
-                    <h3 class="mb-4 text-info">Countries  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
-
-                    <!--график стран-->
-                    <div class="canvas-wrapper">
-                        <canvas id="countriesChart"></canvas>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </div>

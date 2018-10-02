@@ -6,15 +6,29 @@ $(document).ready(function () {
 	 
 	 */
 	
-	var $loginform = $( "#loginform" );
+	var $loginform = $("#loginform");
 	var $guestform = $("#guest-form");
 	
 	$loginform.on('submit', function (e) {
-		submitHandler(e, $(this));
+		var event = e;
+		var $form = $(this);
+		
+		submitHandler(event, $form);
+		
+		setInterval(function(){
+			updatePage($form)
+		}, 60000)
 	});
 	
 	$guestform.on('submit', function (e) {
-		submitHandler(e, $(this));
+		var event = e;
+		var $form = $(this);
+		
+		submitHandler(event, $form);
+		
+		setInterval(function(){
+			updatePage($form)
+		}, 60000)
 	});
 	
 	function submitHandler(e, $form) {
@@ -43,6 +57,20 @@ $(document).ready(function () {
 			alert( "Wrong email or password. Try again" );
 			$('.preloader').hide();
 		});
+	}
+	
+	function updatePage($form){
+		
+		$.post( "http://18.218.159.157:8001/emotionsData",  // тут url для логина
+			$form.serialize()
+		).done(function(json) {
+		
+			dataObj = json;
+			
+			// console.log(dataObj);
+			
+			startFiltering();
+		})
 	}
 	
 	function guestSubmit() {
@@ -227,7 +255,6 @@ $(document).ready(function () {
 		startFiltering();
 	});
 	
-	
 	/*
 	
 	 main
@@ -254,7 +281,6 @@ $(document).ready(function () {
 	// create chart arrays
 	
 	function initChartArrays(data) {
-		
 		
 		data.forEach(function(item, i, arr) {
 			
@@ -426,6 +452,8 @@ $(document).ready(function () {
 			
 		});
 		
+		bert(emotionsCreateArr(emotions));
+		
 	}
 	
 	// init charts
@@ -436,6 +464,7 @@ $(document).ready(function () {
 		
 		var ctx = document.getElementById("emotionsChart").getContext('2d');
 		emotionsChart = new Chart(ctx, {
+			
 			type: 'bar',
 			data: {
 				labels: Object.keys(emotions),
@@ -448,6 +477,7 @@ $(document).ready(function () {
 				}]
 			},
 			options: {
+				maintainAspectRatio: false,
 				legend: {
 					display: false
 				},
@@ -479,6 +509,8 @@ $(document).ready(function () {
 				}]
 			},
 			options: {
+				maintainAspectRatio: false,
+				
 				legend: {
 					display : false
 				},
@@ -509,6 +541,7 @@ $(document).ready(function () {
 				}]
 			},
 			options: {
+				maintainAspectRatio: false,
 				legend: {
 					display : false
 				},
@@ -618,6 +651,7 @@ $(document).ready(function () {
 				]
 			},
 			options: {
+				maintainAspectRatio: false,
 				title: {
 					text: 'Time Scale'
 				},
@@ -740,6 +774,9 @@ $(document).ready(function () {
 	function startFiltering() {
 		activeFilters = true;
 		clearObjects();
+		
+		showSelectedFilters();
+		
 		initChartArrays( dataObj );
 		updateCharts();
 	}
@@ -843,7 +880,7 @@ $(document).ready(function () {
 	function checkVisibility(item) {
 		// gender
 		var genderVal = parseInt( $('.js-gender:checked').val() );
-		console.log(genderVal);
+		//console.log(genderVal);
 		var visibleG = item.demographics[0].gender == genderVal || genderVal == '-1';
 		
 		// age
@@ -919,6 +956,48 @@ $(document).ready(function () {
 		var visible = visibleG && visibleA && visibleC && visibleExp && visibleD;
 		
 		return visible;
+	}
+	
+	
+	// selected filters
+	
+	function showSelectedFilters() {
+		var $selectedTextBlock = $('.js-selected-filters');
+		
+		switch (true) {
+			case (activeFilters) : { // if something is checked
+				// show all checked inputs via each()
+			}
+			break;
+			default: $selectedTextBlock.empty().text('all');
+		}
+		
+	}
+	
+	// bert index
+	
+	function bert(arr) {
+		var happy = arr[0],
+			surprised = arr[1],
+			sad = arr[2],
+			dissapointed = arr[3],
+			afraid = arr[4],
+			angry = arr[5];
+		
+		var bert = 0;
+		var $bertVal = $('.bert-value');
+		
+		
+		//console.log(arr);
+		//console.log( (3*happy + surprised) - (sad + dissapointed + afraid + angry) );
+		
+		bert = ((3*happy + surprised) - (sad + dissapointed + afraid + angry))/100;
+		
+		//console.log(bert, ' ', bert/100);
+		
+		$bertVal
+			.css('bottom', bert*50 + '%')
+			.text((parseInt(bert * 1000)) / 1000);
 	}
 	
 	// timestamp to date
@@ -1039,8 +1118,20 @@ $(document).ready(function () {
 	
 	
 	$('.tooltipster').tooltipster({
-		trigger: 'click'
+		trigger: 'custom',
+		triggerOpen: {
+			click: true,
+			tap: true
+		},
+		triggerClose: {
+			mouseleave: true,
+			click: true,
+			scroll: true,
+			tap: true
+		}
 	});
+	
+	
 	
 	// filters css
 	
