@@ -74,11 +74,16 @@
     <div class="header fixed-top pt-2 pb-2">
         <div class="container">
             <div class="row">
-
                 <div class="col-xs-12 d-flex w-100 justify-content-between align-items-center w-100">
                     <div class="mr-2">
-                        <!--Selected: -->
-                        <!--<span class="js-selected-filters">all</span>-->
+                        Selected:&nbsp;
+                        <span class="js-selected-filters-all">all</span>
+                        <span class="js-selected-filters-dates"></span>
+                        <span class="js-selected-filters-dates-btn"></span>
+                        <span class="js-selected-filters-gender"></span>
+                        <span class="js-selected-filters-exp"></span>
+                        <span class="js-selected-filters-country"></span>
+                        <span class="js-selected-filters-age"></span>
                     </div>
 
                     <button class="btn btn-outline-secondary js-toggle-filters">Show filters</button>
@@ -109,27 +114,27 @@
                             </div>
 
                             <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
-                                <!--<button class="btn btn-outline-info btn-sm mr-2 js-btn-last-minute">-->
-                                    <!--Last minute-->
-                                <!--</button>-->
+                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-minute">
+                                    Last minute
+                                </button>
 
-                                <!--<button class="btn btn-outline-info btn-sm mr-2 js-btn-last-five-mins">-->
-                                    <!--Last 5 minutes-->
-                                <!--</button>-->
+                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-five-mins">
+                                    Last 5 minutes
+                                </button>
 
-                                <!--<button class="btn btn-outline-info btn-sm js-btn-last-ten-mins">-->
-                                    <!--Last 10 minutes-->
-                                <!--</button>-->
+                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-ten-mins">
+                                    Last 10 minutes
+                                </button>
 
-                                <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-day">
+                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-day">
                                     Last day
                                 </button>
 
-                                <button class="btn btn-outline-info btn-sm mr-2 js-btn-last-week">
+                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-week">
                                     Last week
                                 </button>
 
-                                <button class="btn btn-outline-info btn-sm js-btn-last-month">
+                                <button class="btn btn-outline-info btn-sm mb-1 js-btn-date js-btn-last-month">
                                     Last month
                                 </button>
                             </div>
@@ -285,7 +290,7 @@
                                                              title="This is tooltip message!">?</span></h3>
 
                     <!--график experienceID 1-->
-                    <div class="canvas-wrapper" style="height: 300px; width: auto">
+                    <div class="canvas-wrapper" style="height: 320px; width: auto">
                         <canvas id="experienceChart"></canvas>
                     </div>
                 </div>

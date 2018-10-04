@@ -215,11 +215,73 @@ $(document).ready(function () {
 		startFiltering();
 	});
 	
+	$body.on('click', '.js-btn-last-minute', function () {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var month = zeroPad( currentTime.getMonth() + 1, 2);
+		var day = zeroPad( currentTime.getDate() , 2);
+		var hours = zeroPad(currentTime.getHours(), 2);
+		var minutes = zeroPad(currentTime.getMinutes() - 1, 2);
+		var seconds = zeroPad(currentTime.getSeconds(), 2);
+		
+		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
+		
+		//console.log(dt_from);
+		
+		var lastDay = Date.parse(dt_from)/1000;
+		
+		$("#slider-range").slider('values', 0, lastDay );
+		$('.slider-time').html(day + '/' + month + '/' + year);
+		
+		startFiltering();
+	});
+	
+	$body.on('click', '.js-btn-last-five-mins', function () {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var month = zeroPad( currentTime.getMonth() + 1, 2);
+		var day = zeroPad( currentTime.getDate() , 2);
+		var hours = zeroPad(currentTime.getHours(), 2);
+		var minutes = zeroPad(currentTime.getMinutes() - 5, 2);
+		var seconds = zeroPad(currentTime.getSeconds(), 2);
+		
+		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
+		//console.log(dt_from);
+		
+		var lastDay = Date.parse(dt_from)/1000;
+		
+		$("#slider-range").slider('values', 0, lastDay );
+		$('.slider-time').html(day + '/' + month + '/' + year);
+		
+		startFiltering();
+	});
+	
+	$body.on('click', '.js-btn-last-ten-mins', function () {
+		var currentTime = new Date();
+		var year = currentTime.getFullYear();
+		var month = zeroPad( currentTime.getMonth() + 1, 2);
+		var day = zeroPad( currentTime.getDate() , 2);
+		var hours = zeroPad(currentTime.getHours(), 2);
+		var minutes = zeroPad(currentTime.getMinutes() - 10, 2);
+		var seconds = zeroPad(currentTime.getSeconds(), 2);
+		
+		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
+		//console.log(dt_from);
+		
+		var lastDay = Date.parse(dt_from)/1000;
+		
+		$("#slider-range").slider('values', 0, lastDay );
+		$('.slider-time').html(day + '/' + month + '/' + year);
+		
+		startFiltering();
+	});
+	
 	$body.on('click', '.js-btn-last-day', function () {
 		var currentTime = new Date();
 		var year = currentTime.getFullYear();
 		var month = zeroPad( currentTime.getMonth() + 1, 2);
 		var day = zeroPad( currentTime.getDate() - 1, 2);
+		
 		var dt_from = new Date(year + '/' + month + '/' + day);
 		
 		var lastDay = Date.parse(dt_from)/1000;
@@ -264,6 +326,13 @@ $(document).ready(function () {
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
 		startFiltering();
+	});
+	
+	
+	$('.js-btn-date').on('click', function () {
+		$('.js-btn-date.active').removeClass('active');
+		$('.slider-time.active').removeClass('active');
+		$(this).addClass('active')
 	});
 	
 	/*
@@ -669,7 +738,7 @@ $(document).ready(function () {
 				scales: {
 					xAxes: [{
 						scaleLabel: {
-							display: true,
+							display: false,
 							labelString: 'Date'
 						}
 					}],
@@ -973,14 +1042,94 @@ $(document).ready(function () {
 	// selected filters
 	
 	function showSelectedFilters() {
-		var $selectedTextBlock = $('.js-selected-filters');
 		
-		switch (true) {
-			case (activeFilters) : { // if something is checked
-				// show all checked inputs via each()
-			}
-			break;
-			default: $selectedTextBlock.empty().text('all');
+		// containers for filters
+		
+		var $filtersAll = $('.js-selected-filters-all'),
+			$filtersDates = $('.js-selected-filters-dates'),
+			$filtersDatesBtn= $('.js-selected-filters-dates-btn'),
+			$filtersGender = $('.js-selected-filters-gender'),
+			$filtersExp = $('.js-selected-filters-exp'),
+			$filtersCountry =  $('.js-selected-filters-country'),
+			$filtersAge = $('.js-selected-filters-age');
+		
+		$filtersAll.empty().hide();
+		$filtersDates.empty().hide();
+		$filtersDatesBtn.empty().hide();
+		$filtersGender.empty().hide();
+		$filtersExp.empty().hide();
+		$filtersCountry.empty().hide();
+		$filtersAge.empty().hide();
+		
+		// filters values
+		
+		var $filterDate1 = $('.slider-time'),
+			$filterDate2 = $('.slider-time2'),
+			$filterBtnActive = $('.js-btn-date.active');
+		
+		$filtersAll.hide();
+		
+		// dates
+		
+		if ( $filterDate1.hasClass('active') || $filterDate2.hasClass('active')) {
+			$filtersDates
+				.show()
+				.text('from ' + $filterDate1.text() + ' to ' + $filterDate2.text() + ', ')
+		}
+		
+		if ( $filterBtnActive.length ) {
+			$filtersDatesBtn.show().text($filterBtnActive.text() + ', ');
+		}
+		
+		// Gender
+		
+		var $checkedGender = $('.js-gender:checked');
+		
+		if ( $checkedGender.length && $checkedGender.attr('value') != -1 ) {
+			$filtersGender.show().text( $checkedGender.next('label').text() + ', ' );
+		}
+		
+		// experience
+		
+		var $experience = $('.js-exp:checked');
+		
+		if ( $experience.length ) {
+			$filtersExp.show();
+			
+			$experience.each(function () {
+				var $self = $(this);
+				$filtersExp.append( '<span>' + $self.next('label').text()  + ', </span>' )
+			})
+			
+		}
+		
+		// country
+		
+		var $country = $('.js-country:checked');
+		
+		if ( $country.length ) {
+			$filtersCountry.show();
+			
+			$country.each(function () {
+				var $self = $(this);
+				$filtersCountry.append( '<span>' + $self.next('label').text()  + ', </span>' )
+			})
+			
+		}
+		
+		// age
+		
+		var $ageMin = $('.js-age-min');
+		var $ageMax = $('.js-age-max');
+		
+		if ( $ageMin.val().length > 0 || $ageMax.val().length > 0) {
+			$filtersCountry.show();
+		}
+		
+		if ( $ageMin.val().length > 0 ) {
+			$filtersAge.append( '<span>from&nbsp;' + $ageMin.val()  + 'yo,&nbsp;</span>' )
+		} else if ($ageMax.val().length > 0) {
+			$filtersAge.append( '<span>to&nbsp;' + $ageMax.val()  + 'yo,&nbsp;</span>' )
 		}
 		
 	}
@@ -1101,6 +1250,8 @@ $(document).ready(function () {
 			var year = __dt.getFullYear();
 			var month = zeroPad(__dt.getMonth()+1, 2);
 			var date = zeroPad(__dt.getDate(), 2);
+			var minutes = zeroPad(__dt.getMinutes(), 2);
+			var seconds = zeroPad(__dt.getSeconds(), 2);
 			
 			return date + '/' + month + '/' + year;
 		}
@@ -1113,10 +1264,20 @@ $(document).ready(function () {
 			values: [min_val, max_val],
 			slide: function (e, ui) {
 				var dt_cur_from = new Date(ui.values[0]*1000); //.format("yyyy-mm-dd hh:ii:ss");
-				$('.slider-time').html(formatDT(dt_cur_from));
+				$('.slider-time')
+					.html(formatDT(dt_cur_from));
 				
 				var dt_cur_to = new Date(ui.values[1]*1000); //.format("yyyy-mm-dd hh:ii:ss");
-				$('.slider-time2').html(formatDT(dt_cur_to));
+				$('.slider-time2')
+					.html(formatDT(dt_cur_to));
+				
+				
+				if ($('.js-btn-date.active').length) {
+					$('.js-btn-date.active').removeClass('active');
+					$('.slider-time').removeClass('active');
+				} else {
+					$('.slider-time').addClass('active');
+				}
 				
 				startFiltering();
 			}
