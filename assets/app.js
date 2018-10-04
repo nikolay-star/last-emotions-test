@@ -6,9 +6,10 @@ $(document).ready(function () {
 		
 		// делим на 100, чтобы перевести из процентов в доли
 		var bertResult = ((3*happy + surprised) - (sad + dissapointed + afraid + angry))/100;
+		var logBert = bertResult >= 0 ? Math.log(10 * bertResult + 1) / Math.log(15) : -Math.log(-10 * bertResult + 1) / Math.log(15)
 		
 		// округляем до 3 знаков после запятой
-		return parseInt(bertResult * 1000) / 1000
+		return parseInt(logBert * 1000) / 1000
 	}
 	
 	/*
