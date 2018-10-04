@@ -32,7 +32,8 @@
             <div class="row justify-content-center h-100">
                 <div class="login">
                     <h1 class="mb-3 text-center">
-                        Log in <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span>
+                        Log in <span class="tooltipster tooltipster_round js-tooltip-login"
+                                     title="">?</span>
                     </h1>
 
                     <form action="#" id="loginform" class="w-100">
@@ -99,12 +100,15 @@
             <div class="row justify-content-end mt-4">
 
                 <div class="col-sm-6 col-xs-12 order-md-2 order-xs-1 pt-4 filters__inner">
-                    <h2 class="">Filters <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h2>
+                    <h2 class="">Filters <span class="tooltipster tooltipster_round js-tooltip-filters"
+                                               title="">?</span></h2>
 
                     <hr class="mb-2">
 
                     <div>
-                        <h5>Dates <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+                        <h5>Dates
+                            <span class="tooltipster tooltipster_round js-tooltip-filters-dates"
+                                  title="">?</span></h5>
 
                         <div id="time-range">
                             <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
@@ -173,7 +177,8 @@
                     <hr class="mb-2">
 
                     <div style="display: none">
-                        <h5>Emotions <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+                        <h5>Emotions <span class="tooltipster tooltipster_round js-tooltip-filters-emotions"
+                                           title="">?</span></h5>
 
                         <div class="em-checkboxes">
                             <!--
@@ -187,7 +192,9 @@
                         <hr class="mb-2">
                     </div>
 
-                    <h5>Experience  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+                    <h5>Experience  <span class="tooltipster tooltipster_round  js-tooltip-filters-exp"
+                                          title="">?
+                    </span></h5>
 
                     <div class="exp-checkboxes">
                         <!--
@@ -200,7 +207,8 @@
 
                     <hr class="mb-2">
 
-                    <h5>Country  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h5>
+                    <h5>Country
+                        <span class="tooltipster tooltipster_round js-tooltip-filters-country" title="">?</span></h5>
 
                     <div class="countries-checkboxes">
                         <!--
@@ -213,7 +221,8 @@
 
                     <hr class="mb-2">
 
-                    <h4>Age  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h4>
+                    <h4>Age  <span class="tooltipster tooltipster_round js-tooltip-filters-age"
+                                   title="">?</span></h4>
 
                     <form action="#" class="d-flex">
                         <div class="form-group mr-4 w-25">
@@ -248,8 +257,9 @@
 
             <div class="col-sm-1 col-xs-12 charts">
                 <div class="chart__item mb-4">
-                    <h3 class="text-info text-nowrap">BERT<span class="tooltipster tooltipster_round"
-                                                            title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-info text-nowrap">BERT<span
+                            class="tooltipster tooltipster_round js-tooltip-bert"
+                                                            title="">?</span></h3>
 
                     <div class="d-flex flex-row bert-container">
                         <div class="bert-gradient"></div>
@@ -261,7 +271,9 @@
             <div class="col-sm-5 col-xs-12 charts">
 
                 <div class="chart__item chart__item_first-line mb-1">
-                    <h3 class="text-left text-info">Emotional Journey  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-left text-info">Emotional Journey
+                        <span class="tooltipster tooltipster_round js-tooltip-emotional-journey"
+                              title="">?</span></h3>
 
                     <!--график эмоций и времени-->
 
@@ -274,8 +286,8 @@
 
 
                 <div class="chart__item chart__item_second-line mb-4">
-                    <h3 class="text-info">Emotions  <span class="tooltipster tooltipster_round"
-                                                          title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-info">Emotions  <span class="tooltipster tooltipster_round js-tooltip-emotions"
+                                                          title="">?</span></h3>
                     <!--график эмоций-->
                     <div class="canvas-wrapper" style="height: 200px; width: auto">
                         <canvas id="emotionsChart"></canvas>
@@ -286,8 +298,8 @@
 
             <div class="col-sm-5 col-xs-12 charts">
                 <div class="chart__item chart__item_first-line mb-1">
-                    <h3 class="text-info mb-45p">Experience  <span class="tooltipster tooltipster_round"
-                                                             title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-info mb-45p">Experience  <span class="tooltipster tooltipster_round js-tooltip-exp"
+                                                             title="">?</span></h3>
 
                     <!--график experienceID 1-->
                     <div class="canvas-wrapper" style="height: 320px; width: auto">
@@ -297,7 +309,8 @@
 
 
                 <div class="chart__item chart__item_second-line mb-4">
-                    <h3 class="text-info">Countries  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-info">Countries  <span class="tooltipster tooltipster_round js-tooltip-country"
+                                                           title="">?</span></h3>
 
                     <!--график стран-->
                     <div class="canvas-wrapper" style="height: 200px; width: auto">
@@ -312,7 +325,9 @@
 
             <div class="col-sm-5 offset-sm-1 offset-xs-0 col-xs-12 ">
                 <div class="chart__item mb-4">
-                    <h3 class="text-info">Age  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-info">Age  <span
+                            class="tooltipster tooltipster_round js-tooltip-age" title="">?
+                    </span></h3>
 
                     <!--график возрастов-->
                     <div class="canvas-wrapper" style="width: 300px; height: 150px">
@@ -322,7 +337,8 @@
             </div>
             <div class="col-sm-4 col-xs-12">
                 <div class="chart__item mb-4">
-                    <h3 class="text-left text-info">Gender  <span class="tooltipster tooltipster_round" title="This is tooltip message!">?</span></h3>
+                    <h3 class="text-left text-info">Gender
+                        <span class="tooltipster tooltipster_round js-tooltip-gender" title="">?</span></h3>
 
                     <!--график полов-->
 
@@ -337,6 +353,7 @@
 
 
     <script type="text/javascript" src="assets/tooltipster/tooltipster.bundle.min.js"></script>
+    <script src="assets/tooltipText.js"></script>
     <script src="assets/app.js"></script>
 </body>
 </html>
