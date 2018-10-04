@@ -1240,6 +1240,7 @@ $(document).ready(function () {
 		
 		var dt_from = new Date('2018/08/01');
 		var dt_to = new Date();
+		dt_to.setDate((new Date()).getDate() + 1)
 		
 		$('.slider-time').html(formatDT(dt_from));
 		$('.slider-time2').html(formatDT(dt_to));
