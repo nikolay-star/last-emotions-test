@@ -129,6 +129,16 @@ $(document).ready(function () {
 		'rgba(53, 102, 255, 0.2)',
 		'rgba(55, 159, 64, 0.2)',
 	];
+	
+	var bgColorsBright = [
+		'rgba(54, 162, 235, 1)',
+		'rgba(255, 99, 132, 1)',
+		'rgba(255, 206, 86, 1)',
+		'rgba(75, 192, 192, 1)',
+		'rgba(153, 102, 255, 1)',
+		'rgba(255, 159, 64, 1)',
+	];
+	
 	var borderColors = [
 		'rgba(255,99,132,1)',
 		'rgba(54, 162, 235, 1)',
@@ -229,12 +239,14 @@ $(document).ready(function () {
 		
 		//console.log(dt_from);
 		
-		var lastDay = Date.parse(dt_from)/1000;
+		var lastMin = Date.parse(dt_from)/1000;
 		
-		$("#slider-range").slider('values', 0, lastDay );
+		$("#slider-range").slider({
+			values: [ lastMin, currentTime/1000 ]
+		});
+		
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		startFiltering();
 	});
 	
 	$body.on('click', '.js-btn-last-five-mins', function () {
@@ -249,12 +261,13 @@ $(document).ready(function () {
 		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
 		//console.log(dt_from);
 		
-		var lastDay = Date.parse(dt_from)/1000;
+		var lastFiveM = Date.parse(dt_from)/1000;
 		
-		$("#slider-range").slider('values', 0, lastDay );
+		$("#slider-range").slider({
+			values: [ lastFiveM, currentTime/1000 ]
+		});
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		startFiltering();
 	});
 	
 	$body.on('click', '.js-btn-last-ten-mins', function () {
@@ -269,12 +282,13 @@ $(document).ready(function () {
 		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
 		//console.log(dt_from);
 		
-		var lastDay = Date.parse(dt_from)/1000;
+		var lastTenM = Date.parse(dt_from)/1000;
 		
-		$("#slider-range").slider('values', 0, lastDay );
+		$("#slider-range").slider({
+			values: [ lastTenM, currentTime/1000 ]
+		});
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		startFiltering();
 	});
 	
 	$body.on('click', '.js-btn-last-day', function () {
@@ -287,10 +301,12 @@ $(document).ready(function () {
 		
 		var lastDay = Date.parse(dt_from)/1000;
 		
-		$("#slider-range").slider('values', 0, lastDay );
+		$("#slider-range").slider({
+			values: [ lastDay, currentTime/1000 ]
+		});
+		
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		startFiltering();
 	});
 	
 	$body.on('click', '.js-btn-last-week', function () {
@@ -306,10 +322,12 @@ $(document).ready(function () {
 		
 		//console.log(lastWeek);
 		
-		$("#slider-range").slider('values', 0, lastWeek );
+		$("#slider-range").slider({
+			values: [ lastWeek, currentTime/1000 ]
+		});
+		
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		startFiltering();
 	});
 	
 	$body.on('click', '.js-btn-last-month', function () {
@@ -322,11 +340,12 @@ $(document).ready(function () {
 		
 		var lastMonth = Date.parse(dt_from)/1000;
 		
-		$("#slider-range").slider('values', 0, lastMonth );
+		$("#slider-range").slider({
+			values: [ lastMonth, currentTime/1000 ]
+		});
 		
 		$('.slider-time').html(day + '/' + month + '/' + year);
 		
-		startFiltering();
 	});
 	
 	
@@ -611,10 +630,10 @@ $(document).ready(function () {
 		countriesChart = new Chart(ctx_countries, {
 			type: 'bar',
 			data: {
-				labels: Object.keys(sortingCountries( countriesArr )),
+				labels: Object.keys(sortingCountriesByPopular( countriesArr )),
 				datasets: [{
 					label: '',
-					data: Object.values( sortingCountries( countriesArr )),
+					data: Object.values( sortingCountriesByPopular( countriesArr )),
 					backgroundColor: dynamicColors(),
 					borderColor: '#ccc',
 					
@@ -647,7 +666,7 @@ $(document).ready(function () {
 				datasets: [{
 					label: '',
 					data: Object.values(genderData),
-					backgroundColor: bgColors,
+					backgroundColor: bgColorsBright,
 					borderWidth: 0
 				}]
 			},
@@ -668,7 +687,7 @@ $(document).ready(function () {
 				datasets: [{
 					label: '',
 					data: Object.values(ageData),
-					backgroundColor: bgColors,
+					backgroundColor: bgColorsBright,
 					borderWidth: 0
 				}]
 			},
@@ -931,7 +950,11 @@ $(document).ready(function () {
 		ageChart.data.datasets[0].data = Object.values(ageData);
 		emotionsChart.data.datasets[0].data = emotionsCreateArr(emotions);
 		experienceChart.data.datasets[0].data = Object.values(expArr);
-		countriesChart.data.datasets[0].data = Object.values( sortingCountries( countriesArr ));
+		countriesChart.data.datasets[0].data = Object.values( sortingCountriesByPopular( countriesArr ));
+		countriesChart.data.labels = Object.keys( sortingCountriesByPopular( countriesArr ));
+		
+		// console.log(sortingCountriesByPopular( countriesArr ));
+		// console.log(countriesArr);
 		
 		emotionsDatesChart.data.datasets[0].data = mapEmotions(happyData);
 		
@@ -1023,8 +1046,11 @@ $(document).ready(function () {
 		
 		// dates
 		
-		var minDate = dateToTimestamp( $('.slider-time').text() );
-		var maxDate = dateToTimestamp( $('.slider-time2').text() );
+		var minDate = dateToTimestamp( $('.slider-time').data('value') );
+		var maxDate = dateToTimestamp( $('.slider-time2').data('value') );
+		
+		//console.log(minDate, ' ', maxDate);
+		
 		var visibleD = true;
 		var itemDate = item.sessionData.timestamp;
 		
@@ -1192,9 +1218,10 @@ $(document).ready(function () {
 	// date to timestamp
 	
 	function dateToTimestamp(myDate) {
-		myDate=myDate.split("/");
-		var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2];
-		return new Date(newDate).getTime() / 1000;
+		// myDate=myDate.split("/");
+		// var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2]+' '+myDate[3]+':'+myDate[4];
+		//
+		return new Date(myDate).getTime() / 1000;
 	}
 	
 	// add zero to days and months
@@ -1228,6 +1255,21 @@ $(document).ready(function () {
 			}, {});
 	}
 	
+	function sortingCountriesByPopular(not_sorted) {
+		
+		return Object.keys(not_sorted)
+			.sort(function(a, b) {
+				return not_sorted[b] - not_sorted[a]
+			})
+			.reduce(function (acc, key) {
+				acc[key] = not_sorted[key];
+				return acc;
+			}, {});
+		
+	}
+	
+	
+	
 	
 	/*
 	
@@ -1240,23 +1282,38 @@ $(document).ready(function () {
 		
 		var dt_from = new Date('2018/08/01');
 		var dt_to = new Date();
-		dt_to.setDate((new Date()).getDate() + 1)
+		//dt_to.setDate((new Date()).getDate() + 1)
 		
-		$('.slider-time').html(formatDT(dt_from));
-		$('.slider-time2').html(formatDT(dt_to));
+		$('.slider-time')
+			.attr('data-value', formatDTmins(dt_from))
+			.html(formatDT(dt_from));
+		$('.slider-time2')
+			.attr('data-value', formatDTmins(dt_to))
+			.html(formatDT(dt_to));
+		
 		var min_val = Date.parse(dt_from)/1000;
 		var max_val = Date.parse(dt_to)/1000;
-		
 		
 		function formatDT(__dt) {
 			var year = __dt.getFullYear();
 			var month = zeroPad(__dt.getMonth()+1, 2);
 			var date = zeroPad(__dt.getDate(), 2);
-			var minutes = zeroPad(__dt.getMinutes(), 2);
-			var seconds = zeroPad(__dt.getSeconds(), 2);
 			
 			return date + '/' + month + '/' + year;
 		}
+		
+		function formatDTmins(__dt) {
+			var year = __dt.getFullYear();
+			var month = zeroPad(__dt.getMonth()+1, 2);
+			var date = zeroPad(__dt.getDate(), 2);
+			var hours = zeroPad(__dt.getHours(), 2);
+			var minutes = zeroPad(__dt.getMinutes(), 2);
+			var seconds = zeroPad(__dt.getSeconds(), 2);
+			
+			return year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+		}
+		
+		
 		
 		$("#slider-range").slider({
 			range: true,
@@ -1264,13 +1321,18 @@ $(document).ready(function () {
 			max: max_val,
 			step: 10,
 			values: [min_val, max_val],
+			change: function (e, ui) {
+				startFiltering();
+			},
 			slide: function (e, ui) {
 				var dt_cur_from = new Date(ui.values[0]*1000); //.format("yyyy-mm-dd hh:ii:ss");
 				$('.slider-time')
+					.attr('data-value', formatDTmins(dt_cur_from))
 					.html(formatDT(dt_cur_from));
 				
 				var dt_cur_to = new Date(ui.values[1]*1000); //.format("yyyy-mm-dd hh:ii:ss");
 				$('.slider-time2')
+					.attr('data-value', formatDTmins(dt_cur_to))
 					.html(formatDT(dt_cur_to));
 				
 				
@@ -1281,7 +1343,6 @@ $(document).ready(function () {
 					$('.slider-time').addClass('active');
 				}
 				
-				startFiltering();
 			}
 		});
 		
