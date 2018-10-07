@@ -226,6 +226,25 @@ $(document).ready(function () {
 		startFiltering();
 	});
 	
+	$body.on('click', '.js-btn-all', function () {
+		var dt_from = new Date('2018/08/01');
+		var dt_to = new Date();
+		//dt_to.setDate((new Date()).getDate() + 1)
+		
+		$('.slider-time')
+			.attr('data-value', formatDTmins(dt_from))
+			.html(formatDT(dt_from));
+		$('.slider-time2')
+			.attr('data-value', formatDTmins(dt_to))
+			.html(formatDT(dt_to));
+		
+		var min_val = Date.parse(dt_from)/1000;
+		var max_val = Date.parse(dt_to)/1000;
+		
+		$("#slider-range").slider("option", "values", [ min_val, max_val ]);
+		
+	});
+	
 	$body.on('click', '.js-btn-last-minute', function () {
 		var currentTime = new Date();
 		var year = currentTime.getFullYear();
@@ -1289,6 +1308,24 @@ $(document).ready(function () {
 	 
 	 */
 	
+	function formatDT(__dt) {
+		var year = __dt.getFullYear();
+		var month = zeroPad(__dt.getMonth()+1, 2);
+		var date = zeroPad(__dt.getDate(), 2);
+		
+		return date + '/' + month + '/' + year;
+	}
+	
+	function formatDTmins(__dt) {
+		var year = __dt.getFullYear();
+		var month = zeroPad(__dt.getMonth()+1, 2);
+		var date = zeroPad(__dt.getDate(), 2);
+		var hours = zeroPad(__dt.getHours(), 2);
+		var minutes = zeroPad(__dt.getMinutes(), 2);
+		var seconds = zeroPad(__dt.getSeconds(), 2);
+		
+		return year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+	}
 	
 	$( function() {
 		
@@ -1305,25 +1342,6 @@ $(document).ready(function () {
 		
 		var min_val = Date.parse(dt_from)/1000;
 		var max_val = Date.parse(dt_to)/1000;
-		
-		function formatDT(__dt) {
-			var year = __dt.getFullYear();
-			var month = zeroPad(__dt.getMonth()+1, 2);
-			var date = zeroPad(__dt.getDate(), 2);
-			
-			return date + '/' + month + '/' + year;
-		}
-		
-		function formatDTmins(__dt) {
-			var year = __dt.getFullYear();
-			var month = zeroPad(__dt.getMonth()+1, 2);
-			var date = zeroPad(__dt.getDate(), 2);
-			var hours = zeroPad(__dt.getHours(), 2);
-			var minutes = zeroPad(__dt.getMinutes(), 2);
-			var seconds = zeroPad(__dt.getSeconds(), 2);
-			
-			return year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds;
-		}
 		
 		
 		
@@ -1344,12 +1362,7 @@ $(document).ready(function () {
 					.attr('data-value', formatDTmins(dt_cur_to))
 					.html(formatDT(dt_cur_to));
 				
-				if ($('.js-btn-date.active').length) {
-					$('.js-btn-date.active').removeClass('active');
-					$('.slider-time').removeClass('active');
-				} else {
-					$('.slider-time').addClass('active');
-				}
+				
 				console.log('change');
 				$('#slider').trigger('slidechange');
 				
@@ -1365,6 +1378,14 @@ $(document).ready(function () {
 				// $('body').trigger('filteringDates');
 				console.log('start ui');
 			},
+			slide: function (e, ui) {
+				if ($('.js-btn-date.active').length) {
+					$('.js-btn-date.active').removeClass('active');
+					$('.slider-time').removeClass('active');
+				} else {
+					$('.slider-time').addClass('active');
+				}
+			}
 		}).bind('slidechange',function(event,ui){
 			console.log('slidechange trigger');
 			//startFiltering();
