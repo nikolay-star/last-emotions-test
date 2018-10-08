@@ -8,6 +8,13 @@ $(document).ready(function () {
 		var bertResult = ((3*happy + surprised) - (sad + dissapointed + afraid + angry))/100;
 		var logBert = bertResult >= 0 ? Math.log(10 * bertResult + 1) / Math.log(15) : -Math.log(-10 * bertResult + 1) / Math.log(15)
 		
+		
+		//console.log(typeof logBert, ' ', logBert);
+		
+		if (isNaN(logBert)) {
+			logBert = 0
+		}
+		
 		// округляем до 3 знаков после запятой
 		return parseInt(logBert * 1000) / 1000
 	}
@@ -369,7 +376,7 @@ $(document).ready(function () {
 		
 		//$('body').trigger('filteringDates');
 		
-		console.log('click')
+		//console.log('click')
 		
 		//$('body').trigger('filteringDates');
 	});
@@ -697,7 +704,8 @@ $(document).ready(function () {
 					label: '',
 					data: Object.values(genderData),
 					backgroundColor: bgColorsBright,
-					borderWidth: 0
+					borderColor: '#eee',
+					borderWidth: 1
 				}]
 			},
 			options: {
@@ -718,7 +726,8 @@ $(document).ready(function () {
 					label: '',
 					data: Object.values(ageData),
 					backgroundColor: bgColorsBright,
-					borderWidth: 0
+					borderColor: '#eee',
+					borderWidth: 1
 				}]
 			},
 			options: {
@@ -902,7 +911,7 @@ $(document).ready(function () {
 	// filtering
 	
 	function startFiltering() {
-		console.log('start');
+		//console.log('start');
 		activeFilters = true;
 		clearObjects();
 		
@@ -1363,7 +1372,7 @@ $(document).ready(function () {
 					.html(formatDT(dt_cur_to));
 				
 				
-				console.log('change');
+				//console.log('change');
 				$('#slider').trigger('slidechange');
 				
 				startFiltering();
@@ -1371,12 +1380,12 @@ $(document).ready(function () {
 			stop: function (e, ui) {
 				//startFiltering();
 				// $('body').trigger('filteringDates');
-				console.log('stop');
+				//console.log('stop');
 			},
 			start: function (e, ui) {
 				//startFiltering();
 				// $('body').trigger('filteringDates');
-				console.log('start ui');
+				//console.log('start ui');
 			},
 			slide: function (e, ui) {
 				if ($('.js-btn-date.active').length) {
@@ -1387,7 +1396,7 @@ $(document).ready(function () {
 				}
 			}
 		}).bind('slidechange',function(event,ui){
-			console.log('slidechange trigger');
+			//console.log('slidechange trigger');
 			//startFiltering();
 		});
 		
