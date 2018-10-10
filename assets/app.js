@@ -54,7 +54,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		$('.preloader').show();
 		
-		$.post( "http://18.218.159.157:8001/emotionsData",  // тут url для логина
+		$.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
 			$form.serialize()
 		).done(function(json) {
 			
@@ -80,7 +80,7 @@ $(document).ready(function () {
 	
 	function updatePage($form){
 		
-		$.post( "http://18.218.159.157:8001/emotionsData",  // тут url для логина
+		$.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
 			$form.serialize()
 		).done(function(json) {
 		
