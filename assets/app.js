@@ -79,7 +79,7 @@ $(document).ready(function () {
 		
 		$.ajax({
 			type: 'POST',
-			url: 'http://18.218.159.157:8001/emotionsData',
+			url: 'https://18.218.159.157:8001/emotionsData',
 			crossDomain: true,
 			data: $form.serialize(),
 			dataType: 'json',
@@ -120,7 +120,7 @@ $(document).ready(function () {
 		
 		$.ajax({
 			type: 'POST',
-			url: 'http://18.218.159.157:8001/emotionsData',
+			url: 'https://18.218.159.157:8001/emotionsData',
 			crossDomain: true,
 			data: $form.serialize(),
 			dataType: 'json',
