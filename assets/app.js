@@ -54,42 +54,84 @@ $(document).ready(function () {
 		e.preventDefault();
 		$('.preloader').show();
 		
-		$.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
-			$form.serialize()
-		).done(function(json) {
-			
-			$('.login-modal').hide();
-			
-			if ( $('.chart-page').length ) {
+		// $.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
+		// 	$form.serialize()
+		// ).done(function(json) {
+		//
+		// 	$('.login-modal').hide();
+		//
+		// 	if ( $('.chart-page').length ) {
+		//
+		// 		dataObj = json;
+		// 		arrSorted = json;
+		// 		initChartArrays(dataObj);
+		// 		initCharts();
+		// 		initFilters(dataObj);
+		//
+		// 		$('.preloader').hide();
+		//
+		// 	}
+		//
+		// }).fail(function() {
+		// 	alert( "Wrong email or password. Try again" );
+		// 	$('.preloader').hide();
+		// });
+		
+		$.ajax({
+			type: 'POST',
+			url: 'http://18.218.159.157:8001/emotionsData',
+			crossDomain: true,
+			data: $form.serialize(),
+			dataType: 'json',
+			success: function(responseData, textStatus, jqXHR) {
+				$('.login-modal').hide();
 				
-				dataObj = json;
-				arrSorted = json;
-				initChartArrays(dataObj);
-				initCharts();
-				initFilters(dataObj);
-				
+				if ( $('.chart-page').length ) {
+					
+					dataObj = responseData;
+					arrSorted = responseData;
+					initChartArrays(dataObj);
+					initCharts();
+					initFilters(dataObj);
+					
+					$('.preloader').hide();
+					
+				}
+			},
+			error: function (responseData, textStatus, errorThrown) {
+				alert( "Wrong email or password. Try again" );
 				$('.preloader').hide();
-				
 			}
-			
-		}).fail(function() {
-			alert( "Wrong email or password. Try again" );
-			$('.preloader').hide();
 		});
 	}
 	
 	function updatePage($form){
 		
-		$.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
-			$form.serialize()
-		).done(function(json) {
+		// $.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
+		// 	$form.serialize()
+		// ).done(function(json) {
+		//
+		// 	dataObj = json;
+		//
+		// 	// console.log(dataObj);
+		//
+		// 	startFiltering();
+		// })
 		
-			dataObj = json;
-			
-			// console.log(dataObj);
-			
-			startFiltering();
-		})
+		$.ajax({
+			type: 'POST',
+			url: 'http://18.218.159.157:8001/emotionsData',
+			crossDomain: true,
+			data: $form.serialize(),
+			dataType: 'json',
+			success: function(responseData, textStatus, jqXHR) {
+				
+				dataObj = responseData;
+				
+				startFiltering();
+			}
+		});
+		
 	}
 	
 	function guestSubmit() {
