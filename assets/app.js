@@ -1073,25 +1073,36 @@ $(document).ready(function () {
 		// gender
 		var genderVal = parseInt( $('.js-gender:checked').val() );
 		//console.log(genderVal);
-		var visibleG = item.demographics[0].gender == genderVal || genderVal == '-1';
+		var visibleG = true;
+		
+		if (item.demographics.length){
+			visibleG = item.demographics[0].gender == genderVal || genderVal == '-1';
+		} else {
+			visibleG = false
+		}
 		
 		// age
-		var visibleA = '1';
-		var itemAge = item.demographics[0].age;
 		
-		var minVal = $('.js-age-min').val();
-		var maxVal = $('.js-age-max').val();
-		
-		switch (true) {
-			case (itemAge >= minVal && itemAge < maxVal) :
-				visibleA = true;
-				break;
-			case (itemAge < minVal || itemAge > maxVal) :
-				visibleA = false;
-				break;
-			default :
-				visibleA = true;
-				break;
+		if (item.demographics.length){
+			var visibleA = '1';
+			var itemAge = item.demographics[0].age;
+			
+			var minVal = $('.js-age-min').val();
+			var maxVal = $('.js-age-max').val();
+			
+			switch (true) {
+				case (itemAge >= minVal && itemAge < maxVal) :
+					visibleA = true;
+					break;
+				case (itemAge < minVal || itemAge > maxVal) :
+					visibleA = false;
+					break;
+				default :
+					visibleA = true;
+					break;
+			}
+		} else {
+			visibleA = false;
 		}
 		
 		// country
