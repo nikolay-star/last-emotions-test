@@ -468,6 +468,9 @@ $(document).ready(function () {
 				arrLength++;
 				
 				switch (true) {
+					case ( !item.demographics.length ): genderData['not' +
+					' specified']++;
+						break;
 					case (item.demographics[0].gender == 1 ) : genderData['man']++;
 						break;
 					case (item.demographics[0].gender == 2 ) : genderData['woman']++;
@@ -480,6 +483,9 @@ $(document).ready(function () {
 				// age
 				
 				switch (true) {
+					case ( !item.demographics.length ): ageData['not' +
+					' specified']++;
+						break;
 					case (item.demographics[0].age > 0 && item.demographics[0].age < 18) :
 						ageData['<18']++;
 						break;
