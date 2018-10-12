@@ -36,7 +36,7 @@ $(document).ready(function () {
 		
 		setInterval(function(){
 			updatePage($form)
-		}, 60000)
+		}, 10000)
 	});
 	
 	$guestform.on('submit', function (e) {
@@ -127,6 +127,8 @@ $(document).ready(function () {
 			success: function(responseData, textStatus, jqXHR) {
 				
 				dataObj = responseData;
+				
+				console.log(responseData);
 				
 				startFiltering();
 			}
