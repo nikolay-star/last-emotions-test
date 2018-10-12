@@ -36,7 +36,7 @@ $(document).ready(function () {
 		
 		setInterval(function(){
 			updatePage($form)
-		}, 10000)
+		}, 60000)
 	});
 	
 	$guestform.on('submit', function (e) {
@@ -128,7 +128,7 @@ $(document).ready(function () {
 				
 				dataObj = responseData;
 				
-				console.log(responseData);
+				console.log(responseData.length);
 				
 				startFiltering();
 			}
@@ -466,7 +466,7 @@ $(document).ready(function () {
 		data.forEach(function(item, i, arr) {
 			
 			// if (!activeFilters || arrSorted[i].hidden.gender != 'hidden') {
-			if (!activeFilters || checkVisibility(item) ) {
+			if (checkVisibility(item) ) {
 				arrLength++;
 				
 				switch (true) {
