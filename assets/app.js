@@ -120,7 +120,7 @@ $(document).ready(function () {
 		
 		$.ajax({
 			type: 'POST',
-			url: 'https://moodme.tk:8001/emotionsData',
+			url: 'https://18.218.159.157:8001/emotionsData',
 			crossDomain: true,
 			data: $form.serialize(),
 			dataType: 'json',
@@ -298,12 +298,18 @@ $(document).ready(function () {
 	
 	$body.on('click', '.js-btn-last-minute', function () {
 		var currentTime = new Date();
-		var year = currentTime.getFullYear();
-		var month = zeroPad( currentTime.getMonth() + 1, 2);
-		var day = zeroPad( currentTime.getDate() , 2);
-		var hours = zeroPad(currentTime.getHours(), 2);
-		var minutes = zeroPad(currentTime.getMinutes() - 1, 2);
-		var seconds = zeroPad(currentTime.getSeconds(), 2);
+		var changedTime = new Date();
+		var plusTime = new Date();
+		
+		changedTime.setMinutes(currentTime.getMinutes()-1);
+		//plusTime.setHours(currentTime.getHours()+1);
+		
+		var year = changedTime.getFullYear();
+		var month = zeroPad( changedTime.getMonth() + 1, 2);
+		var day = zeroPad( changedTime.getDate() , 2);
+		var hours = zeroPad(changedTime.getHours(), 2);
+		var minutes = zeroPad(changedTime.getMinutes() , 2);
+		var seconds = zeroPad(changedTime.getSeconds(), 2);
 		
 		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
 		
@@ -319,12 +325,18 @@ $(document).ready(function () {
 	
 	$body.on('click', '.js-btn-last-five-mins', function () {
 		var currentTime = new Date();
-		var year = currentTime.getFullYear();
-		var month = zeroPad( currentTime.getMonth() + 1, 2);
-		var day = zeroPad( currentTime.getDate() , 2);
-		var hours = zeroPad(currentTime.getHours(), 2);
-		var minutes = zeroPad(currentTime.getMinutes() - 5, 2);
-		var seconds = zeroPad(currentTime.getSeconds(), 2);
+		var changedTime = new Date();
+		var plusTime = new Date();
+		
+		changedTime.setMinutes(currentTime.getMinutes()-5);
+		//plusTime.setHours(currentTime.getHours()+1);
+		
+		var year = changedTime.getFullYear();
+		var month = zeroPad( changedTime.getMonth() + 1, 2);
+		var day = zeroPad( changedTime.getDate() , 2);
+		var hours = zeroPad(changedTime.getHours(), 2);
+		var minutes = zeroPad(changedTime.getMinutes() , 2);
+		var seconds = zeroPad(changedTime.getSeconds(), 2);
 		
 		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
 		//console.log(dt_from);
@@ -341,12 +353,18 @@ $(document).ready(function () {
 	
 	$body.on('click', '.js-btn-last-ten-mins', function () {
 		var currentTime = new Date();
-		var year = currentTime.getFullYear();
-		var month = zeroPad( currentTime.getMonth() + 1, 2);
-		var day = zeroPad( currentTime.getDate(), 2);
-		var hours = zeroPad(currentTime.getHours(), 2);
-		var minutes = zeroPad(currentTime.getMinutes() - 10, 2);
-		var seconds = zeroPad(currentTime.getSeconds(), 2);
+		var changedTime = new Date();
+		var plusTime = new Date();
+		
+		changedTime.setMinutes(currentTime.getMinutes()-10);
+		//plusTime.setHours(currentTime.getHours()+1);
+		
+		var year = changedTime.getFullYear();
+		var month = zeroPad( changedTime.getMonth() + 1, 2);
+		var day = zeroPad( changedTime.getDate() , 2);
+		var hours = zeroPad(changedTime.getHours(), 2);
+		var minutes = zeroPad(changedTime.getMinutes() , 2);
+		var seconds = zeroPad(changedTime.getSeconds(), 2);
 		
 		var dt_from = new Date(year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds);
 		//console.log(dt_from);
@@ -1417,7 +1435,10 @@ $(document).ready(function () {
 		
 		var dt_from = new Date('2018/08/01');
 		var dt_to = new Date();
-		//dt_to.setDate((new Date()).getDate() + 1)
+		var dt_toMax = new Date();
+		dt_toMax.setHours( dt_to.getHours() + 1 );
+		
+		//console.log(dt_to);
 		
 		$('.slider-time')
 			.attr('data-value', formatDTmins(dt_from))
@@ -1427,8 +1448,10 @@ $(document).ready(function () {
 			.html(formatDT(dt_to));
 		
 		var min_val = Date.parse(dt_from)/1000;
-		var max_val = Date.parse(dt_to)/1000;
 		
+		var cur_val = Date.parse(dt_to)/1000;
+		
+		var max_val = Date.parse(dt_toMax)/1000;
 		
 		
 		$("#slider-range").slider({
@@ -1436,7 +1459,7 @@ $(document).ready(function () {
 			min: min_val,
 			max: max_val,
 			step: 10,
-			values: [min_val, max_val],
+			values: [min_val, cur_val],
 			change: function (e, ui) {
 				var dt_cur_from = new Date(ui.values[0]*1000); //.format("yyyy-mm-dd hh:ii:ss");
 				$('.slider-time')
