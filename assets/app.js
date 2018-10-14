@@ -120,7 +120,7 @@ $(document).ready(function () {
 		
 		$.ajax({
 			type: 'POST',
-			url: 'https://18.218.159.157:8001/emotionsData',
+			url: 'https://moodme.tk:8001/emotionsData',
 			crossDomain: true,
 			data: $form.serialize(),
 			dataType: 'json',
