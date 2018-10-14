@@ -705,8 +705,18 @@ $(document).ready(function () {
 					yAxes: [{
 						ticks: {
 							beginAtZero: true
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'seconds'
 						}
-					}]
+					}],
+					xAxes: [{
+						ticks: {
+							fontSize: 9,
+							stepSize: 1
+						}
+					}],
 				}
 			}
 		});
@@ -736,9 +746,15 @@ $(document).ready(function () {
 					yAxes: [{
 						ticks: {
 							beginAtZero: true
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'seconds'
 						}
-					}]
+					}],
+					
 				}
+				
 			}
 		});
 		
@@ -771,7 +787,7 @@ $(document).ready(function () {
 		ageChart = new Chart(ctx_age, {
 			type: 'pie',
 			data: {
-				labels: Object.keys(ageData),
+				labels: [' <18  ', '18-24', ' 25-35          ', '36-50', ' >50  ', 'not specified'],
 				datasets: [{
 					label: '',
 					data: Object.values(ageData),
