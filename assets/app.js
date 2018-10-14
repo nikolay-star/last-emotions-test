@@ -157,6 +157,7 @@ $(document).ready(function () {
 	var expIdRenamed = {
 		'QQ-591' : 'Glasses Black',
 		'QQ-920-a' : 'Glasses Pink',
+		'Zucca' : 'Halloween'
 	};
 	
 	/*
