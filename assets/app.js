@@ -1183,7 +1183,8 @@ $(document).ready(function () {
 		// dates
 		
 		var minDate = dateToTimestamp( $('.slider-time').attr('data-value') );
-		var maxDate = dateToTimestamp( $('.slider-time2').attr('data-value') );
+		//var maxDate = dateToTimestamp( $('.slider-time2').attr('data-value') );
+		var maxDate = dateToTimestamp( new Date() );
 		
 		//console.log(minDate, ' ', maxDate);
 		
@@ -1436,10 +1437,7 @@ $(document).ready(function () {
 		
 		var dt_from = new Date('2018/08/01');
 		var dt_to = new Date();
-		var dt_toMax = new Date();
-		dt_toMax.setHours( dt_to.getHours() + 1 );
-		
-		//console.log(dt_to);
+		//dt_to.setDate((new Date()).getDate() + 1)
 		
 		$('.slider-time')
 			.attr('data-value', formatDTmins(dt_from))
@@ -1449,10 +1447,8 @@ $(document).ready(function () {
 			.html(formatDT(dt_to));
 		
 		var min_val = Date.parse(dt_from)/1000;
+		var max_val = Date.parse(dt_to)/1000;
 		
-		var cur_val = Date.parse(dt_to)/1000;
-		
-		var max_val = Date.parse(dt_toMax)/1000;
 		
 		
 		$("#slider-range").slider({
@@ -1460,7 +1456,7 @@ $(document).ready(function () {
 			min: min_val,
 			max: max_val,
 			step: 10,
-			values: [min_val, cur_val],
+			values: [min_val, max_val],
 			change: function (e, ui) {
 				var dt_cur_from = new Date(ui.values[0]*1000); //.format("yyyy-mm-dd hh:ii:ss");
 				$('.slider-time')
