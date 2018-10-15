@@ -1535,6 +1535,7 @@ $(document).ready(function () {
 		} else {
 			$(this).addClass('opened').text('Hide filters');
 			$filters.show();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
 		}
 	})
 	

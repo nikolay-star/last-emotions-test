@@ -54,6 +54,10 @@ html{
 
 .filters{
 	z-index: 10;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
 }
 
 .filters__inner{
