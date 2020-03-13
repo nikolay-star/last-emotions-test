@@ -837,11 +837,64 @@ $(document).ready(function () {
 				labels: Object.keys(happyData),
 				datasets: [
 					{
-						label: 'Happy',
+						label: 'Bert',
 						backgroundColor: bgColors[0],
 						borderColor: borderColors[0],
 						fill: false,
-						data: mapEmotions(happyData)
+						data: [
+							{
+								"x": "04/02/2019",
+								"y": -0.2
+							},
+							{
+								"x": "06/02/2019",
+								"y": -0.4
+							},
+							{
+								"x": "07/02/2019",
+								"y": -1
+							},
+							{
+								"x": "08/02/2019",
+								"y": -0.6
+							},
+							{
+								"x": "09/02/2019",
+								"y": -0.7
+							},
+							{
+								"x": "10/02/2019",
+								"y": -0.2
+							},
+							{
+								"x": "11/02/2019",
+								"y": 0.4
+							},
+							{
+								"x": "12/02/2019",
+								"y": 0.3
+							},
+							{
+								"x": "13/02/2019",
+								"y": 1
+							},
+							{
+								"x": "17/02/2019",
+								"y": 0.8
+							},
+							{
+								"x": "21/02/2019",
+								"y": 0.6820631623268127
+							},
+							{
+								"x": "25/02/2019",
+								"y": 0.7
+							},
+							{
+								"x": "09/03/2020",
+								"y": 0.6
+							}
+						]
 					},
 					// {
 					// 	label: 'Surprised',
@@ -1380,7 +1433,7 @@ $(document).ready(function () {
 		return $.map(arr, function (value, key) {
 			var newItem = {
 				'x' : key,
-				'y' : value.valuesLength ? (value.values/value.valuesLength) - 0.2 : 0
+				'y' : value.valuesLength ? (value.values/value.valuesLength) : 0
 			};
 			
 			return newItem
