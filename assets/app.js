@@ -76,12 +76,18 @@ $(document).ready(function () {
 		// 	alert( "Wrong email or password. Try again" );
 		// 	$('.preloader').hide();
 		// });
+
+		var formData = $form.serializeArray();
+		var someDate = new Date();
+		someDate.setDate(someDate.getDate() - 2);
+
+		formData.push({name: 'timestamp', value: 1549161741});
 		
 		$.ajax({
 			type: 'POST',
 			url: 'https://moodme.tk:8001/emotionsData',
 			crossDomain: true,
-			data: $form.serialize(),
+			data: formData,
 			dataType: 'json',
 			success: function(responseData, textStatus, jqXHR) {
 				$('.login-modal').hide();

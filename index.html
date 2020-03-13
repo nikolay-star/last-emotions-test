@@ -9,11 +9,10 @@
     <title>Charts</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="assets/jquery-ui/jquery-ui.min.css">
-    <!--<link rel="stylesheet" href="assets/jquery-ui/jquery-ui.structure.min.css">-->
-    <!--<link rel="stylesheet" href="assets/jquery-ui/jquery-ui.theme.min.css">-->
 
     <link rel="stylesheet" href="assets/tooltipster/tooltipster.bundle.min.css">
     <link rel="stylesheet" href="assets/styles.css?v=2">
@@ -25,337 +24,418 @@
 
 </head>
 <body class="chart-page h-100">
-    <div class="preloader"></div>
+<div class="preloader"></div>
 
-    <div class="login-modal h-100">
-        <div class="container h-100">
-            <div class="row justify-content-center h-100">
-                <div class="login">
-                    <h1 class="mb-3 text-center">
-                        Log in <span class="tooltipster tooltipster_round js-tooltip-login"
-                                     title="">?</span>
-                    </h1>
+<div class="login-modal h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100">
+            <div class="login">
+                <h1 class="mb-3 text-center">
+                    Log in <span class="tooltipster tooltipster_round js-tooltip-login"
+                                 title="">?</span>
+                </h1>
 
-                    <form action="#" id="loginform" class="w-100">
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                   aria-describedby="emailHelp"
-                                   placeholder="Enter email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Password"
-                                   required>
-                        </div>
+                <form action="#" id="loginform" class="w-100">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Password"
+                               required>
+                    </div>
 
-                        <div class="d-flex flex-row justify-content-between">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex flex-row justify-content-between">
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
-                            <a href="#" class="btn btn-outline-secondary js-guest">
-                                Guest access
-                            </a>
-                        </div>
+                        <a href="#" class="btn btn-outline-secondary js-guest">
+                            Guest access
+                        </a>
+                    </div>
 
-                    </form>
+                </form>
 
 
-
-                    <form action="#" id="guest-form" class="d-none">
-                        <input type="email" name="email" value="guest@mood-me.com">
-                        <input type="password" name="password" value="guest">
-                        <button type="submit"></button>
-                    </form>
-                </div>
+                <form action="#" id="guest-form" class="d-none">
+                    <input type="email" name="email" value="guest@mood-me.com">
+                    <input type="password" name="password" value="guest">
+                    <button type="submit"></button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="header fixed-top pt-2 pb-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 d-flex w-100 justify-content-between align-items-center w-100">
-                    <div class="mr-2">
-                        Selected:&nbsp;
-                        <span class="js-selected-filters-all">all</span>
-                        <span class="js-selected-filters-dates"></span>
-                        <span class="js-selected-filters-dates-btn"></span>
-                        <span class="js-selected-filters-gender"></span>
-                        <span class="js-selected-filters-exp"></span>
-                        <span class="js-selected-filters-country"></span>
-                        <span class="js-selected-filters-age"></span>
-                    </div>
-
-                    <button class="btn btn-outline-secondary js-toggle-filters">Show filters</button>
+<div class="header fixed-top pt-2 pb-2 d-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 d-flex w-100 justify-content-between align-items-center w-100">
+                <div class="mr-2">
+                    Selected:&nbsp;
+                    <span class="js-selected-filters-all">all</span>
+                    <span class="js-selected-filters-dates"></span>
+                    <span class="js-selected-filters-dates-btn"></span>
+                    <span class="js-selected-filters-gender"></span>
+                    <span class="js-selected-filters-exp"></span>
+                    <span class="js-selected-filters-country"></span>
+                    <span class="js-selected-filters-age"></span>
                 </div>
 
+                <button class="btn btn-outline-secondary js-toggle-filters">Show filters</button>
             </div>
+
         </div>
     </div>
+</div>
 
-    <div class="filters w-100" style="display: none">
-        <div class="container">
+<div class="filters w-100" style="display: none">
+    <div class="container">
 
-            <div class="row justify-content-end mt-4">
+        <div class="row justify-content-end mt-4">
 
-                <div class="col-sm-6 col-xs-12 order-md-2 order-xs-1 pt-4 filters__inner">
-                    <h2 class="">Filters <span class="tooltipster tooltipster_round js-tooltip-filters"
-                                               title="">?</span></h2>
+            <div class="col-sm-6 col-xs-12 order-md-2 order-xs-1 pt-4 filters__inner">
+                <h2 class="">Filters <span class="tooltipster tooltipster_round js-tooltip-filters"
+                                           title="">?</span></h2>
 
-                    <hr class="mb-2">
+                <hr class="mb-2">
 
-                    <div>
-                        <h5>Dates
-                            <span class="tooltipster tooltipster_round js-tooltip-filters-dates"
-                                  title="">?</span></h5>
+                <div>
+                    <h5>Dates
+                        <span class="tooltipster tooltipster_round js-tooltip-filters-dates"
+                              title="">?</span></h5>
 
-                        <div id="time-range">
-                            <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
-                            </p>
-                            <div class="sliders_step1">
-                                <div id="slider-range"></div>
-                            </div>
-
-                            <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
-                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-minute">
-                                    Last minute
-                                </button>
-
-                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-five-mins">
-                                    Last 5 minutes
-                                </button>
-
-                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-ten-mins">
-                                    Last 10 minutes
-                                </button>
-
-                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-day">
-                                    Last day
-                                </button>
-
-                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-week">
-                                    Last week
-                                </button>
-
-                                <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-month">
-                                    Last month
-                                </button>
-
-                                <button class="btn btn-outline-info btn-sm mb-1 js-btn-date js-btn-all">
-                                    All time
-                                </button>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <hr class="mb-2">
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio1"
-                               value="1">
-                        <label class="form-check-label" for="inlineRadio1">men</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio2"
-                               value="2">
-                        <label class="form-check-label" for="inlineRadio2">women</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio3"
-                               value="0">
-                        <label class="form-check-label" for="inlineRadio3">not specified</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio4"
-                               checked
-                               value="-1">
-                        <label class="form-check-label" for="inlineRadio4">all</label>
-                    </div>
-
-
-                    <hr class="mb-2">
-
-                    <div style="display: none">
-                        <h5>Emotions <span class="tooltipster tooltipster_round js-tooltip-filters-emotions"
-                                           title="">?</span></h5>
-
-                        <div class="em-checkboxes">
-                            <!--
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="emCheck_1" value="emotion_1">
-                                <label class="form-check-label" for="emCheck_1">Emotion 1</label>
-                            </div>
-                            -->
+                    <div id="time-range">
+                        <p>From: <span class="slider-time"></span> to <span class="slider-time2"></span>
+                        </p>
+                        <div class="sliders_step1">
+                            <div id="slider-range"></div>
                         </div>
 
-                        <hr class="mb-2">
+                        <div class="d-flex mb-2 mt-4 flex-row justify-content-between">
+                            <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-minute">
+                                Last minute
+                            </button>
+
+                            <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-five-mins">
+                                Last 5 minutes
+                            </button>
+
+                            <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-ten-mins">
+                                Last 10 minutes
+                            </button>
+
+                            <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-day">
+                                Last day
+                            </button>
+
+                            <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-week">
+                                Last week
+                            </button>
+
+                            <button class="btn btn-outline-info btn-sm mr-2 mb-1 js-btn-date js-btn-last-month">
+                                Last month
+                            </button>
+
+                            <button class="btn btn-outline-info btn-sm mb-1 js-btn-date js-btn-all">
+                                All time
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <hr class="mb-2">
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio1"
+                           value="1">
+                    <label class="form-check-label" for="inlineRadio1">men</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio2"
+                           value="2">
+                    <label class="form-check-label" for="inlineRadio2">women</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio3"
+                           value="0">
+                    <label class="form-check-label" for="inlineRadio3">not specified</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input js-gender" type="radio" name="gender" id="inlineRadio4"
+                           checked
+                           value="-1">
+                    <label class="form-check-label" for="inlineRadio4">all</label>
+                </div>
+
+
+                <hr class="mb-2">
+
+                <div style="display: none">
+                    <h5>Emotions <span class="tooltipster tooltipster_round js-tooltip-filters-emotions"
+                                       title="">?</span></h5>
+
+                    <div class="em-checkboxes">
+                        <!--
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="emCheck_1" value="emotion_1">
+                            <label class="form-check-label" for="emCheck_1">Emotion 1</label>
+                        </div>
+                        -->
                     </div>
 
-                    <h5>Experiences  <span class="tooltipster tooltipster_round  js-tooltip-filters-exp"
-                                          title="">?
+                    <hr class="mb-2">
+                </div>
+
+                <h5>Experiences <span class="tooltipster tooltipster_round  js-tooltip-filters-exp"
+                                      title="">?
                     </span></h5>
 
-                    <div class="exp-checkboxes">
-                        <!--
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="expCheck_1" value="exp_1">
-                            <label class="form-check-label" for="expCheck_1">Exp 1</label>
-                        </div>
-                        -->
+                <div class="exp-checkboxes">
+                    <!--
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="expCheck_1" value="exp_1">
+                        <label class="form-check-label" for="expCheck_1">Exp 1</label>
                     </div>
-
-                    <hr class="mb-2">
-
-                    <h5>Country
-                        <span class="tooltipster tooltipster_round js-tooltip-filters-country" title="">?</span></h5>
-
-                    <div class="countries-checkboxes">
-                        <!--
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="cCheck_1" value="c_1">
-                            <label class="form-check-label" for="cCheck_1">c 1</label>
-                        </div>
-                        -->
-                    </div>
-
-                    <hr class="mb-2">
-
-                    <h4>Age  <span class="tooltipster tooltipster_round js-tooltip-filters-age"
-                                   title="">?</span></h4>
-
-                    <form action="#" class="d-flex">
-                        <div class="form-group mr-4 w-25">
-                            <input type="number" min="0" max="100" class="form-control form-control-sm w-100 js-age-min"
-                                   placeholder="from"
-                                   id="ageMax"
-                                   value="0">
-                        </div>
-                        <div class="form-group ml-4 w-25">
-                            <input type="number" min="0" max="100"
-                                   class="form-control form-control-sm w-100 js-age-max"
-                                   placeholder="to"
-                                   id="ageMin"
-                                   value="99">
-                        </div>
-                    </form>
-
+                    -->
                 </div>
+
+                <hr class="mb-2">
+
+                <h5>Country
+                    <span class="tooltipster tooltipster_round js-tooltip-filters-country" title="">?</span></h5>
+
+                <div class="countries-checkboxes">
+                    <!--
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="cCheck_1" value="c_1">
+                        <label class="form-check-label" for="cCheck_1">c 1</label>
+                    </div>
+                    -->
+                </div>
+
+                <hr class="mb-2">
+
+                <h4>Age <span class="tooltipster tooltipster_round js-tooltip-filters-age"
+                              title="">?</span></h4>
+
+                <form action="#" class="d-flex">
+                    <div class="form-group mr-4 w-25">
+                        <input type="number" min="0" max="100" class="form-control form-control-sm w-100 js-age-min"
+                               placeholder="from"
+                               id="ageMax"
+                               value="0">
+                    </div>
+                    <div class="form-group ml-4 w-25">
+                        <input type="number" min="0" max="100"
+                               class="form-control form-control-sm w-100 js-age-max"
+                               placeholder="to"
+                               id="ageMin"
+                               value="99">
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container-fluid pt-4 pb-4">
-        <div class="row justify-content-xs-center">
+<div class="container-fluid pt-0 pb-4">
+    <div class="row justify-content-xs-center">
 
-            <!--<div class="col-lg-12 col-xs-12 w-100 mt-4  pt-4">-->
-                <!--<h2>Charts</h2>-->
+        <div class="col-sm-1 offset-sm-2 col-xs-12 charts">
+            <div class="chart__item mb-4">
+                <h3 class="text-info text-nowrap">BERT<span
+                        class="tooltipster tooltipster_round js-tooltip-bert"
+                        title="">?</span></h3>
 
-
-                <!--<hr class="mb-2">-->
-            <!--</div>-->
-
-            <div class="col-sm-1 col-xs-12 charts">
-                <div class="chart__item mb-4">
-                    <h3 class="text-info text-nowrap">BERT<span
-                            class="tooltipster tooltipster_round js-tooltip-bert"
-                                                            title="">?</span></h3>
-
-                    <div class="d-flex flex-row bert-container">
-                        <div class="bert-gradient"></div>
-                        <div class="bert-value" style="bottom: 30%">0.3</div>
-                    </div>
+                <div class="d-flex flex-row bert-container">
+                    <div class="bert-gradient"></div>
+                    <div class="bert-value" style="bottom: 30%">0.3</div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-sm-6 col-xs-12 charts">
+        <div class="col-sm-8 col-xs-12 charts">
 
-                <div class="chart__item chart__item_first-line mb-1">
-                    <h3 class="text-left text-info">Emotional Journey
-                        <span class="tooltipster tooltipster_round js-tooltip-emotional-journey"
-                              title="">?</span></h3>
+            <div class="chart__item mb-3">
+                <h3 class="text-left text-info">Emotional Journey
+                    <span class="tooltipster tooltipster_round js-tooltip-emotional-journey"
+                          title="">?</span></h3>
 
-                    <!--график эмоций и времени-->
+                <!--график эмоций и времени-->
 
-                    <div class="canvas-wrapper" style="height: 330px; width: auto">
-                        <canvas id="emotionsDatesChart"></canvas>
-                    </div>
-
-
-                </div>
-
-
-                <div class="chart__item chart__item_second-line mb-4">
-                    <h3 class="text-info">Emotions  <span class="tooltipster tooltipster_round js-tooltip-emotions"
-                                                          title="">?</span></h3>
-                    <!--график эмоций-->
-                    <div class="canvas-wrapper" style="height: 200px; width: auto">
-                        <canvas id="emotionsChart"></canvas>
-                    </div>
+                <div class="canvas-wrapper" style="height: 270px; width: auto">
+                    <canvas id="emotionsDatesChart"></canvas>
                 </div>
 
             </div>
 
-            <div class="col-sm-5 col-xs-12 charts">
-                <div class="chart__item chart__item_first-line mb-1">
-                    <h3 class="text-info mb-30p">Experiences  <span class="tooltipster tooltipster_round js-tooltip-exp"
-                                                             title="">?</span></h3>
 
-                    <!--график experienceID 1-->
-                    <div class="canvas-wrapper" style="height: 320px; width: auto">
-                        <canvas id="experienceChart"></canvas>
-                    </div>
+            <div class="chart__item chart__item_second-line mb-4 d-none">
+                <h3 class="text-info">Emotions <span class="tooltipster tooltipster_round js-tooltip-emotions"
+                                                     title="">?</span></h3>
+                <!--график эмоций-->
+                <div class="canvas-wrapper" style="height: 200px; width: auto">
+                    <canvas id="emotionsChart"></canvas>
                 </div>
-
-
-                <div class="chart__item chart__item_second-line mb-4">
-                    <h3 class="text-info">Countries  <span class="tooltipster tooltipster_round js-tooltip-country"
-                                                           title="">?</span></h3>
-
-                    <!--график стран-->
-                    <div class="canvas-wrapper" style="height: 200px; width: auto">
-                        <canvas id="countriesChart"></canvas>
-                    </div>
-                </div>
-
             </div>
 
         </div>
-        <div class="row">
 
-            <div class="col-sm-6 offset-sm-1 offset-xs-0 col-xs-12 ">
-                <div class="chart__item mb-4">
-                    <h3 class="text-info">Age  <span
-                            class="tooltipster tooltipster_round js-tooltip-age" title="">?
+        <div class="col-sm-5 col-xs-12 charts d-none">
+            <div class="chart__item chart__item_first-line mb-1">
+                <h3 class="text-info mb-30p">Experiences <span class="tooltipster tooltipster_round js-tooltip-exp"
+                                                               title="">?</span></h3>
+
+                <!--график experienceID 1-->
+                <div class="canvas-wrapper" style="height: 320px; width: auto">
+                    <canvas id="experienceChart"></canvas>
+                </div>
+            </div>
+
+
+            <div class="chart__item chart__item_second-line mb-4">
+                <h3 class="text-info">Countries <span class="tooltipster tooltipster_round js-tooltip-country"
+                                                      title="">?</span></h3>
+
+                <!--график стран-->
+                <div class="canvas-wrapper" style="height: 200px; width: auto">
+                    <canvas id="countriesChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row d-none">
+
+        <div class="col-sm-6 offset-sm-1 offset-xs-0 col-xs-12 ">
+            <div class="chart__item mb-4">
+                <h3 class="text-info">Age <span
+                        class="tooltipster tooltipster_round js-tooltip-age" title="">?
                     </span></h3>
 
-                    <!--график возрастов-->
-                    <div class="canvas-wrapper" style="width: 330px; height: 165px">
-                        <canvas id="agesChart"></canvas>
-                    </div>
+                <!--график возрастов-->
+                <div class="canvas-wrapper" style="width: 330px; height: 165px">
+                    <canvas id="agesChart"></canvas>
                 </div>
             </div>
-            <div class="col-sm-4 col-xs-12">
-                <div class="chart__item mb-4">
-                    <h3 class="text-left text-info">Gender
-                        <span class="tooltipster tooltipster_round js-tooltip-gender" title="">?</span></h3>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="chart__item mb-4">
+                <h3 class="text-left text-info">Gender
+                    <span class="tooltipster tooltipster_round js-tooltip-gender" title="">?</span></h3>
 
-                    <!--график полов-->
+                <!--график полов-->
 
-                    <div class="canvas-wrapper" style="width: 330px; height: 165px">
-                        <canvas id="genderChart"></canvas>
-                    </div>
+                <div class="canvas-wrapper" style="width: 330px; height: 165px">
+                    <canvas id="genderChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row pb-5">
+        <div class="col-sm-10 offset-sm-1 col-xs-12 mb-45p">
+            <h3 class="text-info text-center">Last actions</h3>
+        </div>
 
-    <script type="text/javascript" src="assets/tooltipster/tooltipster.bundle.min.js"></script>
-    <script src="assets/tooltipText.js"></script>
-    <script src="assets/app.js?v=42"></script>
+        <div class="last-action last-action_small last-action_left">
+            <div class="last-action__header">
+                <div class="last-action__header-emotion">
+                    😄
+                </div>
+                <div class="last-action__header-age">
+                    20-30
+                </div>
+            </div>
+            <div class="last-action__mask">
+                <img src="images/BayernGlasses/icon.png" alt="">
+            </div>
+            <div class="last-action__flag">
+                🇺🇦
+            </div>
+        </div>
+
+        <div class="last-action last-action">
+            <div class="last-action__header">
+                <div class="last-action__header-emotion">
+                    😄
+                </div>
+                <div class="last-action__header-age">
+                    20-30
+                </div>
+            </div>
+            <div class="last-action__mask">
+                <img src="images/BayernWig/icon.png" alt="">
+            </div>
+            <div class="last-action__flag">
+                🇺🇦
+            </div>
+        </div>
+
+        <div class="last-action last-action_large">
+            <div class="last-action__header">
+                <div class="last-action__header-emotion">
+                    😄
+                </div>
+                <div class="last-action__header-age">
+                    20-30
+                </div>
+            </div>
+            <div class="last-action__mask">
+                <img src="images/Mask/icon.png" alt="">
+            </div>
+            <div class="last-action__flag">
+                🇺🇦
+            </div>
+        </div>
+
+        <div class="last-action">
+            <div class="last-action__header">
+                <div class="last-action__header-emotion">
+                    😄
+                </div>
+                <div class="last-action__header-age">
+                    20-30
+                </div>
+            </div>
+            <div class="last-action__mask">
+                <img src="images/Spain/icon.png" alt="">
+            </div>
+            <div class="last-action__flag">
+                🇺🇦
+            </div>
+        </div>
+
+        <div class="last-action last-action_small last-action_right">
+            <div class="last-action__header">
+                <div class="last-action__header-emotion">
+                    😄
+                </div>
+                <div class="last-action__header-age">
+                    20-30
+                </div>
+            </div>
+            <div class="last-action__mask">
+                <img src="images/Bayern/icon.png" alt="">
+            </div>
+            <div class="last-action__flag">
+                🇺🇦
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="assets/tooltipster/tooltipster.bundle.min.js"></script>
+<script src="assets/tooltipText.js"></script>
+<script src="assets/app.js?v=42"></script>
 </body>
 </html>
