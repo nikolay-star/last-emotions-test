@@ -171,12 +171,20 @@ html{
 
 .last-action__header-emotion {
 	padding: 5px 20px;
+	text-align: left;
+	width: 100px;
+}
+
+.last-action__header-gender {
+	padding: 5px 0;
 	text-align: center;
+	width: 50px;
 }
 
 .last-action__header-age {
 	padding: 5px 20px;
-	text-align: center;
+	text-align: right;
+	width: 100px;
 }
 
 .last-action__flag {
