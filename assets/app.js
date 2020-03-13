@@ -34,9 +34,9 @@ $(document).ready(function () {
 		
 		submitHandler(event, $form);
 		
-		setInterval(function(){
-			updatePage($form)
-		}, 60000)
+		// setInterval(function(){
+		// 	updatePage($form)
+		// }, 60000)
 	});
 	
 	$guestform.on('submit', function (e) {
@@ -45,9 +45,9 @@ $(document).ready(function () {
 		
 		submitHandler(event, $form);
 		
-		setInterval(function(){
-			updatePage($form)
-		}, 60000)
+		// setInterval(function(){
+		// 	updatePage($form)
+		// }, 60000)
 	});
 	
 	function submitHandler(e, $form) {
@@ -843,41 +843,41 @@ $(document).ready(function () {
 						fill: false,
 						data: mapEmotions(happyData)
 					},
-					{
-						label: 'Surprised',
-						backgroundColor: bgColors[1],
-						borderColor: borderColors[1],
-						fill: false,
-						data: mapEmotions(surprisedData)
-					},
-					{
-						label: 'Sad',
-						backgroundColor: bgColors[2],
-						borderColor: borderColors[2],
-						fill: false,
-						data: mapEmotions(sadData)
-					},
-					{
-						label: 'Disappointed',
-						backgroundColor: bgColors[3],
-						borderColor: borderColors[3],
-						fill: false,
-						data: mapEmotions(disappointedData)
-					},
-					{
-						label: 'Afraid',
-						backgroundColor: bgColors[4],
-						borderColor: borderColors[4],
-						fill: false,
-						data: mapEmotions(afraidData)
-					},
-					{
-						label: 'Angry',
-						backgroundColor: bgColors[5],
-						borderColor: borderColors[5],
-						fill: false,
-						data: mapEmotions(angryData)
-					}
+					// {
+					// 	label: 'Surprised',
+					// 	backgroundColor: bgColors[1],
+					// 	borderColor: borderColors[1],
+					// 	fill: false,
+					// 	data: mapEmotions(surprisedData)
+					// },
+					// {
+					// 	label: 'Sad',
+					// 	backgroundColor: bgColors[2],
+					// 	borderColor: borderColors[2],
+					// 	fill: false,
+					// 	data: mapEmotions(sadData)
+					// },
+					// {
+					// 	label: 'Disappointed',
+					// 	backgroundColor: bgColors[3],
+					// 	borderColor: borderColors[3],
+					// 	fill: false,
+					// 	data: mapEmotions(disappointedData)
+					// },
+					// {
+					// 	label: 'Afraid',
+					// 	backgroundColor: bgColors[4],
+					// 	borderColor: borderColors[4],
+					// 	fill: false,
+					// 	data: mapEmotions(afraidData)
+					// },
+					// {
+					// 	label: 'Angry',
+					// 	backgroundColor: bgColors[5],
+					// 	borderColor: borderColors[5],
+					// 	fill: false,
+					// 	data: mapEmotions(angryData)
+					// }
 				]
 			},
 			options: {
@@ -895,7 +895,7 @@ $(document).ready(function () {
 					yAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'value (%)'
+							labelString: 'value'
 						}
 					}]
 				},
@@ -1380,7 +1380,7 @@ $(document).ready(function () {
 		return $.map(arr, function (value, key) {
 			var newItem = {
 				'x' : key,
-				'y' : value.valuesLength ? (value.values/value.valuesLength)*100 : 0
+				'y' : value.valuesLength ? (value.values/value.valuesLength) - 0.2 : 0
 			};
 			
 			return newItem
