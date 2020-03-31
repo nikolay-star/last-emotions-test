@@ -777,19 +777,19 @@ $(document).ready(function () {
 	function mapEmotionsArr(arr) {
 		switch (true) {
 			case (arr.happy > arr.surprised && arr.happy > arr.sad && arr.happy > arr.disappointed && arr.happy > arr.afraid && arr.happy > arr.neutro && arr.happy > arr.angry)
-			: return '😃';
+			: return '😊';
 			case (arr.surprised > arr.happy && arr.surprised > arr.sad && arr.surprised > arr.disappointed && arr.surprised > arr.afraid && arr.surprised > arr.neutro && arr.surprised > arr.angry)
-			: return '😲';
+			: return '😮';
 			case (arr.sad > arr.happy && arr.sad > arr.surprised && arr.sad > arr.disappointed && arr.sad > arr.afraid && arr.sad > arr.neutro && arr.sad > arr.angry)
-			: return '😞';
+			: return '😔';
 			case (arr.disappointed > arr.happy && arr.disappointed > arr.surprised && arr.disappointed > arr.sad && arr.disappointed > arr.afraid && arr.disappointed > arr.neutro && arr.disappointed > arr.angry)
-			: return '😢';
+			: return '😟';
 			case (arr.afraid > arr.happy && arr.afraid > arr.surprised && arr.afraid > arr.sad && arr.afraid > arr.disappointed && arr.afraid > arr.neutro && arr.afraid > arr.angry)
 			: return '😨';
 			case (arr.neutro > arr.happy && arr.neutro > arr.surprised && arr.neutro > arr.sad && arr.neutro > arr.disappointed && arr.neutro > arr.afraid && arr.neutro > arr.angry)
-			: return '😏';
+			: return '😐';
 			case (arr.angry > arr.happy && arr.angry > arr.surprised && arr.angry > arr.sad && arr.angry > arr.disappointed && arr.angry > arr.afraid && arr.angry > arr.neutro)
-			: return '😡';
+			: return '😠';
 			default: return ''
 		}
 	}
