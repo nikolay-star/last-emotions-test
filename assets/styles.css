@@ -137,6 +137,8 @@ html{
 .last-actions {
 	max-width: 1000px;
 	margin: 0 auto;
+	transition: all 0.15s ease;
+	background: url("../assets/jquery-ui/images/ajax-loader.gif") no-repeat center;
 }
 
 .last-action {

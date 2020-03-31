@@ -104,9 +104,9 @@ $(document).ready(function () {
 		
 		submitHandler(event, $form);
 		
-		// setInterval(function(){
-		// 	updatePage($form)
-		// }, 60000)
+		setInterval(function(){
+			updatePage($form)
+		}, 15000)
 	});
 	
 	function submitHandler(e, $form) {
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
 		var formData = $form.serializeArray();
 
-		formData.push({name: 'timestamp', value: customTimestamp});
+		formData.push({name: 'timestamp', value: 1550161741});
 		
 		$.ajax({
 			type: 'POST',
@@ -175,7 +175,7 @@ $(document).ready(function () {
 	}
 	
 	function updatePage($form){
-		
+
 		// $.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
 		// 	$form.serialize()
 		// ).done(function(json) {
@@ -186,16 +186,25 @@ $(document).ready(function () {
 		//
 		// 	startFiltering();
 		// })
+
+		var formData = $form.serializeArray();
+
+		formData.push({name: 'timestamp', value: customTimestamp});
 		
 		$.ajax({
 			type: 'POST',
 			url: 'https://moodme.tk:8001/emotionsData',
 			crossDomain: true,
-			data: $form.serialize(),
+			data: formData,
 			dataType: 'json',
 			success: function(responseData, textStatus, jqXHR) {
-				
 				dataObj = responseData;
+				arrSorted = responseData;
+				reduceTimeBertCharts(responseData);
+				initChartArrays(dataObj);
+				initCharts();
+				createSliderData(responseData);
+				initSlider(true);
 			}
 		});
 		
@@ -674,10 +683,16 @@ $(document).ready(function () {
 		// console.log(data)
 		sliderDataArr = data.slice(Math.max(data.length - 10, 0));
 		const $lastActions = $('.js-last-actions');
+		$lastActions.css('opacity', 0.2);
+		$lastActions.empty();
 
 		sliderDataArr.forEach(function (item) {
 			$lastActions.append(createSliderEl(item));
-		})
+		});
+
+		setTimeout(function () {
+			$lastActions.css('opacity', 1);
+		}, 600);
 	}
 
 	function createSliderEl(itemData) {
@@ -712,14 +727,18 @@ $(document).ready(function () {
 		return element;
 	}
 
-	function initSlider() {
+	function initSlider(isUpdate) {
 		var $lastActions = $('.js-last-actions');
 		if ($lastActions.length) {
-			$lastActions.slick({
-				centerMode: true,
-				centerPadding: '10px',
-				slidesToShow: 3
-			});
+			if (!isUpdate) {
+				$lastActions.slick({
+					centerMode: true,
+					centerPadding: '10px',
+					slidesToShow: 3
+				});
+			} else {
+				$lastActions.slick('refresh');
+			}
 		}
 	}
 
