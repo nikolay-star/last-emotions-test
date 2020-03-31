@@ -711,7 +711,7 @@ $(document).ready(function () {
 
 	function createSliderEl(itemData) {
 		// console.log(itemData.emotions);
-		const img = itemData.emotions[0].experienceID;
+		const img = itemData.emotions[0].experienceID ? itemData.emotions[0].experienceID : '';
 		const age = mapAge(itemData.demographics[0].age);
 		const country = mapFlag(itemData.sessionData.country);
 		const gender = mapGender(itemData.demographics[0].gender);
