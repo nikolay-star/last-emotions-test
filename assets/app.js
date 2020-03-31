@@ -203,8 +203,8 @@ $(document).ready(function () {
 				reduceTimeBertCharts(responseData);
 				initChartArrays(dataObj);
 				initCharts();
-				createSliderData(responseData);
-				initSlider(true);
+				createSliderData(responseData, true);
+				initSlider();
 			}
 		});
 		
@@ -543,7 +543,7 @@ $(document).ready(function () {
 		var month = zeroPad(newDate.getMonth()+1, 2);
 		var date = zeroPad(newDate.getDate(), 2);
 
-		return date + '/' + month + ' ' + zeroPad(hour, 2) + ':' + zeroPad(minute, 2);
+		return zeroPad(hour, 2) + ':' + zeroPad(minute, 2);
 	}
 
 	// reduce data to object { minute: emotion }
@@ -552,7 +552,7 @@ $(document).ready(function () {
 		let reducedToMinute = [];
 		const today = new Date();
 		let startGraphicDate = new Date();
-		startGraphicDate.setDate(today.getDate() - 11);
+		startGraphicDate.setDate(today.getDate() - 1);
 
 		emotionsArray.forEach(function(item) {
 			const currentTimestamp = item.sessionData.timestamp;
@@ -679,14 +679,19 @@ $(document).ready(function () {
 
 	// slick
 
-	function createSliderData(data) {
+	function createSliderData(data, isUpdate) {
 		// console.log(data)
 		sliderDataArr = data.slice(Math.max(data.length - 10, 0));
+		const revsliderDataArr = sliderDataArr.reverse();
 		const $lastActions = $('.js-last-actions');
 		$lastActions.css('opacity', 0.2);
-		$lastActions.empty();
 
-		sliderDataArr.forEach(function (item) {
+		if (isUpdate) {
+			$lastActions.slick('unslick');
+			$lastActions.empty();
+		}
+
+		revsliderDataArr.forEach(function (item) {
 			$lastActions.append(createSliderEl(item));
 		});
 
@@ -727,18 +732,15 @@ $(document).ready(function () {
 		return element;
 	}
 
-	function initSlider(isUpdate) {
+	function initSlider() {
 		var $lastActions = $('.js-last-actions');
 		if ($lastActions.length) {
-			if (!isUpdate) {
-				$lastActions.slick({
-					centerMode: true,
-					centerPadding: '10px',
-					slidesToShow: 3
-				});
-			} else {
-				$lastActions.slick('refresh');
-			}
+			$lastActions.slick({
+				centerMode: true,
+				centerPadding: '10px',
+				slidesToShow: 3,
+				infinite: false
+			});
 		}
 	}
 
