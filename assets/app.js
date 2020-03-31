@@ -138,7 +138,7 @@ $(document).ready(function () {
 
 		var formData = $form.serializeArray();
 
-		formData.push({name: 'timestamp', value: 1550161741});
+		formData.push({name: 'timestamp', value: customTimestamp });
 		
 		$.ajax({
 			type: 'POST',
