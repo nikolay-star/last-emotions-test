@@ -264,6 +264,10 @@ $(document).ready(function () {
 
 			// emotions
 
+			if (!item.emotions[0]) {
+				return;
+			}
+
 			for (var em_key in emotions) {
 				emotions[em_key] += item.emotions[0][em_key];
 			}
