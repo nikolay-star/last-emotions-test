@@ -681,9 +681,9 @@ $(document).ready(function () {
 	}
 
 	function createSliderEl(itemData) {
-		console.log(itemData.emotions);
+		// console.log(itemData.emotions);
 		const img = itemData.emotions[0].experienceID;
-		const age = itemData.demographics[0].age;
+		const age = mapAge(itemData.demographics[0].age);
 		const country = mapFlag(itemData.sessionData.country);
 		const gender = mapGender(itemData.demographics[0].gender);
 		const emotion = mapEmotionsArr(itemData.emotions[0]);
@@ -725,8 +725,8 @@ $(document).ready(function () {
 
 	function mapGender(val) {
 		switch (val) {
-			case 1: return '👩';
-			case 2: return '👨';
+			case 2: return '👩';
+			case 1: return '👨';
 			default: return ''
 		}
 	}
@@ -736,10 +736,22 @@ $(document).ready(function () {
 			return item.code == val
 		});
 
-		console.log(country, val)
-
 		return country.emoji;
 	}
+
+    function mapAge(val) {
+        switch (true) {
+            case val < 10: return '0-10';
+            case val >= 10 && val < 20: return '10-20';
+            case val >= 20 && val < 25: return '20-25';
+            case val >= 25 && val < 35: return '25-35';
+            case val >= 35 && val < 45: return '35-45';
+            case val >= 45 && val < 55: return '45-55';
+            case val >= 55 && val < 65: return '55-65';
+            case val >= 65 : return '>65';
+            default: return ''
+        }
+    }
 
 	function mapEmotionsArr(arr) {
 		switch (true) {
