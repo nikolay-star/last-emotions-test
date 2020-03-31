@@ -1,7 +1,11 @@
+@font-face {
+	font-family: "EmojiOneColor";
+	src: url("../fonts/NotoColorEmoji.ttf") format("truetype");
+}
+
 html{
 	height: 100%;
 }
-
 
 .login{
 	width: 100%;
@@ -130,12 +134,21 @@ html{
 	z-index: 2;
 }
 
-.last-action {
-	width: 260px;
+.last-actions {
+	max-width: 1000px;
 	margin: 0 auto;
+}
+
+.last-action {
+	opacity: 0.8;
+	transition: all 0.2s ease;
+}
+
+.last-action-inner{
+	width: 260px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	opacity: 0.65;
+	margin: 0 auto;
 }
 
 .last-action_large {
@@ -190,9 +203,30 @@ html{
 .last-action__flag {
 	text-align: center;
 	padding: 5px;
+	font-family: EmojiOneColor;
+	font-size: 35px;
 }
 
 .last-action__mask {
 	text-align: center;
 	padding: 5px;
+	width: 100%;
+}
+
+.last-action__mask img {
+	display: inline-block;
+}
+
+.slick-center {
+	transform-origin: center;
+	transform: scale(1.15);
+	opacity: 1;
+}
+
+.slick-prev:before, .slick-next:before {
+	color: #ccc;
+}
+
+.last-actions .slick-track {
+	padding: 40px 0;
 }
