@@ -218,6 +218,7 @@ html{
 .last-action__mask img {
 	display: inline-block;
 	min-height: 150px;
+	border-radius: 50%;
 }
 
 .slick-center {

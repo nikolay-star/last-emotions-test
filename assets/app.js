@@ -601,7 +601,6 @@ $(document).ready(function () {
 				}
 			});
 
-			//console.log(transformedTimeEmotionsArray)
 			newMinuteAndArrays[minute] = minuteValues;
 		}
 
@@ -614,8 +613,9 @@ $(document).ready(function () {
 		}
 
 		for (let min in newMinuteAndArrays) {
-			const { happy, surprised, sad, dissapointed, afraid, angry } = newMinuteAndArrays[min];
-			newMinuteAndArrays[min] = bertFunc(happy, surprised, sad, 0, afraid, angry);
+			let { happy, surprised, sad, dissapointed, afraid, angry } = newMinuteAndArrays[min];
+			if (!dissapointed) dissapointed = 0;
+			newMinuteAndArrays[min] = bertFunc(happy, surprised, sad, dissapointed, afraid, angry);
 		}
 
 		return newMinuteAndArrays
@@ -688,7 +688,7 @@ $(document).ready(function () {
 
 	function createSliderData(data, isUpdate) {
 		// console.log(data)
-		sliderDataArr = data.slice(Math.max(data.length - 20, 0));
+		sliderDataArr = data.slice(Math.max(data.length - 25, 0));
 		const revsliderDataArr = sliderDataArr.reverse();
 		const $lastActions = $('.js-last-actions');
 		$lastActions.css('opacity', 0.2);
@@ -711,7 +711,7 @@ $(document).ready(function () {
 
 	function createSliderEl(itemData) {
 		// console.log(itemData.emotions);
-		const img = itemData.emotions[0].experienceID ? itemData.emotions[0].experienceID : '';
+		const img = isExpId(itemData.emotions[0].experienceID) ? itemData.emotions[0].experienceID : 'notfound';
 		const age = mapAge(itemData.demographics[0].age);
 		const country = mapFlag(itemData.sessionData.country);
 		const gender = mapGender(itemData.demographics[0].gender);
@@ -751,6 +751,14 @@ $(document).ready(function () {
 				infinite: false
 			});
 		}
+	}
+
+	function isExpId(expId) {
+		const expNames = ['Bayern', 'BayernGlasses', 'BayernSkin', 'BayernWig', 'Corona', 'Glasses1', 'Mask', 'Spain', 'Xmas'];
+
+		return expNames.find(function (item) {
+			return expId === item;
+		})
 	}
 
 	function mapGender(val) {
