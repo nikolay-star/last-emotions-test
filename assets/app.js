@@ -565,6 +565,9 @@ $(document).ready(function () {
 			if (currentTimestamp < dateToTimestamp(startGraphicDate)) {
 				return;
 			}
+			if (!item.emotions[0]) {
+				return;
+			}
 			const emotions = item.emotions[0];
 			const minute = timestampToMinute(currentTimestamp);
 			if (reducedToMinute[minute] && reducedToMinute[minute].length) {
@@ -706,6 +709,9 @@ $(document).ready(function () {
 
 	function createSliderEl(itemData) {
 		// console.log(itemData.emotions);
+		if (!itemData.emotions[0]) {
+			return;
+		}
 		const img = itemData.emotions[0].experienceID;
 		const age = mapAge(itemData.demographics[0].age);
 		const country = mapFlag(itemData.sessionData.country);
