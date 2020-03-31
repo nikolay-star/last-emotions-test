@@ -699,7 +699,9 @@ $(document).ready(function () {
 		}
 
 		revsliderDataArr.forEach(function (item) {
-			$lastActions.append(createSliderEl(item));
+			if (Boolean(item.emotions[0]) && item.emotions[0]) {
+				$lastActions.append(createSliderEl(item));
+			}
 		});
 
 		setTimeout(function () {
@@ -709,9 +711,6 @@ $(document).ready(function () {
 
 	function createSliderEl(itemData) {
 		// console.log(itemData.emotions);
-		if (!itemData.emotions[0]) {
-			return;
-		}
 		const img = itemData.emotions[0].experienceID;
 		const age = mapAge(itemData.demographics[0].age);
 		const country = mapFlag(itemData.sessionData.country);
