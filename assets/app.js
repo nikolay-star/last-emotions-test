@@ -688,7 +688,7 @@ $(document).ready(function () {
 
 	function createSliderData(data, isUpdate) {
 		// console.log(data)
-		sliderDataArr = data.slice(Math.max(data.length - 10, 0));
+		sliderDataArr = data.slice(Math.max(data.length - 20, 0));
 		const revsliderDataArr = sliderDataArr.reverse();
 		const $lastActions = $('.js-last-actions');
 		$lastActions.css('opacity', 0.2);
