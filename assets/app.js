@@ -77,6 +77,8 @@ $(document).ready(function () {
 	var disappointedData = {};
 	var afraidData = {};
 	var angryData = {};
+	var autoUpdationInterval;
+	var ajaxRes;
 
 	/*
 	
@@ -86,6 +88,7 @@ $(document).ready(function () {
 	
 	var $loginform = $("#loginform");
 	var $guestform = $("#guest-form");
+	var $autoUpdateBtn = $('.js-auto-update');
 	
 	$loginform.on('submit', function (e) {
 		var event = e;
@@ -94,7 +97,7 @@ $(document).ready(function () {
 		submitHandler(event, $form);
 		
 		// setInterval(function(){
-		// 	updatePage($form)
+		// 	updatePageData($form)
 		// }, 60000)
 	});
 	
@@ -103,44 +106,39 @@ $(document).ready(function () {
 		var $form = $(this);
 		
 		submitHandler(event, $form);
-		
-		setInterval(function(){
-			updatePage($form)
-		}, 15000)
+		setUpdateInterval();
 	});
-	
+
+	$autoUpdateBtn.on('click', function () {
+		if ($(this).hasClass('paused')) {
+			setUpdateInterval();
+		} else {
+			clearUpdateInterval();
+		}
+
+		$(this).toggleClass('paused');
+	});
+
+	function setUpdateInterval() {
+		autoUpdationInterval = setInterval(function(){
+			updatePageData($guestform)
+		}, 15000)
+	}
+
+	function clearUpdateInterval() {
+		clearInterval(autoUpdationInterval);
+		ajaxRes.abort();
+	}
+
 	function submitHandler(e, $form) {
 		e.preventDefault();
 		$('.preloader').show();
-		
-		// $.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
-		// 	$form.serialize()
-		// ).done(function(json) {
-		//
-		// 	$('.login-modal').hide();
-		//
-		// 	if ( $('.chart-page').length ) {
-		//
-		// 		dataObj = json;
-		// 		arrSorted = json;
-		// 		initChartArrays(dataObj);
-		// 		initCharts();
-		// 		initFilters(dataObj);
-		//
-		// 		$('.preloader').hide();
-		//
-		// 	}
-		//
-		// }).fail(function() {
-		// 	alert( "Wrong email or password. Try again" );
-		// 	$('.preloader').hide();
-		// });
 
 		var formData = $form.serializeArray();
 
 		formData.push({name: 'timestamp', value: customTimestamp });
 		
-		$.ajax({
+		ajaxRes = $.ajax({
 			type: 'POST',
 			url: 'https://moodme.tk:8001/emotionsData',
 			crossDomain: true,
@@ -174,7 +172,7 @@ $(document).ready(function () {
 		initSlider();
 	}
 	
-	function updatePage($form){
+	function updatePageData($form){
 
 		// $.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
 		// 	$form.serialize()
@@ -191,7 +189,7 @@ $(document).ready(function () {
 
 		formData.push({name: 'timestamp', value: customTimestamp});
 		
-		$.ajax({
+		ajaxRes = $.ajax({
 			type: 'POST',
 			url: 'https://moodme.tk:8001/emotionsData',
 			crossDomain: true,
@@ -687,9 +685,9 @@ $(document).ready(function () {
 	// slick
 
 	function createSliderData(data, isUpdate) {
-		// console.log(data)
 		sliderDataArr = data.slice(Math.max(data.length - 25, 0));
 		const revsliderDataArr = sliderDataArr.reverse();
+		// console.log(revsliderDataArr);
 		const $lastActions = $('.js-last-actions');
 		$lastActions.css('opacity', 0.2);
 
@@ -716,6 +714,8 @@ $(document).ready(function () {
 		const country = mapFlag(itemData.sessionData.country);
 		const gender = mapGender(itemData.demographics[0].gender);
 		const emotion = mapEmotionsArr(itemData.emotions[0]);
+		const timeVal = itemData.demographics[0].time;
+		const tsec = timeVal ? parseInt(timeVal) : '';
 		const element = $('<div class="last-action">' +
 			'                <div class="last-action-inner">' +
 			'                    <div class="last-action__header">' +
@@ -734,6 +734,9 @@ $(document).ready(function () {
 			'                    </div>' +
 			'                    <div class="last-action__flag">' +
 			country +
+			'                    </div>' +
+			'                    <div class="last-action__tsec">T sec: ' +
+			tsec +
 			'                    </div>' +
 			'                </div>' +
 			'            </div>');
@@ -754,7 +757,7 @@ $(document).ready(function () {
 	}
 
 	function isExpId(expId) {
-		const expNames = ['Bayern', 'BayernGlasses', 'BayernSkin', 'BayernWig', 'Corona', 'Glasses1', 'Mask', 'Spain', 'Xmas'];
+		const expNames = ['Bayern', 'BayernGlasses', 'BayernSkin', 'BayernWig', 'Corona', 'Glasses1', 'Mask', 'Spain', 'Xmas', 'Qatar', 'SARSCOV2'];
 
 		return expNames.find(function (item) {
 			return expId === item;

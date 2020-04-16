@@ -113,21 +113,33 @@ html{
 }
 
 .bert-value{
-	font-size: 14px;
-	line-height: 24px;
-	margin-bottom: 116px;
+	left: -5px;
+	width: 40px;
+	height: 3px;
+	background: #000;
+	display: block;
 	position: absolute;
-	left: 45px;
+	margin-bottom: 116px;
+	font-size: 0;
 }
 
-.bert-value:before{
-	position: absolute;
-	left: -17px;
-	content: '-';
-	font-size: 24px;
-	line-height: 1em;
-	color: #ccc;
-}
+/*.bert-value{*/
+/*	font-size: 14px;*/
+/*	line-height: 24px;*/
+/*	margin-bottom: 116px;*/
+/*	position: absolute;*/
+/*	left: 45px;*/
+/*	display: none;*/
+/*}*/
+
+/*.bert-value:before{*/
+/*	position: absolute;*/
+/*	left: -17px;*/
+/*	content: '-';*/
+/*	font-size: 24px;*/
+/*	line-height: 1em;*/
+/*	color: #ccc;*/
+/*}*/
 
 .chart__item h3{
 	position: relative;
@@ -233,4 +245,41 @@ html{
 
 .last-actions .slick-track {
 	padding: 40px 0;
+}
+
+.last-action__tsec {
+	text-align: center;
+	padding: 0 0 5px;
+	font-size: 12px;
+	color: #222222;
+}
+
+.auto-update {
+	font-family: EmojiOneColor;
+	cursor: pointer;
+	position: absolute;
+	padding: 0;
+	margin: 6px 0 0 10px;
+	border: none;
+	display: inline-block;
+	vertical-align: middle;
+	background: transparent;
+	outline: none !important;
+}
+
+.auto-update .play {
+	display: none;
+}
+
+.auto-update.paused .play {
+	display: block;
+}
+
+.auto-update.paused .pause {
+	display: none;
+}
+
+.last-emotion-title {
+	display: inline-block;
+	vertical-align: middle;
 }
