@@ -79,6 +79,7 @@ $(document).ready(function () {
 	var angryData = {};
 	var autoUpdationInterval;
 	var ajaxRes;
+	var newBertVal;
 
 	/*
 	
@@ -106,7 +107,7 @@ $(document).ready(function () {
 		var $form = $(this);
 		
 		submitHandler(event, $form);
-		setUpdateInterval();
+		// setUpdateInterval();
 	});
 
 	$autoUpdateBtn.on('click', function () {
@@ -140,7 +141,7 @@ $(document).ready(function () {
 		
 		ajaxRes = $.ajax({
 			type: 'POST',
-			url: 'https://moodme.tk:8001/emotionsData',
+			url: 'https://moodme.tk:8001/emotionsEvents',
 			crossDomain: true,
 			data: formData,
 			dataType: 'json',
@@ -165,6 +166,7 @@ $(document).ready(function () {
 	function init(responseData) {
 		dataObj = responseData;
 		arrSorted = responseData;
+		newBertVal = newAverageBert(responseData);
 		reduceTimeBertCharts(responseData);
 		initChartArrays(dataObj);
 		initCharts();
@@ -174,7 +176,7 @@ $(document).ready(function () {
 	
 	function updatePageData($form){
 
-		// $.post( "https://18.218.159.157:8001/emotionsData",  // тут url для логина
+		// $.post( "https://18.218.159.157:8001/emotionsEvents",  // тут url для логина
 		// 	$form.serialize()
 		// ).done(function(json) {
 		//
@@ -191,7 +193,7 @@ $(document).ready(function () {
 		
 		ajaxRes = $.ajax({
 			type: 'POST',
-			url: 'https://moodme.tk:8001/emotionsData',
+			url: 'https://moodme.tk:8001/emotionsEvents',
 			crossDomain: true,
 			data: formData,
 			dataType: 'json',
@@ -219,38 +221,12 @@ $(document).ready(function () {
 	});
 	
 	guestSubmit();
-	
-
-	/*
-	
-	 actions
-	 
-	 */
-	
-	var $body = $('body');
 
 	/*
 	
 	 main
 	 
 	 */
-	
-	// helper function for colors
-	
-	var dynamicColors = function() {
-		var arr = [];
-		
-		for (var i = 0; i<100; i++){
-			var r = Math.floor(Math.random() * 255);
-			var g = Math.floor(Math.random() * 255);
-			var b = Math.floor(Math.random() * 255);
-			arr.push("rgb(" + r + "," + g + "," + b + ")");
-		}
-		
-		//console.log(arr);
-		
-		return arr;
-	};
 	
 	// create chart arrays
 	
@@ -262,12 +238,12 @@ $(document).ready(function () {
 
 			// emotions
 
-			if (!item.emotions[0]) {
+			if (!item.emotions) {
 				return;
 			}
 
 			for (var em_key in emotions) {
-				emotions[em_key] += item.emotions[0][em_key];
+				emotions[em_key] += item.emotions[em_key];
 			}
 
 
@@ -280,8 +256,8 @@ $(document).ready(function () {
 				happyData[itemDay].valuesLength = 0;
 				//console.log(happyData[itemDay]);
 			} else {
-				if (typeof item.emotions[0].happy === 'number') {
-					happyData[itemDay].values += item.emotions[0].happy;
+				if (typeof item.emotions.happy === 'number') {
+					happyData[itemDay].values += item.emotions.happy;
 					happyData[itemDay].valuesLength += 1;
 				}
 			}
@@ -293,8 +269,8 @@ $(document).ready(function () {
 				surprisedData[itemDay].valuesLength = 0;
 				//console.log(happyData[itemDay]);
 			} else {
-				if (typeof item.emotions[0].surprised === 'number') {
-					surprisedData[itemDay].values += item.emotions[0].surprised;
+				if (typeof item.emotions.surprised === 'number') {
+					surprisedData[itemDay].values += item.emotions.surprised;
 					surprisedData[itemDay].valuesLength += 1;
 				}
 			}
@@ -306,8 +282,8 @@ $(document).ready(function () {
 				sadData[itemDay].valuesLength = 0;
 				//console.log(happyData[itemDay]);
 			} else {
-				if (typeof item.emotions[0].surprised === 'number') {
-					sadData[itemDay].values += item.emotions[0].sad;
+				if (typeof item.emotions.surprised === 'number') {
+					sadData[itemDay].values += item.emotions.sad;
 					sadData[itemDay].valuesLength += 1;
 				}
 			}
@@ -319,8 +295,8 @@ $(document).ready(function () {
 				disappointedData[itemDay].valuesLength = 0;
 				//console.log(happyData[itemDay]);
 			} else {
-				if (typeof item.emotions[0].disappointed === 'number') {
-					disappointedData[itemDay].values += item.emotions[0].disappointed;
+				if (typeof item.emotions.disappointed === 'number') {
+					disappointedData[itemDay].values += item.emotions.disappointed;
 					disappointedData[itemDay].valuesLength += 1;
 				}
 			}
@@ -332,8 +308,8 @@ $(document).ready(function () {
 				afraidData[itemDay].valuesLength = 0;
 				//console.log(happyData[itemDay]);
 			} else {
-				if (typeof item.emotions[0].afraid === 'number') {
-					afraidData[itemDay].values += item.emotions[0].afraid;
+				if (typeof item.emotions.afraid === 'number') {
+					afraidData[itemDay].values += item.emotions.afraid;
 					afraidData[itemDay].valuesLength += 1;
 				}
 			}
@@ -345,8 +321,8 @@ $(document).ready(function () {
 				angryData[itemDay].valuesLength = 0;
 				//console.log(happyData[itemDay]);
 			} else {
-				if (typeof item.emotions[0].angry === 'number') {
-					angryData[itemDay].values += item.emotions[0].angry;
+				if (typeof item.emotions.angry === 'number') {
+					angryData[itemDay].values += item.emotions.angry;
 					angryData[itemDay].valuesLength += 1;
 				}
 			}
@@ -354,6 +330,17 @@ $(document).ready(function () {
 		});
 		
 		bert(emotionsCreateArr(emotions));
+	}
+
+	function newAverageBert(data) {
+		const dataLength = data.length;
+		let bert = 0;
+
+		data.forEach(function (item) {
+			bert += item.bert;
+		});
+
+		return bert / dataLength;
 	}
 	
 	// init charts
@@ -414,94 +401,15 @@ $(document).ready(function () {
 			return (item/dataLength)*100
 		});
 	}
-	
-	// clear
-	
-	function clearObjects() {
-		
-		arrLength = 0;
-		
-		for (let key in genderData){
-			genderData[key] = 0
-		}
-		
-		for (let key in ageData){
-			ageData[key] = 0
-		}
-
-		for (let key in countriesArr){
-			countriesArr[key] = 0
-		}
-		
-		for (let key in emotions){
-			emotions[key] = 0
-		}
-		
-		for (let key in happyData){
-			happyData[key] = 0
-		}
-		
-		for (let key in surprisedData){
-			surprisedData[key] = 0
-		}
-		
-		for (let key in sadData){
-			sadData[key] = 0
-		}
-		
-		for (let key in disappointedData){
-			disappointedData[key] = 0
-		}
-		
-		for (let key in afraidData){
-			afraidData[key] = 0
-		}
-		
-		for (let key in angryData){
-			angryData[key] = 0
-		}
-		
-	}
-	
-	// update charts
-	
-	function updateCharts() {
-
-		
-		emotionsDatesChart.data.datasets[0].data = mapEmotions(happyData);
-		
-		//console.log(happyData);
-		
-		emotionsDatesChart.data.datasets[1].data = mapEmotions(surprisedData);
-		emotionsDatesChart.data.datasets[2].data = mapEmotions(sadData);
-		emotionsDatesChart.data.datasets[3].data = mapEmotions(disappointedData);
-		emotionsDatesChart.data.datasets[4].data = mapEmotions(afraidData);
-		emotionsDatesChart.data.datasets[5].data = mapEmotions(angryData);
-		
-		emotionsDatesChart.data.labels = Object.keys(happyData);
-
-		emotionsDatesChart.update();
-	}
 
 	// bert index
 	
-	function bert(arr) {
-		var happy = arr[0],
-			surprised = arr[1],
-			sad = arr[2],
-			dissapointed = arr[3],
-			afraid = arr[4],
-			angry = arr[5];
-		
-		var bert;
+	function bert() {
 		var $bertVal = $('.bert-value');
 
-		
-		bert = bertFunc(happy, surprised, sad, dissapointed, afraid, angry);
-
 		$bertVal
-			.css('bottom', bert*50 + '%')
-			.text( bert );
+			.css('bottom', newBertVal*50 + '%')
+			.text( newBertVal );
 	}
 	
 	// timestamp to date
@@ -554,70 +462,94 @@ $(document).ready(function () {
 		let reducedToMinute = [];
 		const today = new Date();
 		let startGraphicDate = new Date();
-		startGraphicDate.setDate(today.getDate() - 1);
+		startGraphicDate.setDate(today.getTime() - (1000*60*60));
+		var hourago = new Date(today.getTime() - (4000*60*60));
 
 		emotionsArray.forEach(function(item) {
 			const currentTimestamp = item.sessionData.timestamp;
 
 			// TODO: make right comparing
-			if (currentTimestamp < dateToTimestamp(startGraphicDate)) {
+			if (currentTimestamp < dateToTimestamp(hourago)) {
 				return;
 			}
-			if (!item.emotions[0]) {
+			if (!item.bert) {
 				return;
 			}
-			const emotions = item.emotions[0];
+			const emotions = item.emotions;
+			const bert = item.bert;
 			const minute = timestampToMinute(currentTimestamp);
 			if (reducedToMinute[minute] && reducedToMinute[minute].length) {
-				reducedToMinute[minute].push(emotions)
+				// reducedToMinute[minute].push(emotions)
+				reducedToMinute[minute].push(bert)
 			} else {
 				reducedToMinute[minute] = [];
-				reducedToMinute[minute].push(emotions);
+				// reducedToMinute[minute].push(emotions);
+				reducedToMinute[minute].push(bert);
 			}
 		});
 
-		bertMinutesSortedObj = transformTimeBertData(reducedToMinute);
+		// bertMinutesSortedObj = transformTimeBertData(reducedToMinute);
+		bertMinutesSortedObj = transformNewTimeBertData(reducedToMinute)
 	}
 
-	function transformTimeBertData(minuteAndArrays) {
-		const keys = Object.keys(minuteAndArrays);
-		let newMinuteAndArrays = minuteAndArrays;
+	function transformNewTimeBertData(reducedObj) {
+		const keys = Object.keys(reducedObj);
+		let newObj = {};
 
 		for (let minute of keys) {
-			let minuteValues = {};
-			let arrayOfArrays = minuteAndArrays[minute];
-			minuteValues.currentLength = arrayOfArrays.length;
+			const minuteArray = reducedObj[minute];
+			const minuteArrayLength = minuteArray.length;
+			let sumOfArrayElements = 0;
 
-			arrayOfArrays.forEach(function(item, index) {
-				for (let emotion in item) {
-					const currentEmotion = item[emotion];
-					if (minuteValues[emotion]) {
-						minuteValues[emotion] += currentEmotion
-					} else if (typeof currentEmotion === "number") {
-						minuteValues[emotion] = currentEmotion
-					}
-				}
+			minuteArray.forEach(function (item) {
+				sumOfArrayElements += item
 			});
 
-			newMinuteAndArrays[minute] = minuteValues;
+			newObj[minute] = parseFloat( sumOfArrayElements / minuteArrayLength).toFixed(3)
 		}
 
-		for (let min in newMinuteAndArrays) {
-			for (let emotionValue in newMinuteAndArrays[min]) {
-				if (emotionValue !== 'currentLength' && emotionValue !== 'time') {
-					newMinuteAndArrays[min][emotionValue] = newMinuteAndArrays[min][emotionValue]/newMinuteAndArrays[min].currentLength
-				}
-			}
-		}
-
-		for (let min in newMinuteAndArrays) {
-			let { happy, surprised, sad, dissapointed, afraid, angry } = newMinuteAndArrays[min];
-			if (!dissapointed) dissapointed = 0;
-			newMinuteAndArrays[min] = bertFunc(happy, surprised, sad, dissapointed, afraid, angry);
-		}
-
-		return newMinuteAndArrays
+		return newObj;
 	}
+
+	// function transformTimeBertData(minuteAndArrays) {
+	// 	const keys = Object.keys(minuteAndArrays);
+	// 	let newMinuteAndArrays = minuteAndArrays;
+	//
+	// 	for (let minute of keys) {
+	// 		let minuteValues = {};
+	// 		let arrayOfArrays = minuteAndArrays[minute];
+	// 		minuteValues.currentLength = arrayOfArrays.length;
+	//
+	// 		arrayOfArrays.forEach(function(item, index) {
+	// 			for (let emotion in item) {
+	// 				const currentEmotion = item[emotion];
+	// 				if (minuteValues[emotion]) {
+	// 					minuteValues[emotion] += currentEmotion
+	// 				} else if (typeof currentEmotion === "number") {
+	// 					minuteValues[emotion] = currentEmotion
+	// 				}
+	// 			}
+	// 		});
+	//
+	// 		newMinuteAndArrays[minute] = minuteValues;
+	// 	}
+	//
+	// 	for (let min in newMinuteAndArrays) {
+	// 		for (let emotionValue in newMinuteAndArrays[min]) {
+	// 			if (emotionValue !== 'currentLength' && emotionValue !== 'time') {
+	// 				newMinuteAndArrays[min][emotionValue] = newMinuteAndArrays[min][emotionValue]/newMinuteAndArrays[min].currentLength
+	// 			}
+	// 		}
+	// 	}
+	//
+	// 	for (let min in newMinuteAndArrays) {
+	// 		let { happy, surprised, sad, dissapointed, afraid, angry } = newMinuteAndArrays[min];
+	// 		if (!dissapointed) dissapointed = 0;
+	// 		newMinuteAndArrays[min] = bertFunc(happy, surprised, sad, dissapointed, afraid, angry);
+	// 	}
+	//
+	// 	return newMinuteAndArrays
+	// }
 
 	// date to timestamp
 	
@@ -686,6 +618,7 @@ $(document).ready(function () {
 
 	function createSliderData(data, isUpdate) {
 		sliderDataArr = data.slice(Math.max(data.length - 25, 0));
+		console.log(sliderDataArr);
 		const revsliderDataArr = sliderDataArr.reverse();
 		// console.log(revsliderDataArr);
 		const $lastActions = $('.js-last-actions');
@@ -697,7 +630,7 @@ $(document).ready(function () {
 		}
 
 		revsliderDataArr.forEach(function (item) {
-			if (Boolean(item.emotions[0]) && item.emotions[0]) {
+			if (Boolean(item.emotions) && item.emotions) {
 				$lastActions.append(createSliderEl(item));
 			}
 		});
@@ -709,13 +642,13 @@ $(document).ready(function () {
 
 	function createSliderEl(itemData) {
 		// console.log(itemData.emotions);
-		const img = isExpId(itemData.emotions[0].experienceID) ? itemData.emotions[0].experienceID : 'notfound';
-		const age = mapAge(itemData.demographics[0].age);
+		const img = isExpId(itemData.emotions.experienceID) ? itemData.emotions.experienceID : 'notfound';
+		const age = mapAge(itemData.demographics.age);
 		const country = mapFlag(itemData.sessionData.country);
-		const gender = mapGender(itemData.demographics[0].gender);
-		const emotion = mapEmotionsArr(itemData.emotions[0]);
-		const timeVal = itemData.demographics[0].time;
-		const tsec = timeVal ? parseInt(timeVal) : '';
+		const gender = mapGender(itemData.demographics.gender);
+		const emotion = mapEmotionsArr(itemData.emotions);
+		const timeVal = itemData.demographics.time;
+		const tsec = timeVal ? 'T sec: ' + parseInt(timeVal) : '';
 		const element = $('<div class="last-action">' +
 			'                <div class="last-action-inner">' +
 			'                    <div class="last-action__header">' +
@@ -735,7 +668,7 @@ $(document).ready(function () {
 			'                    <div class="last-action__flag">' +
 			country +
 			'                    </div>' +
-			'                    <div class="last-action__tsec">T sec: ' +
+			'                    <div class="last-action__tsec">' +
 			tsec +
 			'                    </div>' +
 			'                </div>' +
